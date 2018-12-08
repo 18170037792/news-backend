@@ -1,0 +1,22 @@
+server:
+  port: 8083
+spring:
+  profiles:
+    active: dev
+  thymeleaf:
+    cache: false
+  http:
+    multipart:
+      maxFileSize: 100Mb
+      maxRequestSize: 1000Mb
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.xiafei.newsbackend.pojo
+  configuration:
+    map-underscore-to-camel-case: true
+    use-column-label: true
+    use-generated-keys: true
+pagehelper:
+  helperDialect: mysql
+  supportMethodsArguments: true
+  params: count,countSql
