@@ -1,33 +1,33 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
 <!--========== The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags ==========-->
 <title>Chivalric</title>
 
 <!--==========Dependency============-->
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" href="css/font-awesome.min.css">
-<link rel="stylesheet" href="vendors/owl-carousel/assets/owl.carousel.css">
-<link rel="stylesheet" href="vendors/magnific-popup/magnific-popup.css">
+<link rel="stylesheet" href="/home/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="/home/css/font-awesome.min.css"/>
+<link rel="stylesheet" href="/home/vendors/owl-carousel/assets/owl.carousel.css"/>
+<link rel="stylesheet" href="/home/vendors/magnific-popup/magnific-popup.css"/>
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kanit:500">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin+Sans:600,700italic">
-<link href='https://fonts.googleapis.com/css?family=Dosis:400,200,300,500,600,800,700' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli:400,300,300italic,400italic">
-<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500italic,500,700italic,700,900,900italic' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kanit:500"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin+Sans:600,700italic"/>
+<link href='https://fonts.googleapis.com/css?family=Dosis:400,200,300,500,600,800,700' rel='stylesheet' type='text/css'/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli:400,300,300italic,400italic"/>
+<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500italic,500,700italic,700,900,900italic' rel='stylesheet' type='text/css'/>
 
 <!--==========Theme Styles==========-->
-<link href="css/style.css" rel="stylesheet">
-<link href="css/theme/green.css" rel="stylesheet">
+<link href="/home/css/style.css" rel="stylesheet"/>
+<link href="/home/css/theme/green.css" rel="stylesheet"/>
 
 <!--========== HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries ==========-->
 <!--========== WARNING: Respond.js doesn't work if you view the page via file:// ==========-->
 <!--==========[if lt IE 9]>
-    <script src="js/html5shiv.min.js"></script>
-    <script src="js/respond.min.js"></script>
+    <script src="/home/js/html5shiv.min.js"></script>
+    <script src="/home/js/respond.min.js"></script>
 <![endif]==========-->
 </head>
 <body class="home">
@@ -38,19 +38,19 @@
             <div class="col-sm-4 search-form-col">
                 <form action="#" method="get" class="search-form">
                     <div class="input-group">
-                        <span class="input-group-addon"><img src="images/search-icon-dark.png" alt=""></span>
-                        <input type="search" class="form-control" placeholder="search">
+                        <span class="input-group-addon"><img src="/home/images/search-icon-dark.png" alt=""/></span>
+                        <input type="search" class="form-control" placeholder="search"/>
                     </div>
                 </form>
             </div>
             <div class="col-sm-4 logo-col text-center">
-                <a href="index.html"><img src="images/logo-black-green.png" alt=""></a>
+                <a href="index.html"><img src="/home/images/logo-black-green.png" alt=""/></a>
             </div>
             <div class="col-sm-4 menu-trigger-col">
                 <button class="menu-trigger black pull-right">
                     <span class="active-page">Contact</span>
-                    <img src="images/menu-align-dark.png" alt="" class="icon-burger">
-                    <img src="images/menu-close-dark.png" alt="" class="icon-cross">
+                    <img src="/home/images/menu-align-dark.png" alt="" class="icon-burger"/>
+                    <img src="/home/images/menu-close-dark.png" alt="" class="icon-cross"/>
                 </button>
             </div>
         </div>        
@@ -87,7 +87,7 @@
                     <h5 class="widget-title">subscribe to our newsletter.</h5>
                     <form action="#" method="post" class="form-inline subscribe-form">                    
                         <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Email">
+                            <input type="email" class="form-control" placeholder="Email"/>
                         </div>
                         <button type="submit" class="btn btn-primary btn-sm"><span>send</span></button>
                     </form>
@@ -114,23 +114,23 @@
                         <h4>Mark Samder, lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</h4>
                     
                         <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                        <br>
+                        <br/>
                         <form action="#" method="post" class="contact-form row">
                             <div class="form-group col-sm-6">
                                 <label for="name">full name*</label>
-                                <input type="text" id="name" class="form-control" placeholder="Your name" required>
+                                <input type="text" id="name" class="form-control" placeholder="Your name" required="required"/>
                             </div>
                             <div class="form-group col-sm-6">
                                 <label for="email">full name*</label>
-                                <input type="email" id="email" class="form-control" placeholder="Your email address here" required>
+                                <input type="email" id="email" class="form-control" placeholder="Your email address here" required="required"/>
                             </div>
                             <div class="form-group col-sm-6">
                                 <label for="website">website</label>
-                                <input type="url" id="website" class="form-control" placeholder="Your website url">
+                                <input type="url" id="website" class="form-control" placeholder="Your website url"/>
                             </div>
                             <div class="form-group col-sm-6">
-                                <label for="subject">subject</label>
-                                <input type="text" id="subject" class="form-control" placeholder="Write subject here" required>
+                                <label for="subject">subject*</label>
+                                <input type="text" id="subject" class="form-control" placeholder="Write subject here" required="required"/>
                             </div>
                             <div class="form-group col-sm-12">
                                 <label for="message">message</label>
@@ -148,7 +148,7 @@
                 <!--Author Widget-->
                 <aside class="row m0 widget-author widget has-pt">
                     <div class="widget-author-inner row">
-                        <div class="author-avatar row"><a href="#"><img src="images/author.png" alt="" class="img-circle"></a></div>
+                        <div class="author-avatar row"><a href="#"><img src="/home/images/author.png" alt="" class="img-circle"/></a></div>
                         <a href="#"><h2 class="author-name">Mark Sanders</h2></a>
                         <h5 class="author-title">small title</h5>
                         <p>The word nature is derived from the Latin word natura, or "essential qualities, innate disposition", and in ancient times, literally meant "birth".</p>
@@ -194,7 +194,7 @@
     <div class="container">
         <div class="row top-footer">
             <div class="widget col-sm-3 widget-about">
-                <div class="row m0"><a href="index.html"><img src="images/logo-black-green.png" alt=""></a></div>
+                <div class="row m0"><a href="index.html"><img src="/home/images/logo-black-green.png" alt=""/></a></div>
             </div>
             <div class="widget col-sm-5 widget-menu">
                 <div class="row">
@@ -215,7 +215,7 @@
                 <h5 class="widget-title">subscribe to our newsletter.</h5>
                 <form action="#" method="post" class="form-inline subscribe-form">                    
                     <div class="form-group">
-                        <input type="email" class="form-control" placeholder="Email">
+                        <input type="email" class="form-control" placeholder="Email"/>
                     </div>
                     <button type="submit" class="btn btn-primary btn-sm"><span>send</span></button>
                 </form>
@@ -226,13 +226,13 @@
 </footer>
 
 <!--========== jQuery (necessary for Bootstrap's JavaScript plugins) ==========-->
-<script src="js/jquery-2.2.0.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="vendors/owl-carousel/owl.carousel.min.js"></script>
-<script src="vendors/magnific-popup/jquery.magnific-popup.min.js"></script>
-<script src="vendors/instafeed/instafeed.min.js"></script>
-<script src="vendors/imagesLoaded/imagesloaded.pkgd.min.js"></script>
-<script src="vendors/isotope/isotope.pkgd.min.js"></script>
-<script src="js/theme.js"></script>
+<script src="/home/js/jquery-2.2.0.min.js"></script>
+<script src="/home/js/bootstrap.min.js"></script>
+<script src="/home/vendors/owl-carousel/owl.carousel.min.js"></script>
+<script src="/home/vendors/magnific-popup/jquery.magnific-popup.min.js"></script>
+<script src="/home/vendors/instafeed/instafeed.min.js"></script>
+<script src="/home/vendors/imagesLoaded/imagesloaded.pkgd.min.js"></script>
+<script src="/home/vendors/isotope/isotope.pkgd.min.js"></script>
+<script src="/home/js/theme.js"></script>
 </body>
 </html>

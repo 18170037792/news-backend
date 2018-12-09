@@ -4,6 +4,11 @@ spring:
   profiles:
     active: dev
   thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    encoding: UTF-8
+    content-type: text/html
+    mode: HTML5
     cache: false
   http:
     multipart:
