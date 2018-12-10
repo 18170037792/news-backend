@@ -1,7 +1,7 @@
 package com.xiafei.newsbackend.util;
 
 /**
- * Created by qujie on 2018/11/21
+ * Created by qujie on 2018/12/10
  * 随机数获取
  * */
 public class GetRandom {

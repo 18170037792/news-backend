@@ -3,7 +3,7 @@ package com.xiafei.newsbackend.util;
 import java.security.MessageDigest;
 
 /**
- * Created by qujie on 2018/11/8
+ * Created by qujie on 2018/12/10
  * MD5方法加密
  */
 public class GetMD5 {

@@ -2,7 +2,7 @@ package com.xiafei.newsbackend.util;
 
 
 /**
- * Created by qujie on 2018/3/2
+ * Created by qujie on 2018/12/10
  * 常量类
  */
 public class Constant {
@@ -37,6 +37,8 @@ public class Constant {
     public final static String QUERY_SUCCESS = "查询成功";
 
     public final static String PARAMETER_ERROR = "参数错误";
+
+    public final static String LENGTH_ERROR="请注意字段长度";
 
     public final static String OPERATION_SUCCESS = "成功";
 

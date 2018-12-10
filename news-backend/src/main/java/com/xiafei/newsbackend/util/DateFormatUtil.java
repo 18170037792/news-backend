@@ -4,8 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Created by qujie on 2018/11/19
- * Converts the date format class
+ * Created by qujie on 2018/12/10
  * 转换日期格式类
  * */
 public class DateFormatUtil {

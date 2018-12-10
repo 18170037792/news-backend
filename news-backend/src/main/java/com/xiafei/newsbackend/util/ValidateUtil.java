@@ -1,7 +1,7 @@
 package com.xiafei.newsbackend.util;
 
 /**
- * Created by qujie on 2018/11/22
+ * Created by qujie on 2018/12/10
  * */
 public class ValidateUtil {
 

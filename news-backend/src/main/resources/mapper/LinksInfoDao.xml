@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiafei.newsbackend.dao.LinksInfoDao">
+    <insert id="insert" parameterType="com.xiafei.newsbackend.pojo.table.LinksInfoTable">
+        insert into links_info(name, logo, link_address, sort, add_time)
+        values(#{name}, #{logo}, #{linkAddress}, #{sort}, #{addTime})
+    </insert>
+
+    <select id="getList" resultType="com.xiafei.newsbackend.pojo.table.LinksInfoTable">
+        select id, logo, link_address, sort
+        from links_info
+        order by sort asc
+    </select>
+
+</mapper>
