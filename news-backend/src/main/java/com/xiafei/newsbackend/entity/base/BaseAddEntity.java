@@ -4,6 +4,7 @@ import java.util.Date;
 
 /**
  * Created by qujie on 2018/12/10
+ * 新增实体类基类
  * */
 public class BaseAddEntity {
 

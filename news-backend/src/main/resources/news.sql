@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50720
 File Encoding         : 65001
 
-Date: 2018-12-13 17:58:42
+Date: 2018-12-14 17:40:08
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -124,6 +124,28 @@ INSERT INTO `links_info` VALUES ('6', 'facebook', null, 'https://www.facebook.co
 INSERT INTO `links_info` VALUES ('7', '新浪新闻', null, 'https://news.sina.com.cn/', '2', '2018-12-10 16:21:33', null);
 
 -- ----------------------------
+-- Table structure for `log_info`
+-- ----------------------------
+DROP TABLE IF EXISTS `log_info`;
+CREATE TABLE `log_info` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `action` varchar(100) DEFAULT NULL,
+  `data` text,
+  `author_id` bigint(20) DEFAULT NULL,
+  `add_ip` varchar(100) DEFAULT NULL,
+  `add_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of log_info
+-- ----------------------------
+INSERT INTO `log_info` VALUES ('1', '登录后台', null, '1', null, '2018-12-14 14:18:07');
+INSERT INTO `log_info` VALUES ('2', '保存系统设置', null, '1', null, '2018-12-14 14:35:08');
+INSERT INTO `log_info` VALUES ('3', '登录后台', null, '1', null, '2018-12-14 15:36:26');
+INSERT INTO `log_info` VALUES ('4', '登录后台', null, '1', '0:0:0:0:0:0:0:1', '2018-12-14 16:37:37');
+
+-- ----------------------------
 -- Table structure for `message_info`
 -- ----------------------------
 DROP TABLE IF EXISTS `message_info`;
@@ -142,3 +164,54 @@ CREATE TABLE `message_info` (
 -- ----------------------------
 -- Records of message_info
 -- ----------------------------
+
+-- ----------------------------
+-- Table structure for `user_info`
+-- ----------------------------
+DROP TABLE IF EXISTS `user_info`;
+CREATE TABLE `user_info` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) DEFAULT NULL COMMENT '用户名',
+  `pwd` varchar(100) DEFAULT NULL COMMENT '密码',
+  `mobile` varchar(50) DEFAULT NULL COMMENT '手机号',
+  `frozen` tinyint(1) DEFAULT '0' COMMENT '是否冻结用户，0为显示，1为冻结',
+  `email` varchar(50) DEFAULT NULL COMMENT '邮箱',
+  `role_id` bigint(20) DEFAULT NULL COMMENT '角色ID',
+  `home_url` varchar(255) DEFAULT NULL COMMENT '用户主页',
+  `add_time` datetime DEFAULT NULL COMMENT '添加时间',
+  `add_ip` varchar(50) DEFAULT NULL COMMENT '添加时ip',
+  `modify_time` datetime DEFAULT NULL COMMENT '最后修改人',
+  `modify_ip` varchar(50) DEFAULT NULL COMMENT '最后修改时ip',
+  `last_login_time` datetime DEFAULT NULL COMMENT '最后登录时间',
+  `last_login_ip` varchar(50) DEFAULT NULL COMMENT '最后登录ip地址',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='用户信息';
+
+-- ----------------------------
+-- Records of user_info
+-- ----------------------------
+INSERT INTO `user_info` VALUES ('1', 'qujie', 'e10adc3949ba59abbe56e057f20f883e', '18170037792', '0', null, null, null, null, null, null, null, null, null);
+INSERT INTO `user_info` VALUES ('2', 'admin', 'e10adc3949ba59abbe56e057f20f883e', '18170037792', '0', null, null, null, null, null, null, null, null, null);
+INSERT INTO `user_info` VALUES ('3', 'fangxiafei', 'e10adc3949ba59abbe56e057f20f883e', null, '0', null, null, null, null, null, null, null, null, null);
+
+-- ----------------------------
+-- Table structure for `user_role`
+-- ----------------------------
+DROP TABLE IF EXISTS `user_role`;
+CREATE TABLE `user_role` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) DEFAULT NULL,
+  `add_time` datetime DEFAULT NULL,
+  `add_user` bigint(20) DEFAULT NULL,
+  `add_ip` varchar(50) DEFAULT NULL,
+  `modify_time` datetime DEFAULT NULL,
+  `modify_user` bigint(20) DEFAULT NULL,
+  `modify_ip` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='角色信息';
+
+-- ----------------------------
+-- Records of user_role
+-- ----------------------------
+INSERT INTO `user_role` VALUES ('1', '管理员', null, null, null, null, null, null);
+INSERT INTO `user_role` VALUES ('2', '超级管理员', null, null, null, null, null, null);

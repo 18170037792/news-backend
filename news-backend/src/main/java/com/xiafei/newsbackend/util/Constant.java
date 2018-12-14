@@ -46,8 +46,12 @@ public class Constant {
 
     public final static String LOGIN_ERROR = "用户名或密码错误";
 
+    public final static String LOGIN_NULL = "用户名或密码不能为空";
+
     public final static String FROZEN = "用户被冻结";
 
     public final static String OPERATION_ERROR = "失败";
+
+    public final static String NUMBER_IS_BEYOND = "您输入密码已经错误超过3次，请10分钟后尝试";
 
 }
