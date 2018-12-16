@@ -30,6 +30,8 @@ public class Constant {
 
     public final static String  UNLOGIN_SUCCESS = "退出成功";
 
+    public final static String  UNLOGIN_FAILED = "退出失败";
+
     public final static String UPLOAD_SUCCESS = "上传成功";
 
     public final static String UPLOAD_FALIED = "上传失败";
@@ -53,5 +55,7 @@ public class Constant {
     public final static String OPERATION_ERROR = "失败";
 
     public final static String NUMBER_IS_BEYOND = "您输入密码已经错误超过3次，请10分钟后尝试";
+
+    private static final String USER_AGENT = "user-agent";
 
 }

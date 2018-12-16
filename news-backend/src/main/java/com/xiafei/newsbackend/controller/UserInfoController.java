@@ -29,7 +29,9 @@ public class UserInfoController {
     @Autowired
     private LogInfoService logInfoService;
 
-
+    /**
+     * 跳转到登录页面
+     * */
     @GetMapping("/login")
     public String login() {
         return "admin/login";
@@ -95,7 +97,8 @@ public class UserInfoController {
             session.removeAttribute("user");
             //重定向到登录页面
             response.sendRedirect("admin/login");
+            return new JsonResult(Constant.SUCCESS_CODE,Constant.UNLOGIN_SUCCESS);
         }
-        return new JsonResult(Constant.SUCCESS_CODE,Constant.UNLOGIN_SUCCESS);
+        return new JsonResult(Constant.FAILED_CODE,Constant.UNLOGIN_FAILED);
     }
 }
