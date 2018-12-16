@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.Date;
@@ -46,7 +47,7 @@ public class UserInfoController {
     public JsonResult doLogin(@RequestBody @Valid UserLoginEntity loginEntity, HttpServletRequest req){
         /**
          * 读取map缓存,cache是实例常量，本身不可
-         * 改变，但存放的对象可以改变
+         * 改变，但容器中存放的对象可以改变
          * */
         MapCache cache = MapCache.single();
         Integer error_count = cache.get("login_error_count");
@@ -88,11 +89,12 @@ public class UserInfoController {
      * */
     @PostMapping("/logout")
     @ResponseBody
-    public JsonResult logout(HttpServletRequest request) throws Exception{
+    public JsonResult logout(HttpServletRequest request, HttpServletResponse response) throws Exception{
         HttpSession session = request.getSession();
         if(session.getAttribute("user")!=null){
             session.removeAttribute("user");
-            //response.sendRedirect("admin/login");
+            //重定向到登录页面
+            response.sendRedirect("admin/login");
         }
         return new JsonResult(Constant.SUCCESS_CODE,Constant.UNLOGIN_SUCCESS);
     }

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiafei.newsbackend.dao.MessageInfoDao">
+    <insert id="addMessage" parameterType="com.xiafei.newsbackend.pojo.table.MessageInfoTable">
+        insert into message_info(name, email, web_site_url, title, content, add_time, add_ip)
+        values(#{name}, #{email}, #{webSiteUrl}, #{title}, #{content}, #{addTime}, #{addIp})
+    </insert>
+
+</mapper>
