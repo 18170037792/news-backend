@@ -97,12 +97,9 @@
     /*<![CDATA[*/
     var tale = new $.tale();
     function checkForm() {
-        alert(typeof JSON.parse($("#loginForm").serialize()));
         tale.post({
             url: '/admin/user/login',
-            data: :{
-                UserLoginEntity: $("#loginForm").serialize()
-            },
+            data: $("#loginForm").serialize(),
             success: function (result) {
                 if (result.code == 200) {
                     window.location.href = '/index';

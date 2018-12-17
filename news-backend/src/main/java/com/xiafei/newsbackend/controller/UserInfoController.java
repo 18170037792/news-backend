@@ -39,14 +39,18 @@ public class UserInfoController {
 
     /**
      * 后台登录
-     * @param loginEntity
+     * @param name
+     * @param pwd
      * @param req
      * @return JsonResult
      * @throws Exception
      * */
     @PostMapping("/login")
     @ResponseBody
-    public JsonResult doLogin(@RequestBody @Valid UserLoginEntity loginEntity, HttpServletRequest req){
+    public JsonResult doLogin(@RequestParam String name,@RequestParam String pwd,HttpServletRequest req){
+        UserLoginEntity loginEntity = new UserLoginEntity();
+        loginEntity.setName(name);
+        loginEntity.setPwd(pwd);
         /**
          * 读取map缓存,cache是实例常量，本身不可
          * 改变，但容器中存放的对象可以改变
@@ -57,7 +61,6 @@ public class UserInfoController {
             UserInfoEntity user = service.login(loginEntity);
             HttpSession session = req.getSession();
             session.setAttribute("user",user);
-
             /**
              * 添加系统日志
              * */
@@ -67,7 +70,6 @@ public class UserInfoController {
             logInfoAddEntity.setAddIp(GetIpAndMac.getIp(req));
             logInfoAddEntity.setAddTime(new Date());
             logInfoService.insertLog(logInfoAddEntity);
-
             return new JsonResult(Constant.SUCCESS_CODE,Constant.LOGIN_SUCCESS,user);
         } catch (Exception e) {
             /**
@@ -75,7 +77,6 @@ public class UserInfoController {
              * 的条件下赋值1，否则赋值+1
              * */
             error_count = null == error_count ? 1 : error_count + 1;
-
             if (error_count > 3) {
                 return new JsonResult(Constant.FAILED_CODE,Constant.NUMBER_IS_BEYOND);
             }
