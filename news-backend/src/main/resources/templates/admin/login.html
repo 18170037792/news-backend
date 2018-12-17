@@ -95,16 +95,16 @@
 <script th:src="@{/admin/js/base.js}"></script>
 <script type="text/javascript">
     /*<![CDATA[*/
-    var tale = new $.tale();
+    var news = new $.news();
     function checkForm() {
-        tale.post({
+        news.post({
             url: '/admin/user/login',
             data: $("#loginForm").serialize(),
             success: function (result) {
                 if (result.code == 200) {
                     window.location.href = '/index';
                 } else {
-                    tale.alertError(result.msg || '登录失败');
+                    news.alertError(result.msg || '登录失败');
                 }
             }
         });
