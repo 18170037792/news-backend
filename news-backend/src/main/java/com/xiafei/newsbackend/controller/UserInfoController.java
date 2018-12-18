@@ -32,7 +32,7 @@ public class UserInfoController {
     /**
      * 跳转到登录页面
      * */
-    @GetMapping("/login")
+    @GetMapping("/toLogin")
     public String login() {
         return "admin/login";
     }
@@ -97,7 +97,7 @@ public class UserInfoController {
         if(session.getAttribute("user")!=null){
             session.removeAttribute("user");
             //重定向到登录页面
-            response.sendRedirect("admin/login");
+            response.sendRedirect("/admin/login");
             return new JsonResult(Constant.SUCCESS_CODE,Constant.UNLOGIN_SUCCESS);
         }
         return new JsonResult(Constant.FAILED_CODE,Constant.UNLOGIN_FAILED);

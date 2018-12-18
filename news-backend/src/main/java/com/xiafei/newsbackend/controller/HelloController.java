@@ -27,4 +27,9 @@ public class HelloController {
     public String single(){
         return "home/single";
     }
+
+    @RequestMapping("/admin/index")
+    public String amdin(){
+        return "admin/index";
+    }
 }
