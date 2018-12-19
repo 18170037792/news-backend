@@ -19,9 +19,7 @@ public class ArticleInfoDaoTest {
 
     @Test
     public void getCount(){
-        ArticleInfoSearchEntity searchEntity = new ArticleInfoSearchEntity();
-        searchEntity.setUserId(1L);
-        int count = dao.getCount(searchEntity);
+        int count = dao.getCount(2L);
         if(count == 0){
             System.out.println("未找到数据");
         }else {

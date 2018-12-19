@@ -22,7 +22,7 @@ import java.util.Date;
 
 @Controller
 @RequestMapping("/admin/user")
-public class UserInfoController {
+public class UserInfoController extends BaseController{
 
     @Autowired
     private UserInfoService service;
@@ -47,7 +47,10 @@ public class UserInfoController {
      * */
     @PostMapping("/login")
     @ResponseBody
-    public JsonResult doLogin(@RequestParam String name,@RequestParam String pwd,HttpServletRequest req){
+    public JsonResult doLogin(@RequestParam String name,@RequestParam String pwd,HttpServletRequest req) throws Exception {
+
+        this.exist(req);
+
         UserLoginEntity loginEntity = new UserLoginEntity();
         loginEntity.setName(name);
         loginEntity.setPwd(pwd);

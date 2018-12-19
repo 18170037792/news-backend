@@ -2,6 +2,7 @@ package com.xiafei.newsbackend.dao;
 
 import com.xiafei.newsbackend.entity.article.ArticleInfoSearchEntity;
 import com.xiafei.newsbackend.pojo.table.ArticleInfoTable;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -10,7 +11,7 @@ import java.util.List;
  * */
 public interface ArticleInfoDao {
 
-    int getCount(ArticleInfoSearchEntity searchEntity);
+    Integer getCount(@Param("userId") Long userId);
 
     /**
      * 根据登录人id获取列表
