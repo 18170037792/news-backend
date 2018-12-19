@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50720
 File Encoding         : 65001
 
-Date: 2018-12-14 17:40:08
+Date: 2018-12-19 18:00:04
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -48,11 +48,17 @@ CREATE TABLE `article_info` (
   `modify_user` bigint(20) DEFAULT NULL,
   `modify_ip` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='文章信息表';
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COMMENT='文章信息表';
 
 -- ----------------------------
 -- Records of article_info
 -- ----------------------------
+INSERT INTO `article_info` VALUES ('1', '测试', '方霞飞123', '测试测试测试', '1', '0', '2018-12-18 16:30:38', '1', null, null, null, null);
+INSERT INTO `article_info` VALUES ('2', '帅哥', '瞿杰', '南昌吴彦祖', '1', '0', '2018-12-05 16:31:07', '1', null, null, null, null);
+INSERT INTO `article_info` VALUES ('3', '山有木惜', '木有只', null, null, '0', '2018-12-19 17:32:13', '2', null, null, null, null);
+INSERT INTO `article_info` VALUES ('4', '据最新媒体报道', '加拿大扣留孟晚舟一案', null, null, '0', '2018-12-19 17:32:54', '2', null, null, null, null);
+INSERT INTO `article_info` VALUES ('5', '美国太空司令部', '旨在围堵中国', null, null, '0', '2018-12-19 17:33:27', '1', null, null, null, null);
+INSERT INTO `article_info` VALUES ('6', '花间一壶酒', '可饮一杯无', null, null, '0', '2018-12-19 17:34:09', '1', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for `article_type`
@@ -135,7 +141,7 @@ CREATE TABLE `log_info` (
   `add_ip` varchar(100) DEFAULT NULL,
   `add_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of log_info
@@ -144,6 +150,28 @@ INSERT INTO `log_info` VALUES ('1', '登录后台', null, '1', null, '2018-12-14
 INSERT INTO `log_info` VALUES ('2', '保存系统设置', null, '1', null, '2018-12-14 14:35:08');
 INSERT INTO `log_info` VALUES ('3', '登录后台', null, '1', null, '2018-12-14 15:36:26');
 INSERT INTO `log_info` VALUES ('4', '登录后台', null, '1', '0:0:0:0:0:0:0:1', '2018-12-14 16:37:37');
+INSERT INTO `log_info` VALUES ('5', '登录后台', null, '2', '0:0:0:0:0:0:0:1', '2018-12-17 11:37:41');
+INSERT INTO `log_info` VALUES ('6', '登录后台', null, '2', '0:0:0:0:0:0:0:1', '2018-12-17 11:39:52');
+INSERT INTO `log_info` VALUES ('7', '登录后台', null, '2', '0:0:0:0:0:0:0:1', '2018-12-17 11:41:23');
+INSERT INTO `log_info` VALUES ('8', '登录后台', null, '2', '127.0.0.1', '2018-12-17 11:42:57');
+INSERT INTO `log_info` VALUES ('9', '登录后台', null, '2', '0:0:0:0:0:0:0:1', '2018-12-17 11:45:23');
+INSERT INTO `log_info` VALUES ('10', '登录后台', null, '2', '0:0:0:0:0:0:0:1', '2018-12-17 11:48:30');
+INSERT INTO `log_info` VALUES ('11', '登录后台', null, '2', '0:0:0:0:0:0:0:1', '2018-12-17 11:52:12');
+INSERT INTO `log_info` VALUES ('12', '登录后台', null, '2', '0:0:0:0:0:0:0:1', '2018-12-17 11:59:17');
+INSERT INTO `log_info` VALUES ('13', '登录后台', null, '2', '0:0:0:0:0:0:0:1', '2018-12-17 13:54:05');
+INSERT INTO `log_info` VALUES ('14', '登录后台', null, '2', '0:0:0:0:0:0:0:1', '2018-12-17 13:55:52');
+INSERT INTO `log_info` VALUES ('15', '登录后台', null, '2', '0:0:0:0:0:0:0:1', '2018-12-17 13:58:57');
+INSERT INTO `log_info` VALUES ('16', '登录后台', null, '2', '0:0:0:0:0:0:0:1', '2018-12-17 13:59:24');
+INSERT INTO `log_info` VALUES ('17', '登录后台', null, '2', '0:0:0:0:0:0:0:1', '2018-12-17 13:59:32');
+INSERT INTO `log_info` VALUES ('18', '登录后台', null, '2', '0:0:0:0:0:0:0:1', '2018-12-17 14:08:13');
+INSERT INTO `log_info` VALUES ('19', '登录后台', null, '2', '0:0:0:0:0:0:0:1', '2018-12-17 14:15:13');
+INSERT INTO `log_info` VALUES ('20', '登录后台', null, '2', '0:0:0:0:0:0:0:1', '2018-12-17 14:15:15');
+INSERT INTO `log_info` VALUES ('21', '登录后台', null, '2', '127.0.0.1', '2018-12-17 14:17:27');
+INSERT INTO `log_info` VALUES ('22', '登录后台', null, '2', '0:0:0:0:0:0:0:1', '2018-12-17 14:17:43');
+INSERT INTO `log_info` VALUES ('23', '登录后台', null, '2', '0:0:0:0:0:0:0:1', '2018-12-17 14:18:25');
+INSERT INTO `log_info` VALUES ('24', '登录后台', null, '2', '0:0:0:0:0:0:0:1', '2018-12-18 17:59:43');
+INSERT INTO `log_info` VALUES ('25', '登录后台', null, '2', '0:0:0:0:0:0:0:1', '2018-12-18 18:01:07');
+INSERT INTO `log_info` VALUES ('26', '登录后台', null, '2', '0:0:0:0:0:0:0:1', '2018-12-19 15:41:38');
 
 -- ----------------------------
 -- Table structure for `message_info`
@@ -159,11 +187,30 @@ CREATE TABLE `message_info` (
   `add_time` datetime DEFAULT NULL,
   `add_ip` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='留言板信息';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT='留言板信息';
 
 -- ----------------------------
 -- Records of message_info
 -- ----------------------------
+INSERT INTO `message_info` VALUES ('1', '瞿杰', '1125455@qq.com', 'https://www.baidu.com', '很棒', '这篇文章很棒', '2018-12-19 16:33:06', null);
+
+-- ----------------------------
+-- Table structure for `user_article_message`
+-- ----------------------------
+DROP TABLE IF EXISTS `user_article_message`;
+CREATE TABLE `user_article_message` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `author_id` bigint(20) DEFAULT NULL COMMENT '文章作者id',
+  `article_id` bigint(20) DEFAULT NULL COMMENT '文章id',
+  `message_id` bigint(20) DEFAULT NULL COMMENT '留言评论id',
+  `add_time` datetime DEFAULT NULL COMMENT '添加时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT='文章留言关系表';
+
+-- ----------------------------
+-- Records of user_article_message
+-- ----------------------------
+INSERT INTO `user_article_message` VALUES ('1', '1', '1', '1', '2018-12-19 17:08:17');
 
 -- ----------------------------
 -- Table structure for `user_info`

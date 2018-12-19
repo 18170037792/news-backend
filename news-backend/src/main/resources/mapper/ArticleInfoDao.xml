@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiafei.newsbackend.dao.ArticleInfoDao">
+
+    <select id="getCount" parameterType="com.xiafei.newsbackend.entity.article.ArticleInfoSearchEntity" resultType="int">
+        select count(*)
+        from article_info
+        <where>
+            <if test="userId != null">
+                add_user = #{userId}
+            </if>
+        </where>
+    </select>
+
+    <select id="getActicleList" parameterType="com.xiafei.newsbackend.entity.article.ArticleInfoSearchEntity" resultType="com.xiafei.newsbackend.pojo.table.ArticleInfoTable">
+        select *
+        from article_info
+        <where>
+            <if test="userId != null">
+                and add_user = #{userId}
+            </if>
+        </where>
+        order by add_time desc
+        limit 0,5
+    </select>
+
+</mapper>
