@@ -19,7 +19,7 @@ public class LoginInterceptor implements HandlerInterceptor {
         UserInfoEntity loginUser = (UserInfoEntity) httpServletRequest.getSession().getAttribute("user");
         if(loginUser == null){
             //InteceptorResultUtil.returnResult(httpServletResponse,new JsonResult<>(600,"invalid"));
-            httpServletResponse.sendRedirect("/admin/user/toLogin");
+            httpServletResponse.sendRedirect("/admin/user/login");
             return false;
         }
         return true;

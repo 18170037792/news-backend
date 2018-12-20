@@ -32,7 +32,7 @@ public class UserInfoController extends BaseController{
     /**
      * 跳转到登录页面
      * */
-    @GetMapping("/toLogin")
+    @GetMapping("/login")
     public String login() {
         return "admin/login";
     }
@@ -48,9 +48,6 @@ public class UserInfoController extends BaseController{
     @PostMapping("/login")
     @ResponseBody
     public JsonResult doLogin(@RequestParam String name,@RequestParam String pwd,HttpServletRequest req) throws Exception {
-
-        this.exist(req);
-
         UserLoginEntity loginEntity = new UserLoginEntity();
         loginEntity.setName(name);
         loginEntity.setPwd(pwd);
@@ -64,6 +61,8 @@ public class UserInfoController extends BaseController{
             UserInfoEntity user = service.login(loginEntity);
             HttpSession session = req.getSession();
             session.setAttribute("user",user);
+            session.setMaxInactiveInterval(60*60);
+
             /**
              * 添加系统日志
              * */

@@ -22,7 +22,7 @@ public abstract class BaseController {
     public UserInfoEntity getUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
         if(session == null){
-            response.sendRedirect("/admin/user/toLogin");
+            response.sendRedirect("/admin/user/login");
         }
         return (UserInfoEntity) session.getAttribute("user");
     }
@@ -37,16 +37,4 @@ public abstract class BaseController {
         return userId;
     }
 
-    /**
-     *
-     * */
-    public String exist(HttpServletRequest request) throws Exception{
-        HttpSession session = request.getSession();
-        UserInfoEntity user = (UserInfoEntity) session.getAttribute("user");
-        if(user !=null){
-            session.removeAttribute("user");
-            return "/admin/user/toLogin";
-        }
-        return null;
-    }
 }
