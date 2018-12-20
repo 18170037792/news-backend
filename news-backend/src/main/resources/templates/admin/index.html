@@ -58,9 +58,11 @@
                                 </div>
                                 <div class="panel-body">
                                     <ul class="list-group">
-                                        <li class="list-group-item" >
-                            <span class="badge badge-primary" ></span>
-                                            <a target="_blank" ></a>
+                                        <li class="list-group-item" th:each="article : ${acticleList}">
+                            <span class="badge badge-primary"
+                                  th:title="${article.messageCount}+'条评论'" th:text="${article.messageCount}"></span>
+                                            <a target="_blank" href="http://www.baidu.com"
+                                               th:text="${article.title}"></a>
                                         </li>
                                     </ul>
                                 </div>

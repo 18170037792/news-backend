@@ -27,7 +27,7 @@ public class WebSiteServiceImpl implements WebSiteService{
 
         StatisticsEntity statisticsEntity = new StatisticsEntity();
 
-        Integer articles = articleInfoDao.getCount(userId);
+        int articles = articleInfoDao.getCount(userId);
         statisticsEntity.setArticles(articles);
         return statisticsEntity;
     }

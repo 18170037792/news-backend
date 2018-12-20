@@ -25,6 +25,10 @@ public class ArticleInfoEntity {
      * */
     private Integer sort;
 
+    private Long addUser;
+
+    private Integer messageCount;
+
     public Long getId() {
         return id;
     }
@@ -73,6 +77,22 @@ public class ArticleInfoEntity {
         this.sort = sort;
     }
 
+    public Integer getMessageCount() {
+        return messageCount;
+    }
+
+    public void setMessageCount(Integer messageCount) {
+        this.messageCount = messageCount;
+    }
+
+    public Long getAddUser() {
+        return addUser;
+    }
+
+    public void setAddUser(Long addUser) {
+        this.addUser = addUser;
+    }
+
     @Override
     public String toString() {
         return "ArticleInfoEntity{" +
@@ -82,6 +102,8 @@ public class ArticleInfoEntity {
                 ", content='" + content + '\'' +
                 ", typeId=" + typeId +
                 ", sort=" + sort +
+                ", addUser=" + addUser +
+                ", messageCount=" + messageCount +
                 '}';
     }
 }

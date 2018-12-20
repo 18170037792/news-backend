@@ -11,10 +11,19 @@ import java.util.List;
  * */
 public interface ArticleInfoDao {
 
-    Integer getCount(@Param("userId") Long userId);
+    /**
+     * 根据登录用户统计文章数
+     * */
+    int getCount(@Param("userId") Long userId);
 
     /**
      * 根据登录人id获取列表
      * */
     List<ArticleInfoTable> getActicleList(ArticleInfoSearchEntity searchEntity);
+
+    /**
+     * 获取留言记录数
+     * */
+    int getMessageCount(@Param("userId") Long userId,@Param("articleId") Long articleId);
+
 }

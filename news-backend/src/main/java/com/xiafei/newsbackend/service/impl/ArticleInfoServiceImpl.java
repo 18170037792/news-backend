@@ -31,8 +31,11 @@ public class ArticleInfoServiceImpl implements ArticleInfoService {
              ) {
             ArticleInfoEntity entity = new ArticleInfoEntity();
             BeanUtils.copyProperties(table,entity);
+            int messageCount = dao.getMessageCount(entity.getAddUser(),entity.getId());
+            entity.setMessageCount(messageCount);
             entities.add(entity);
         }
         return entities;
+
     }
 }
