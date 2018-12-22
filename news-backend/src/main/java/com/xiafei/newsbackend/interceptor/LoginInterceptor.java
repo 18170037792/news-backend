@@ -16,7 +16,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
-        UserInfoEntity loginUser = (UserInfoEntity) httpServletRequest.getSession().getAttribute("user");
+        UserInfoEntity loginUser = (UserInfoEntity) httpServletRequest.getSession().getAttribute("admin");
         if(loginUser == null){
             //InteceptorResultUtil.returnResult(httpServletResponse,new JsonResult<>(600,"invalid"));
             httpServletResponse.sendRedirect("/admin/user/login");

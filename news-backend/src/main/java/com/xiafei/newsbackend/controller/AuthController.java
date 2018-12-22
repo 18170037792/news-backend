@@ -22,7 +22,7 @@ import java.util.Date;
 
 @Controller
 @RequestMapping("/admin/user")
-public class UserInfoController extends BaseController{
+public class AuthController extends BaseController{
 
     @Autowired
     private UserInfoService service;

@@ -28,8 +28,8 @@ public class HelloController {
         return "home/single";
     }
 
-    @RequestMapping("/admin/index")
+    @RequestMapping("/root/index")
     public String amdin(){
-        return "admin/index";
+        return "root/index";
     }
 }

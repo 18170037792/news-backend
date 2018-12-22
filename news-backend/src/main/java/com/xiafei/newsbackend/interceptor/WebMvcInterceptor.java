@@ -30,7 +30,7 @@ public class WebMvcInterceptor extends WebMvcConfigurerAdapter {
          * 无需拦截的url
          */
         String loginExcludePathPatterns[] = {
-                "/admin/user/**",
+                "/admin/**",
                 "/index"
         };
         registry.addInterceptor(baseInterceptor);

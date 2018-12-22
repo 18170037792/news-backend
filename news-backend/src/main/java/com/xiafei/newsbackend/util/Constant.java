@@ -56,6 +56,6 @@ public class Constant {
 
     public final static String NUMBER_IS_BEYOND = "您输入密码已经错误超过3次，请10分钟后尝试";
 
-    private static final String USER_AGENT = "user-agent";
+    private static final String USER_AGENT = "admin-agent";
 
 }

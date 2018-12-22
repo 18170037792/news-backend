@@ -8,4 +8,16 @@
         values(#{action}, #{data}, #{authorId}, #{addIp}, #{addTime})
     </insert>
 
+    <!-- 查询系统日志列表 -->
+    <select id="getLogList" resultType="com.xiafei.newsbackend.pojo.table.LogInfoTable">
+        select *
+        from log_info
+        <where>
+            <if test="authorId != null">
+                author_id = #{authorId}
+            </if>
+        </where>
+        order by add_time desc
+        limit 0,5
+    </select>
 </mapper>

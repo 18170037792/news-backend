@@ -13,16 +13,20 @@ public interface ArticleInfoDao {
 
     /**
      * 根据登录用户统计文章数
+     * @param userId
      * */
     int getCount(@Param("userId") Long userId);
 
     /**
      * 根据登录人id获取列表
+     * @param searchEntity
      * */
     List<ArticleInfoTable> getActicleList(ArticleInfoSearchEntity searchEntity);
 
     /**
      * 获取留言记录数
+     * @param userId
+     * @param articleId
      * */
     int getMessageCount(@Param("userId") Long userId,@Param("articleId") Long articleId);
 

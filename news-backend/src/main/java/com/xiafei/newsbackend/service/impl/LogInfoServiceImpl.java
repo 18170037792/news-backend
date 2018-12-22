@@ -2,6 +2,7 @@ package com.xiafei.newsbackend.service.impl;
 
 import com.xiafei.newsbackend.dao.LogInfoDao;
 import com.xiafei.newsbackend.entity.log.LogInfoAddEntity;
+import com.xiafei.newsbackend.entity.log.LogInfoEntity;
 import com.xiafei.newsbackend.exception.ServiceException;
 import com.xiafei.newsbackend.pojo.table.LogInfoTable;
 import com.xiafei.newsbackend.service.LogInfoService;
@@ -10,6 +11,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by qujie on 2018/12/14
@@ -35,5 +39,22 @@ public class LogInfoServiceImpl implements LogInfoService {
         if(count <1){
             throw new ServiceException(Constant.SYSTEM_ERROR);
         }
+    }
+
+    /**
+     * 查询系统日志列表
+     * */
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public List<LogInfoEntity> getLogInfoList(Long userId) throws Exception{
+        List<LogInfoTable> tables = dao.getLogList(userId);
+        List<LogInfoEntity> entities = new ArrayList<>();
+        for (LogInfoTable table:tables
+             ) {
+            LogInfoEntity entity = new LogInfoEntity();
+            BeanUtils.copyProperties(table,entity);
+            entities.add(entity);
+        }
+        return entities;
     }
 }

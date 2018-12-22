@@ -1,6 +1,7 @@
 package com.xiafei.newsbackend.service.impl;
 
 import com.xiafei.newsbackend.dao.ArticleInfoDao;
+import com.xiafei.newsbackend.dao.MessageInfoDao;
 import com.xiafei.newsbackend.entity.article.ArticleInfoSearchEntity;
 import com.xiafei.newsbackend.entity.datas.StatisticsEntity;
 import com.xiafei.newsbackend.service.WebSiteService;
@@ -17,6 +18,8 @@ public class WebSiteServiceImpl implements WebSiteService{
 
     @Autowired
     private ArticleInfoDao articleInfoDao;
+    @Autowired
+    private MessageInfoDao messageInfoDao;
 
     /**
      * 加载统计数据
@@ -28,7 +31,10 @@ public class WebSiteServiceImpl implements WebSiteService{
         StatisticsEntity statisticsEntity = new StatisticsEntity();
 
         int articles = articleInfoDao.getCount(userId);
+        int messages = messageInfoDao.getCount(userId);
+
         statisticsEntity.setArticles(articles);
+        statisticsEntity.setMessages(messages);
         return statisticsEntity;
     }
 }
