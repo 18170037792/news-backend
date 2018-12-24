@@ -18,7 +18,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/admin")
-public class IndexController extends BaseController{
+public class AdminIndexController extends BaseController{
 
     @Autowired
     private WebSiteService webSiteService;
@@ -27,16 +27,19 @@ public class IndexController extends BaseController{
     @Autowired
     private LogInfoService logInfoService;
 
+    /**
+     * 首页跳转
+     * @param request
+     * @throws Exception
+     * */
     @GetMapping("/index")
-    public String index(HttpServletRequest request, HttpServletResponse response) throws Exception{
-        Long userId = this.getUserId(request, response);
-        List<ArticleInfoEntity> acticleList = articleInfoService.getActicleList(userId);
-        List<LogInfoEntity> logInfoList = logInfoService.getLogInfoList(userId);
+    public String index(HttpServletRequest request) throws Exception{
 
-        StatisticsEntity statistics = webSiteService.getStatistics(userId);
+        /**
+         * 通过request作用域向前端传参
+         * */
+        StatisticsEntity statistics = webSiteService.getAdminStatistics();
         request.setAttribute("statistics",statistics);
-        request.setAttribute("acticleList",acticleList);
-        request.setAttribute("logInfoList",logInfoList);
         return "admin/index";
     }
 }

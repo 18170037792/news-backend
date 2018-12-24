@@ -2,9 +2,7 @@ package com.xiafei.newsbackend.interceptor;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import javax.annotation.Resource;
@@ -30,8 +28,11 @@ public class WebMvcInterceptor extends WebMvcConfigurerAdapter {
          * 无需拦截的url
          */
         String loginExcludePathPatterns[] = {
-                "/admin/**",
-                "/index"
+                "/admin/user/login",
+                "/index",
+                "/contact",
+                "/about",
+                "/single"
         };
         registry.addInterceptor(baseInterceptor);
         registry.addInterceptor(loginInterceptor()).addPathPatterns("/*/**").excludePathPatterns(loginExcludePathPatterns);

@@ -3,8 +3,10 @@ package com.xiafei.newsbackend.service.impl;
 import com.xiafei.newsbackend.dao.ArticleInfoDao;
 import com.xiafei.newsbackend.entity.article.ArticleInfoEntity;
 import com.xiafei.newsbackend.entity.article.ArticleInfoSearchEntity;
+import com.xiafei.newsbackend.exception.ServiceException;
 import com.xiafei.newsbackend.pojo.table.ArticleInfoTable;
 import com.xiafei.newsbackend.service.ArticleInfoService;
+import com.xiafei.newsbackend.util.Constant;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +24,9 @@ public class ArticleInfoServiceImpl implements ArticleInfoService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public List<ArticleInfoEntity> getActicleList(Long userId) throws Exception{
+        if(userId == null){
+            throw new ServiceException(Constant.SYSTEM_ERROR);
+        }
         ArticleInfoSearchEntity searchEntity = new ArticleInfoSearchEntity();
         searchEntity.setUserId(userId);
 

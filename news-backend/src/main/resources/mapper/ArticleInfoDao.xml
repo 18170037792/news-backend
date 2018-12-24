@@ -41,4 +41,8 @@
         </where>
     </select>
 
+    <select id="getArticleCount" resultType="int">
+        select count(*)
+        from article_info
+    </select>
 </mapper>

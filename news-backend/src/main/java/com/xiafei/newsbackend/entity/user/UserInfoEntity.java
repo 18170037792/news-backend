@@ -89,7 +89,8 @@ public class UserInfoEntity {
     @Override
     public String toString() {
         return "UserInfoEntity{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", mobile='" + mobile + '\'' +
                 ", frozen=" + frozen +
                 ", email='" + email + '\'' +

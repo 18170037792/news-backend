@@ -15,7 +15,7 @@ import java.io.IOException;
 public abstract class BaseController {
 
     /**
-     * 获取请求绑定的登录对象
+     * 获取登录用户对象
      * @param request
      * @return
      */
@@ -24,7 +24,20 @@ public abstract class BaseController {
         if(session == null){
             response.sendRedirect("/admin/user/login");
         }
-        return (UserInfoEntity) session.getAttribute("user");
+        UserInfoEntity user = (UserInfoEntity) session.getAttribute("user");
+        return user;
+    }
+
+    /**
+     * 获取登录的管理员对象
+     * */
+    public UserInfoEntity getAdminUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession session = request.getSession();
+        if(session == null){
+            response.sendRedirect("/admin/user/login");
+        }
+        UserInfoEntity user = (UserInfoEntity) session.getAttribute("admin");
+        return user;
     }
 
     /**
@@ -37,4 +50,13 @@ public abstract class BaseController {
         return userId;
     }
 
+    /**
+     * 获取管理员id
+     * @param request
+     * @return
+     * */
+    public Long getAdminUserId(HttpServletRequest request,HttpServletResponse response) throws IOException {
+        Long userId = this.getAdminUser(request, response).getId();
+        return userId;
+    }
 }

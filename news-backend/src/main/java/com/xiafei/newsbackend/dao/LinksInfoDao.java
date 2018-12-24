@@ -12,4 +12,9 @@ public interface LinksInfoDao {
     int insert(LinksInfoTable table);
 
     List<LinksInfoTable> getList();
+
+    /**
+     * 获取友链统计数
+     * */
+    int getLinksCount();
 }

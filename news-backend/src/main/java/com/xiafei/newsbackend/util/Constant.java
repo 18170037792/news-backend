@@ -18,6 +18,8 @@ public class Constant {
 
     public final static Integer FAILED_CODE=400;
 
+    public static final Integer ADMIN_CODE = 2;
+
     public final static String SAVE_SUCCESS = "保存成功";
 
     public final static String UPDATE_SUCCESS = "修改成功";
@@ -56,6 +58,5 @@ public class Constant {
 
     public final static String NUMBER_IS_BEYOND = "您输入密码已经错误超过3次，请10分钟后尝试";
 
-    private static final String USER_AGENT = "admin-agent";
-
+    public static final String AUTH_ERROR = "此用户没有权限";
 }

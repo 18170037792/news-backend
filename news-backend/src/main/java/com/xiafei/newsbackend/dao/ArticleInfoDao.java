@@ -30,4 +30,9 @@ public interface ArticleInfoDao {
      * */
     int getMessageCount(@Param("userId") Long userId,@Param("articleId") Long articleId);
 
+    /**
+     * 统计文章总数
+     * */
+    int getArticleCount();
+
 }

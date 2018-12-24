@@ -22,4 +22,10 @@ public class WebSiteServiceTest {
         StatisticsEntity statistics = siteService.getStatistics(1L);
         System.out.println(statistics);
     }
+
+    @Test
+    public void getAdminStatistics() throws Exception{
+        StatisticsEntity adminStatistics = siteService.getAdminStatistics();
+        System.out.println(adminStatistics);
+    }
 }

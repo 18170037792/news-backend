@@ -14,4 +14,9 @@
         order by sort asc
     </select>
 
+    <select id="getLinksCount" resultType="int">
+        select count(*)
+        from links_info
+    </select>
+
 </mapper>

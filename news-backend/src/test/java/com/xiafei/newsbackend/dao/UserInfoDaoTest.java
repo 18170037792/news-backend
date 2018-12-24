@@ -2,6 +2,7 @@ package com.xiafei.newsbackend.dao;
 
 import com.xiafei.newsbackend.entity.user.UserLoginEntity;
 import com.xiafei.newsbackend.pojo.table.UserInfoTable;
+import com.xiafei.newsbackend.pojo.view.UserInfoView;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class UserInfoDaoTest {
         UserLoginEntity loginEntity = new UserLoginEntity();
         loginEntity.setName("qujie");
         loginEntity.setPwd("e10adc3949ba59abbe56e057f20f883e");
-        UserInfoTable table = dao.login(loginEntity);
-        System.out.println(table);
+        UserInfoView infoView = dao.login(loginEntity);
+        System.out.println(infoView);
     }
 }

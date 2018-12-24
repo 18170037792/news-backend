@@ -34,7 +34,7 @@ public class AuthController extends BaseController{
      * */
     @GetMapping("/login")
     public String login() {
-        return "admin/login";
+        return "user/login";
     }
 
     /**
@@ -60,8 +60,20 @@ public class AuthController extends BaseController{
         try {
             UserInfoEntity user = service.login(loginEntity);
             HttpSession session = req.getSession();
-            session.setAttribute("user",user);
-            session.setMaxInactiveInterval(60*60);
+
+            /**
+             * 判断权限
+             * */
+            if(user.getRoleId() == null){
+                return new JsonResult(Constant.FAILED_CODE,Constant.AUTH_ERROR);
+            }else if (user.getRoleId() == 1){
+                session.setAttribute("user",user);
+                session.setMaxInactiveInterval(60*60);
+            }else if (user.getRoleId() == 2){
+                session.setAttribute("admin",user);
+                session.setMaxInactiveInterval(60*60);
+                return new JsonResult(Constant.ADMIN_CODE,Constant.LOGIN_SUCCESS,user);
+            }
 
             /**
              * 添加系统日志
@@ -83,7 +95,7 @@ public class AuthController extends BaseController{
                 return new JsonResult(Constant.FAILED_CODE,Constant.NUMBER_IS_BEYOND);
             }
             cache.set("login_error_count", error_count, 10 * 60);
-            return new JsonResult(Constant.FAILED_CODE,Constant.LOGIN_FAILED);
+            return new JsonResult(Constant.FAILED_CODE,Constant.LOGIN_ERROR);
         }
     }
 

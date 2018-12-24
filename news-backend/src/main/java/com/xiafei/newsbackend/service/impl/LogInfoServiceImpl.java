@@ -47,6 +47,9 @@ public class LogInfoServiceImpl implements LogInfoService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public List<LogInfoEntity> getLogInfoList(Long userId) throws Exception{
+        if(userId == null){
+            throw new ServiceException(Constant.SYSTEM_ERROR);
+        }
         List<LogInfoTable> tables = dao.getLogList(userId);
         List<LogInfoEntity> entities = new ArrayList<>();
         for (LogInfoTable table:tables

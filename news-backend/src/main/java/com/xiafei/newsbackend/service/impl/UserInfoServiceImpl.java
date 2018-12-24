@@ -5,6 +5,7 @@ import com.xiafei.newsbackend.entity.user.UserInfoEntity;
 import com.xiafei.newsbackend.entity.user.UserLoginEntity;
 import com.xiafei.newsbackend.exception.ServiceException;
 import com.xiafei.newsbackend.pojo.table.UserInfoTable;
+import com.xiafei.newsbackend.pojo.view.UserInfoView;
 import com.xiafei.newsbackend.service.UserInfoService;
 import com.xiafei.newsbackend.util.Constant;
 import com.xiafei.newsbackend.util.GetMD5;
@@ -37,13 +38,13 @@ public class UserInfoServiceImpl implements UserInfoService {
         }
         //md5加密密码
         loginEntity.setPwd(GetMD5.getMD5(loginEntity.getPwd()));
-        UserInfoTable table = dao.login(loginEntity);
-        if(table == null){
+        UserInfoView view = dao.login(loginEntity);
+        if(view == null){
             throw new ServiceException(Constant.LOGIN_ERROR);
         }
 
         UserInfoEntity entity = new UserInfoEntity();
-        BeanUtils.copyProperties(table,entity);
+        BeanUtils.copyProperties(view,entity);
         return entity;
     }
 }

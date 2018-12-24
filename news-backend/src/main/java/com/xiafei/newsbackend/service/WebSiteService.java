@@ -8,7 +8,12 @@ import com.xiafei.newsbackend.entity.datas.StatisticsEntity;
 public interface WebSiteService {
 
     /**
-     * 获取统计数据
+     * 获取用户的统计数据
      * */
     StatisticsEntity getStatistics(Long userId) throws Exception;
+
+    /**
+     * 获取管理员的统计数据
+     * */
+    StatisticsEntity getAdminStatistics() throws Exception;
 }

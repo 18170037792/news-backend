@@ -27,9 +27,4 @@ public class HelloController {
     public String single(){
         return "home/single";
     }
-
-    @RequestMapping("/root/index")
-    public String amdin(){
-        return "root/index";
-    }
 }
