@@ -68,28 +68,15 @@
                        th:class="${active}=='home'?'waves-effect active':'waves-effect'"><i
                             class="fa fa-dashboard" aria-hidden="true"></i><span> 日志仪表 </span></a>
                 </li>
-                <li th:class="${active}=='publish'?'active':''">
-                    <a th:href="@{/admin/article/publish}"
-                       th:class="${active}=='publish'?'waves-effect active':'waves-effect'"><i
-                            class="fa fa-pencil-square-o" aria-hidden="true"></i><span> 发布文章 </span></a>
+                <li th:class="${active}=='article'?'active':''">
+                    <a th:href="@{/admin/article/list}"
+                       th:class="${active}=='article'?'waves-effect active':'waves-effect'"><i
+                            class="fa fa-list" aria-hidden="true"></i><span> 文章管理 </span></a>
                 </li>
-                <li th:class="${active}=='page'?'active':''">
-                    <a th:href="@{/user/page}" th:class="${active}=='page'?'waves-effect active':'waves-effect'"><i
+                <li th:class="${active}=='users'?'active':''">
+                    <a th:href="@{/admin/user/list}"
+                       th:class="${active}=='users'?'waves-effect active':'waves-effect'"><i
                             class="glyphicon glyphicon-user" aria-hidden="true"></i><span> 用户管理 </span></a>
-                </li>
-                <li th:class="${active}=='page'?'active':''">
-                    <a th:href="@{/admin/page}" th:class="${active}=='page'?'waves-effect active':'waves-effect'"><i
-                            class="fa fa-file-text" aria-hidden="true"></i><span> 页面管理 </span></a>
-                </li>
-                <li th:class="${active}=='comments'?'active':''">
-                    <a th:href="@{/admin/comments}"
-                       th:class="${active}=='comments'?'waves-effect active':'waves-effect'"><i
-                            class="fa fa-comments" aria-hidden="true"></i><span> 评论管理 </span></a>
-                </li>
-                <li th:class="${active}=='category'?'active':''">
-                    <a th:href="@{/admin/category}"
-                       th:class="${active}=='category'?'waves-effect active':'waves-effect'"><i
-                            class="fa fa-tags" aria-hidden="true"></i><span> 分类管理 </span></a>
                 </li>
                 <li th:class="${active}=='attach'?'active':''">
                     <a th:href="@{/admin/attach}"

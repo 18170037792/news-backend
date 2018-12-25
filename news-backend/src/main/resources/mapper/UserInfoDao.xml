@@ -16,4 +16,12 @@
         where role_id = 1
     </select>
 
+    <select id="getUserList" resultType="com.xiafei.newsbackend.pojo.view.UserLogView">
+        select user.id, user.name, user.mobile, user.frozen, user.email, user.home_url, log.last_login_time, log.ip_home_location
+        from user_info user
+        left join log_info log on user.id = log.author_id
+        where user.role_id = 1
+        group by user.id
+        order by log.last_login_time desc
+    </select>
 </mapper>
