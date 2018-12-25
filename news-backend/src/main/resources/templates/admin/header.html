@@ -45,8 +45,8 @@
 
                 <ul class="nav navbar-nav navbar-right pull-right">
                     <li class="dropdown">
-                        <a th:href="@{index.html}" class="dropdown-toggle profile" data-toggle="dropdown"
-                           aria-expanded="true"><span>管理员</span></a>
+                        <a href="#" class="dropdown-toggle profile" data-toggle="dropdown"
+                           aria-expanded="true">欢迎 <span th:text="${session.admin.name}"></span><span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a th:href="@{/index}" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i>
                                 查看网站</a></li>

@@ -14,10 +14,15 @@ public class AddressUtils {
 
 
 
-    public static StringBuffer getIpDescr(String ipAddress){
+    public static String getIpDescr(String ipAddress){
         try
         {
             String strIP = ipAddress;
+
+            if(strIP.equals("0:0:0:0:0:0:0:1") || strIP.equals("127.0.0.1")){
+                return "localhost";
+            }
+
             URL url = new URL("http://ip.taobao.com/service/getIpInfo.php?ip=" + strIP);
             URLConnection conn = url.openConnection();
             BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"));
@@ -36,21 +41,13 @@ public class AddressUtils {
             String region =jsonObject1.get("region").toString();
             String city =jsonObject1.get("city").toString();
             String isp =jsonObject1.get("isp").toString();
-            StringBuffer descr = new StringBuffer();
-            descr.append(region).append(" ").append(city).append(" ").append(isp);
+
+            String descr = region + " " + city + " " + isp;
             return descr;
-        }
-        catch( IOException e)
-        {
+
+        } catch( Exception e) {
             return null;
         }
 
     }
-
-    public static void main(String[] args){
-        StringBuffer ipDescr = AddressUtils.getIpDescr("47.99.120.167");
-        String ss = ipDescr.toString();
-        System.out.println(ss);
-    }
-
 }

@@ -11,8 +11,14 @@ public class LogInfoEntity {
     private String action;
     private String data;
     private Long authorId;
-    private Date addTime;
-    private String addIp;
+    /**
+     * 最后登录时间
+     * */
+    private Date lastLoginTime;
+    /**
+     * 最后登录ip
+     * */
+    private String lastLoginIp;
 
     public Long getId() {
         return id;
@@ -46,20 +52,20 @@ public class LogInfoEntity {
         this.authorId = authorId;
     }
 
-    public Date getAddTime() {
-        return addTime;
+    public Date getLastLoginTime() {
+        return lastLoginTime;
     }
 
-    public void setAddTime(Date addTime) {
-        this.addTime = addTime;
+    public void setLastLoginTime(Date lastLoginTime) {
+        this.lastLoginTime = lastLoginTime;
     }
 
-    public String getAddIp() {
-        return addIp;
+    public String getLastLoginIp() {
+        return lastLoginIp;
     }
 
-    public void setAddIp(String addIp) {
-        this.addIp = addIp;
+    public void setLastLoginIp(String lastLoginIp) {
+        this.lastLoginIp = lastLoginIp;
     }
 
     @Override
@@ -69,8 +75,8 @@ public class LogInfoEntity {
                 ", action='" + action + '\'' +
                 ", data='" + data + '\'' +
                 ", authorId=" + authorId +
-                ", addTime=" + addTime +
-                ", addIp='" + addIp + '\'' +
+                ", lastLoginTime=" + lastLoginTime +
+                ", lastLoginIp='" + lastLoginIp + '\'' +
                 '}';
     }
 }

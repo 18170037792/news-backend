@@ -98,7 +98,7 @@
                                 <div class="panel-body">
                                     <ul class="list-group" >
                                         <li class="list-group-item" th:each="log : ${logInfoList}">
-                                            <span th:text="${log.addTime} +' => '+ ${log.action}"></span>
+                                            <span th:text="${log.lastLoginTime} +' => '+ ${log.action}"></span>
                                         </li>
                                     </ul>
                                 </div>

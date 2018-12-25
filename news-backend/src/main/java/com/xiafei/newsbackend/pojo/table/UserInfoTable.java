@@ -35,14 +35,6 @@ public class UserInfoTable extends BaseTable{
      * 用户主页
      * */
     private String homeUrl;
-    /**
-     * 最后登录时间
-     * */
-    private Date lastLoginTime;
-    /**
-     * 最后登录ip地址
-     * */
-    private String lastLoginIp;
 
     public String getName() {
         return name;
@@ -100,22 +92,6 @@ public class UserInfoTable extends BaseTable{
         this.homeUrl = homeUrl;
     }
 
-    public Date getLastLoginTime() {
-        return lastLoginTime;
-    }
-
-    public void setLastLoginTime(Date lastLoginTime) {
-        this.lastLoginTime = lastLoginTime;
-    }
-
-    public String getLastLoginIp() {
-        return lastLoginIp;
-    }
-
-    public void setLastLoginIp(String lastLoginIp) {
-        this.lastLoginIp = lastLoginIp;
-    }
-
     @Override
     public String toString() {
         return "UserInfoTable{" +
@@ -126,8 +102,6 @@ public class UserInfoTable extends BaseTable{
                 ", email='" + email + '\'' +
                 ", roleId=" + roleId +
                 ", homeUrl='" + homeUrl + '\'' +
-                ", lastLoginTime=" + lastLoginTime +
-                ", lastLoginIp='" + lastLoginIp + '\'' +
                 '}';
     }
 }

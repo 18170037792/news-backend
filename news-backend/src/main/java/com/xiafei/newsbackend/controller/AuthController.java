@@ -6,10 +6,7 @@ import com.xiafei.newsbackend.entity.user.UserInfoEntity;
 import com.xiafei.newsbackend.entity.user.UserLoginEntity;
 import com.xiafei.newsbackend.service.LogInfoService;
 import com.xiafei.newsbackend.service.UserInfoService;
-import com.xiafei.newsbackend.util.Constant;
-import com.xiafei.newsbackend.util.GetIpAndMac;
-import com.xiafei.newsbackend.util.JsonResult;
-import com.xiafei.newsbackend.util.MapCache;
+import com.xiafei.newsbackend.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -81,8 +78,10 @@ public class AuthController extends BaseController{
             LogInfoAddEntity logInfoAddEntity = new LogInfoAddEntity();
             logInfoAddEntity.setAuthorId(user.getId());
             logInfoAddEntity.setAction(LogActions.LOGIN.getAction());
-            logInfoAddEntity.setAddIp(GetIpAndMac.getIp(req));
-            logInfoAddEntity.setAddTime(new Date());
+            logInfoAddEntity.setIpHomeLocation(AddressUtils.getIpDescr(GetIpAndMac.getIp(req)));
+            logInfoAddEntity.setLastLoginIp(GetIpAndMac.getIp(req));
+            logInfoAddEntity.setLastLoginTime(new Date());
+
             logInfoService.insertLog(logInfoAddEntity);
             return new JsonResult(Constant.SUCCESS_CODE,Constant.LOGIN_SUCCESS,user);
         } catch (Exception e) {
