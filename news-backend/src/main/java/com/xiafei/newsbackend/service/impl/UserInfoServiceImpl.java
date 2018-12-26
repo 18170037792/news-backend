@@ -2,6 +2,7 @@ package com.xiafei.newsbackend.service.impl;
 
 import com.xiafei.newsbackend.dao.UserInfoDao;
 import com.xiafei.newsbackend.entity.user.UserInfoEntity;
+import com.xiafei.newsbackend.entity.user.UserInfoUpdateEntity;
 import com.xiafei.newsbackend.entity.user.UserLogEntity;
 import com.xiafei.newsbackend.entity.user.UserLoginEntity;
 import com.xiafei.newsbackend.exception.ServiceException;
@@ -62,7 +63,7 @@ public class UserInfoServiceImpl implements UserInfoService {
     public List<UserLogEntity> getUserList() throws Exception {
         List<UserLogView> views = dao.getUserList();
         if(views == null || views.size()==0){
-            throw new ServiceException(Constant.SYSTEM_ERROR);
+            return null;
         }
 
         List<UserLogEntity> entities = new ArrayList<>();
@@ -73,6 +74,22 @@ public class UserInfoServiceImpl implements UserInfoService {
             entities.add(entity);
         }
         return entities;
+    }
+
+    /**
+     * 冻结用户
+     * @param id
+     * @param frozen
+     * */
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void frozenUser(UserInfoUpdateEntity updateEntity) throws Exception {
+        UserInfoTable table = new UserInfoTable();
+        BeanUtils.copyProperties(updateEntity,table);
+        int count = dao.updateFrozen(table);
+        if(count <1){
+            throw new ServiceException(Constant.SYSTEM_ERROR);
+        }
     }
 
 

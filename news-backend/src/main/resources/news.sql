@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50720
 File Encoding         : 65001
 
-Date: 2018-12-19 18:00:04
+Date: 2018-12-26 18:09:59
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -138,40 +138,22 @@ CREATE TABLE `log_info` (
   `action` varchar(100) DEFAULT NULL,
   `data` text,
   `author_id` bigint(20) DEFAULT NULL,
-  `add_ip` varchar(100) DEFAULT NULL,
-  `add_time` datetime DEFAULT NULL,
+  `last_login_time` datetime DEFAULT NULL COMMENT '最后登录时间',
+  `last_login_ip` varchar(100) DEFAULT NULL COMMENT '最后登录ip',
+  `ip_home_location` varchar(100) DEFAULT NULL COMMENT 'ip归属地',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of log_info
 -- ----------------------------
-INSERT INTO `log_info` VALUES ('1', '登录后台', null, '1', null, '2018-12-14 14:18:07');
-INSERT INTO `log_info` VALUES ('2', '保存系统设置', null, '1', null, '2018-12-14 14:35:08');
-INSERT INTO `log_info` VALUES ('3', '登录后台', null, '1', null, '2018-12-14 15:36:26');
-INSERT INTO `log_info` VALUES ('4', '登录后台', null, '1', '0:0:0:0:0:0:0:1', '2018-12-14 16:37:37');
-INSERT INTO `log_info` VALUES ('5', '登录后台', null, '2', '0:0:0:0:0:0:0:1', '2018-12-17 11:37:41');
-INSERT INTO `log_info` VALUES ('6', '登录后台', null, '2', '0:0:0:0:0:0:0:1', '2018-12-17 11:39:52');
-INSERT INTO `log_info` VALUES ('7', '登录后台', null, '2', '0:0:0:0:0:0:0:1', '2018-12-17 11:41:23');
-INSERT INTO `log_info` VALUES ('8', '登录后台', null, '2', '127.0.0.1', '2018-12-17 11:42:57');
-INSERT INTO `log_info` VALUES ('9', '登录后台', null, '2', '0:0:0:0:0:0:0:1', '2018-12-17 11:45:23');
-INSERT INTO `log_info` VALUES ('10', '登录后台', null, '2', '0:0:0:0:0:0:0:1', '2018-12-17 11:48:30');
-INSERT INTO `log_info` VALUES ('11', '登录后台', null, '2', '0:0:0:0:0:0:0:1', '2018-12-17 11:52:12');
-INSERT INTO `log_info` VALUES ('12', '登录后台', null, '2', '0:0:0:0:0:0:0:1', '2018-12-17 11:59:17');
-INSERT INTO `log_info` VALUES ('13', '登录后台', null, '2', '0:0:0:0:0:0:0:1', '2018-12-17 13:54:05');
-INSERT INTO `log_info` VALUES ('14', '登录后台', null, '2', '0:0:0:0:0:0:0:1', '2018-12-17 13:55:52');
-INSERT INTO `log_info` VALUES ('15', '登录后台', null, '2', '0:0:0:0:0:0:0:1', '2018-12-17 13:58:57');
-INSERT INTO `log_info` VALUES ('16', '登录后台', null, '2', '0:0:0:0:0:0:0:1', '2018-12-17 13:59:24');
-INSERT INTO `log_info` VALUES ('17', '登录后台', null, '2', '0:0:0:0:0:0:0:1', '2018-12-17 13:59:32');
-INSERT INTO `log_info` VALUES ('18', '登录后台', null, '2', '0:0:0:0:0:0:0:1', '2018-12-17 14:08:13');
-INSERT INTO `log_info` VALUES ('19', '登录后台', null, '2', '0:0:0:0:0:0:0:1', '2018-12-17 14:15:13');
-INSERT INTO `log_info` VALUES ('20', '登录后台', null, '2', '0:0:0:0:0:0:0:1', '2018-12-17 14:15:15');
-INSERT INTO `log_info` VALUES ('21', '登录后台', null, '2', '127.0.0.1', '2018-12-17 14:17:27');
-INSERT INTO `log_info` VALUES ('22', '登录后台', null, '2', '0:0:0:0:0:0:0:1', '2018-12-17 14:17:43');
-INSERT INTO `log_info` VALUES ('23', '登录后台', null, '2', '0:0:0:0:0:0:0:1', '2018-12-17 14:18:25');
-INSERT INTO `log_info` VALUES ('24', '登录后台', null, '2', '0:0:0:0:0:0:0:1', '2018-12-18 17:59:43');
-INSERT INTO `log_info` VALUES ('25', '登录后台', null, '2', '0:0:0:0:0:0:0:1', '2018-12-18 18:01:07');
-INSERT INTO `log_info` VALUES ('26', '登录后台', null, '2', '0:0:0:0:0:0:0:1', '2018-12-19 15:41:38');
+INSERT INTO `log_info` VALUES ('86', '登录后台', null, '1', '2018-12-25 15:39:20', '0:0:0:0:0:0:0:1', 'localhost');
+INSERT INTO `log_info` VALUES ('87', '登录后台', null, '1', '2018-12-25 15:35:16', '0:0:0:0:0:0:0:1', 'localhost');
+INSERT INTO `log_info` VALUES ('88', '登录后台', null, '1', '2018-12-25 15:37:15', '0:0:0:0:0:0:0:1', 'localhost');
+INSERT INTO `log_info` VALUES ('89', '登录后台', null, '3', '2018-12-25 15:39:03', '0:0:0:0:0:0:0:1', 'localhost');
+INSERT INTO `log_info` VALUES ('90', '登录后台', null, '1', '2018-12-25 15:40:37', '0:0:0:0:0:0:0:1', 'localhost');
+INSERT INTO `log_info` VALUES ('91', '登录后台', null, '1', '2018-12-25 16:03:35', '0:0:0:0:0:0:0:1', 'localhost');
+INSERT INTO `log_info` VALUES ('92', '登录后台', null, '1', '2018-12-25 16:20:22', '0:0:0:0:0:0:0:1', 'localhost');
 
 -- ----------------------------
 -- Table structure for `message_info`
@@ -227,19 +209,17 @@ CREATE TABLE `user_info` (
   `home_url` varchar(255) DEFAULT NULL COMMENT '用户主页',
   `add_time` datetime DEFAULT NULL COMMENT '添加时间',
   `add_ip` varchar(50) DEFAULT NULL COMMENT '添加时ip',
-  `modify_time` datetime DEFAULT NULL COMMENT '最后修改人',
+  `modify_time` datetime DEFAULT NULL COMMENT '最后修改时间',
   `modify_ip` varchar(50) DEFAULT NULL COMMENT '最后修改时ip',
-  `last_login_time` datetime DEFAULT NULL COMMENT '最后登录时间',
-  `last_login_ip` varchar(50) DEFAULT NULL COMMENT '最后登录ip地址',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='用户信息';
 
 -- ----------------------------
 -- Records of user_info
 -- ----------------------------
-INSERT INTO `user_info` VALUES ('1', 'qujie', 'e10adc3949ba59abbe56e057f20f883e', '18170037792', '0', null, null, null, null, null, null, null, null, null);
-INSERT INTO `user_info` VALUES ('2', 'admin', 'e10adc3949ba59abbe56e057f20f883e', '18170037792', '0', null, null, null, null, null, null, null, null, null);
-INSERT INTO `user_info` VALUES ('3', 'fangxiafei', 'e10adc3949ba59abbe56e057f20f883e', null, '0', null, null, null, null, null, null, null, null, null);
+INSERT INTO `user_info` VALUES ('1', 'qujie', 'e10adc3949ba59abbe56e057f20f883e', '18170037792', '0', '1071367833@qq.com', '1', 'https://github.com/18170037792', null, null, null, null);
+INSERT INTO `user_info` VALUES ('2', 'admin', 'e10adc3949ba59abbe56e057f20f883e', '18170037792', '0', null, '2', null, null, null, null, null);
+INSERT INTO `user_info` VALUES ('3', 'fangxiafei', 'e10adc3949ba59abbe56e057f20f883e', '15465', '1', '123123@qq.com', '1', 'https://github.com/18170037792', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for `user_role`

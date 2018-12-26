@@ -61,7 +61,7 @@ public class AuthController extends BaseController{
             /**
              * 判断权限
              * */
-            if(user.getRoleId() == null){
+            if(user.getRoleId() == null || user.getFrozen() == 1){
                 return new JsonResult(Constant.FAILED_CODE,Constant.AUTH_ERROR);
             }else if (user.getRoleId() == 1){
                 session.setAttribute("user",user);

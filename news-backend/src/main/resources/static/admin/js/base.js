@@ -1,5 +1,5 @@
 /**
- *  news全局函数对象   var news = new $.news();
+ *  注册news全局函数对象   var news = new $.news();
  */
 $.extend({
     news: function () {

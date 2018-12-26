@@ -24,4 +24,10 @@
         group by user.id
         order by log.last_login_time desc
     </select>
+
+    <update id="updateFrozen" parameterType="com.xiafei.newsbackend.pojo.table.UserInfoTable">
+        update user_info
+        SET frozen = #{frozen},modify_time = #{modifyTime}
+        where id = #{id}
+    </update>
 </mapper>

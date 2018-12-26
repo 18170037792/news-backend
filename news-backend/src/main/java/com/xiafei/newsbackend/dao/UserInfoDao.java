@@ -16,5 +16,14 @@ public interface UserInfoDao {
 
     int CountUser();
 
+    /**
+     * 拉取用户列表
+     * */
     List<UserLogView> getUserList();
+
+    /**
+     * 用户冻结与启用
+     * @param table
+     * */
+    int updateFrozen(UserInfoTable table);
 }
