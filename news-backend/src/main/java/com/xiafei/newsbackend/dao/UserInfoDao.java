@@ -1,5 +1,6 @@
 package com.xiafei.newsbackend.dao;
 
+import com.xiafei.newsbackend.entity.page.PageLimitEntity;
 import com.xiafei.newsbackend.entity.user.UserLoginEntity;
 import com.xiafei.newsbackend.pojo.table.UserInfoTable;
 import com.xiafei.newsbackend.pojo.view.UserInfoView;
@@ -14,12 +15,15 @@ public interface UserInfoDao {
 
     UserInfoView login(UserLoginEntity loginEntity);
 
-    int CountUser();
+    /**
+     * 分页数据统计
+     * */
+    int countUserList();
 
     /**
-     * 拉取用户列表
+     * 拉取用户分页列表
      * */
-    List<UserLogView> getUserList();
+    List<UserLogView> getUserList(PageLimitEntity limitEntity);
 
     /**
      * 用户冻结与启用

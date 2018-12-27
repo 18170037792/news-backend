@@ -10,19 +10,21 @@
         where user.name=#{name} and user.pwd=#{pwd}
     </select>
 
-    <select id="CountUser" resultType="int">
-        select count(*)
-        from user_info
-        where role_id = 1
+    <select id="countUserList" resultType="int">
+        select COUNT(DISTINCT user.id)
+        from user_info user
+        left join log_info log on user.id = log.author_id
+        where user.role_id = 1
     </select>
 
-    <select id="getUserList" resultType="com.xiafei.newsbackend.pojo.view.UserLogView">
+    <select id="getUserList" parameterType="com.xiafei.newsbackend.entity.page.PageLimitEntity" resultType="com.xiafei.newsbackend.pojo.view.UserLogView">
         select user.id, user.name, user.mobile, user.frozen, user.email, user.home_url, log.last_login_time, log.ip_home_location
         from user_info user
         left join log_info log on user.id = log.author_id
         where user.role_id = 1
         group by user.id
         order by log.last_login_time desc
+        limit #{offset},#{row}
     </select>
 
     <update id="updateFrozen" parameterType="com.xiafei.newsbackend.pojo.table.UserInfoTable">

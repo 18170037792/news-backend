@@ -8,6 +8,7 @@ spring:
     suffix: .html
     encoding: UTF-8
     content-type: text/html
+    #HTML5严格模式
     mode: HTML5
     cache: false
   http:
@@ -23,5 +24,6 @@ mybatis:
     use-generated-keys: true
 pagehelper:
   helperDialect: mysql
-  supportMethodsArguments: true
+  reasonable: true
+  support-methods-arguments: true
   params: count,countSql

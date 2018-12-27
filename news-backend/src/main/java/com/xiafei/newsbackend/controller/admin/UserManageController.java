@@ -1,5 +1,8 @@
 package com.xiafei.newsbackend.controller.admin;
 
+import com.github.pagehelper.PageInfo;
+import com.xiafei.newsbackend.entity.page.PageShowEntity;
+import com.xiafei.newsbackend.entity.user.UserInfoEntity;
 import com.xiafei.newsbackend.entity.user.UserInfoUpdateEntity;
 import com.xiafei.newsbackend.entity.user.UserLogEntity;
 import com.xiafei.newsbackend.service.UserInfoService;
@@ -7,13 +10,10 @@ import com.xiafei.newsbackend.util.Constant;
 import com.xiafei.newsbackend.util.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by qujie on 2018/12/25
@@ -26,11 +26,16 @@ public class UserManageController {
     @Autowired
     private UserInfoService userInfoService;
 
+    /**
+     * 用户分页列表
+     * @param
+     * @param
+     * */
     @GetMapping("/list")
-    public String userList(HttpServletRequest request) throws Exception {
-        List<UserLogEntity> entities = userInfoService.getUserList();
-
-        request.setAttribute("users",entities);
+    public String userList(@RequestParam(value = "current", defaultValue = "1") int current,
+                           @RequestParam(value = "row", defaultValue = "10") int row, HttpServletRequest request) throws Exception {
+        PageShowEntity<UserInfoEntity> pageShowEntity = userInfoService.getUserWithPage(current, row);
+        request.setAttribute("users",pageShowEntity);
         return "admin/user_list";
     }
 
@@ -41,6 +46,7 @@ public class UserManageController {
      * @throws Exception
      * */
     @PostMapping("/freeze")
+    @ResponseBody
     public JsonResult freezeUser(Long id,Integer frozen) throws Exception {
         UserInfoUpdateEntity updateEntity = new UserInfoUpdateEntity();
         updateEntity.setId(id);
@@ -57,6 +63,7 @@ public class UserManageController {
      * @throws Exception
      * */
     @PostMapping("/open")
+    @ResponseBody
     public JsonResult openUser(Long id,Integer frozen) throws Exception{
         UserInfoUpdateEntity updateEntity = new UserInfoUpdateEntity();
         updateEntity.setId(id);

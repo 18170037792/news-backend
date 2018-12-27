@@ -1,8 +1,9 @@
 package com.xiafei.newsbackend.entity.user;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class UserLogEntity {
+public class UserLogEntity implements Serializable {
 
     private Long id;
     /**

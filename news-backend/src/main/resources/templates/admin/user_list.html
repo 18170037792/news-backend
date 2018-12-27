@@ -26,7 +26,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <th:block th:each="user : ${users}">
+                            <th:block th:each="user : ${users.data}">
                                 <tr>
                                     <td th:text="${user.name}"></td>
                                     <td th:text="${user.mobile}"></td>
@@ -58,7 +58,7 @@
                             </th:block>
                             </tbody>
                         </table>
-                        <div ></div>
+                        <div th:replace="common/paging :: pageAdminNav(${users})"></div>
                     </div>
                 </div>
                 <div th:replace="admin/footer :: footer-content"></div>
@@ -79,9 +79,9 @@
                     data: {id: id,frozen: 1},
                     success: function (result) {
                         if (result.code == 200) {
-                            tale.alertOkAndReload('用户已冻结');
+                            news.alertOkAndReload('用户已冻结');
                         } else {
-                            tale.alertError(result.msg || '用户冻结失败');
+                            news.alertError(result.msg || '用户冻结失败');
                         }
                     }
                  });
@@ -98,9 +98,9 @@
                     data: {id: id,frozen: 0},
                     success: function (result) {
                         if (result.code == 200) {
-                            tale.alertOkAndReload('用户已启用');
+                            news.alertOkAndReload('用户已启用');
                         } else {
-                            tale.alertError(result.msg || '用户启用失败');
+                            news.alertError(result.msg || '用户启用失败');
                         }
                     }
                  });

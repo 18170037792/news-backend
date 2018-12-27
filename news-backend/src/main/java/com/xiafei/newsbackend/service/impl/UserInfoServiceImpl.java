@@ -1,6 +1,8 @@
 package com.xiafei.newsbackend.service.impl;
 
 import com.xiafei.newsbackend.dao.UserInfoDao;
+import com.xiafei.newsbackend.entity.page.PageLimitEntity;
+import com.xiafei.newsbackend.entity.page.PageShowEntity;
 import com.xiafei.newsbackend.entity.user.UserInfoEntity;
 import com.xiafei.newsbackend.entity.user.UserInfoUpdateEntity;
 import com.xiafei.newsbackend.entity.user.UserLogEntity;
@@ -11,6 +13,7 @@ import com.xiafei.newsbackend.pojo.view.UserInfoView;
 import com.xiafei.newsbackend.pojo.view.UserLogView;
 import com.xiafei.newsbackend.service.UserInfoService;
 import com.xiafei.newsbackend.util.Constant;
+import com.xiafei.newsbackend.util.FormatPage;
 import com.xiafei.newsbackend.util.GetMD5;
 import com.xiafei.newsbackend.util.ValidateUtil;
 import org.springframework.beans.BeanUtils;
@@ -60,8 +63,8 @@ public class UserInfoServiceImpl implements UserInfoService {
      * */
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public List<UserLogEntity> getUserList() throws Exception {
-        List<UserLogView> views = dao.getUserList();
+    public List<UserLogEntity> getUserList(PageLimitEntity limitEntity) throws Exception {
+        List<UserLogView> views = dao.getUserList(limitEntity);
         if(views == null || views.size()==0){
             return null;
         }
@@ -76,10 +79,24 @@ public class UserInfoServiceImpl implements UserInfoService {
         return entities;
     }
 
+//    /**
+//     * 用户信息分页列表
+//     * @param page 当前页
+//     * @param limit 分页条数
+//     * @throws Exception
+//     * */
+//    @Override
+//    @Transactional(rollbackFor = Exception.class)
+//    public PageInfo<UserLogEntity> getUserWithPage(int page, int limit) throws Exception {
+//        PageHelper.startPage(page,limit);
+//        List<UserLogEntity> entities = this.getUserList();
+//        PageInfo<UserLogEntity> pageInfo = new PageInfo<>(entities);
+//        return pageInfo;
+//    }
+
     /**
      * 冻结用户
-     * @param id
-     * @param frozen
+     * @param updateEntity
      * */
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -90,6 +107,30 @@ public class UserInfoServiceImpl implements UserInfoService {
         if(count <1){
             throw new ServiceException(Constant.SYSTEM_ERROR);
         }
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public PageShowEntity<UserInfoEntity> getUserWithPage(int current, int row) throws Exception {
+        /**
+         * 分页条件
+         * */
+        PageLimitEntity limitEntity = new PageLimitEntity();
+        limitEntity.setCurrent(current);
+        limitEntity.setRow(row);
+
+        /**
+         * 统计数据
+         * */
+        int count = dao.countUserList();
+        PageShowEntity showEntity = FormatPage.format(limitEntity, count);
+        if(count <= 0){
+            return null;
+        }
+        List<UserLogEntity> userList = this.getUserList(limitEntity);
+        showEntity.setData(userList);
+
+        return showEntity;
     }
 
 

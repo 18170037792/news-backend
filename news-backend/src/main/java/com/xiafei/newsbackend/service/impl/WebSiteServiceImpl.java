@@ -56,7 +56,7 @@ public class WebSiteServiceImpl implements WebSiteService{
     public StatisticsEntity getAdminStatistics() throws Exception {
         StatisticsEntity statisticsEntity = new StatisticsEntity();
         int articleCount = articleInfoDao.getArticleCount();
-        int countUser = userInfoDao.CountUser();
+        int countUser = userInfoDao.countUserList();
         int linksCount = linksInfoDao.getLinksCount();
 
         statisticsEntity.setArticles(articleCount);

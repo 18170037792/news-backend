@@ -1,5 +1,8 @@
 package com.xiafei.newsbackend.service;
 
+import com.github.pagehelper.PageInfo;
+import com.xiafei.newsbackend.entity.page.PageLimitEntity;
+import com.xiafei.newsbackend.entity.page.PageShowEntity;
 import com.xiafei.newsbackend.entity.user.UserInfoEntity;
 import com.xiafei.newsbackend.entity.user.UserLogEntity;
 import com.xiafei.newsbackend.entity.user.UserLoginEntity;
@@ -31,7 +34,19 @@ public class UserInfoServiceTest {
 
     @Test
     public void getUserList() throws Exception{
-        List<UserLogEntity> list = service.getUserList();
-        System.out.println(list);
+        PageLimitEntity limitEntity = new PageLimitEntity();
+        limitEntity.setCurrent(1);
+        limitEntity.setRow(10);
+        List<UserLogEntity> userList = service.getUserList(limitEntity);
+        System.out.println(userList.size());
+    }
+
+    /**
+     * 用户信息分页
+     * */
+    @Test
+    public void getUserWithPage() throws Exception{
+        PageShowEntity<UserInfoEntity> page = service.getUserWithPage(2, 10);
+        System.out.println(page);
     }
 }

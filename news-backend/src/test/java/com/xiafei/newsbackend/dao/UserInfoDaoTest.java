@@ -1,13 +1,17 @@
 package com.xiafei.newsbackend.dao;
 
+import com.xiafei.newsbackend.entity.page.PageLimitEntity;
 import com.xiafei.newsbackend.entity.user.UserLoginEntity;
 import com.xiafei.newsbackend.pojo.table.UserInfoTable;
 import com.xiafei.newsbackend.pojo.view.UserInfoView;
+import com.xiafei.newsbackend.pojo.view.UserLogView;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import java.util.List;
 
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -23,5 +27,23 @@ public class UserInfoDaoTest {
         loginEntity.setPwd("e10adc3949ba59abbe56e057f20f883e");
         UserInfoView infoView = dao.login(loginEntity);
         System.out.println(infoView);
+    }
+
+    @Test
+    public void getCountUser(){
+        int count = dao.countUserList();
+        System.out.println(count);
+    }
+
+    /**
+     * 测试用户分页列表
+     * */
+    @Test
+    public void getUserList(){
+        PageLimitEntity limitEntity = new PageLimitEntity();
+        limitEntity.setCurrent(1);
+        limitEntity.setRow(10);
+        List<UserLogView> logViews = dao.getUserList(limitEntity);
+        System.out.println(logViews);
     }
 }
