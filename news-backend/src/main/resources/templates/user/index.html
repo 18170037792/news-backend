@@ -59,10 +59,8 @@
                                 <div class="panel-body">
                                     <ul class="list-group">
                                         <li class="list-group-item" th:each="article : ${acticleList}">
-                            <span class="badge badge-primary"
-                                  th:title="${article.messageCount}+'条评论'" th:text="${article.messageCount}"></span>
-                                            <a target="_blank" href="http://www.baidu.com"
-                                               th:text="${article.title}"></a>
+                            <span class="badge badge-primary" th:title="${article.messageCount}+'条评论'" th:text="${article.messageCount}"></span>
+                                            <a target="_blank" href="http://www.baidu.com" th:text="${article.title}"></a>
                                         </li>
                                     </ul>
                                 </div>
@@ -98,7 +96,7 @@
                                 <div class="panel-body">
                                     <ul class="list-group" >
                                         <li class="list-group-item" th:each="log : ${logInfoList}">
-                                            <span th:text="${log.lastLoginTime} +' => '+ ${log.action}"></span>
+                                            <span th:text="${common.formatDate(log.lastLoginTime)} +' => '+ ${log.action}"></span>
                                         </li>
                                     </ul>
                                 </div>

@@ -10,13 +10,13 @@ import java.util.Date;
 public class DateFormatUtil {
 
     /**
-     * 转换日期全格式
+     * 转换中文日期格式
      * @param date
      * @return
      * @throws Exception
      */
     public static String formatFullDate(Date date) throws Exception{
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 HH时mm分");
         return sdf.format(date);
     }
     /**
@@ -44,5 +44,10 @@ public class DateFormatUtil {
     public static String formatBirthdayDate(Date birthday) throws Exception{
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         return sdf.format(birthday);
+    }
+
+    public static void main(String[] args) throws Exception {
+        String date = formatFullDate(new Date());
+        System.out.println(date);
     }
 }

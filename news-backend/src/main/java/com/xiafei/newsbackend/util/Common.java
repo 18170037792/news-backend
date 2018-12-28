@@ -3,6 +3,7 @@ package com.xiafei.newsbackend.util;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
 import java.util.Random;
 
 /**
@@ -23,5 +24,15 @@ public final class Common {
         Random random = new Random();
         int bounds = random.nextInt(max) + 1;
         return bounds + str;
+    }
+
+    /**
+     * 系统日期格式转换中文时间
+     * @param date
+     * @throws Exception
+     * @return String
+     * */
+    public static String formatDate(Date date) throws Exception {
+        return DateFormatUtil.formatFullDate(date);
     }
 }

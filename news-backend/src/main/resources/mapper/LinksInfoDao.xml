@@ -9,7 +9,7 @@
     </insert>
 
     <select id="getList" resultType="com.xiafei.newsbackend.pojo.table.LinksInfoTable">
-        select id, logo, link_address, sort
+        select id, name, logo, link_address, sort, add_time
         from links_info
         order by sort asc
     </select>

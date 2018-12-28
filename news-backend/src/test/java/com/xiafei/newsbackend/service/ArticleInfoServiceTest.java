@@ -25,4 +25,10 @@ public class ArticleInfoServiceTest {
         List<ArticleInfoEntity> acticleList = service.getActicleList(1L);
         System.out.println(acticleList);
     }
+
+    @Test
+    public void getArticleAll() throws Exception{
+        List<ArticleInfoEntity> entities = service.getArticleAll();
+        System.out.println(entities);
+    }
 }

@@ -1,5 +1,7 @@
 package com.xiafei.newsbackend.entity.links;
 
+import java.util.Date;
+
 public class LinksInfoEntity {
 
     private Long id;
@@ -7,6 +9,7 @@ public class LinksInfoEntity {
     private String logo;
     private String linkAddress;
     private Integer sort;
+    private Date addTime;
 
     public Long getId() {
         return id;
@@ -46,5 +49,25 @@ public class LinksInfoEntity {
 
     public void setSort(Integer sort) {
         this.sort = sort;
+    }
+
+    public Date getAddTime() {
+        return addTime;
+    }
+
+    public void setAddTime(Date addTime) {
+        this.addTime = addTime;
+    }
+
+    @Override
+    public String toString() {
+        return "LinksInfoEntity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", logo='" + logo + '\'' +
+                ", linkAddress='" + linkAddress + '\'' +
+                ", sort=" + sort +
+                ", addTime=" + addTime +
+                '}';
     }
 }

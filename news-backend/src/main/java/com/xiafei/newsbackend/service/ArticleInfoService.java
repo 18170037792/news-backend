@@ -12,7 +12,12 @@ import java.util.List;
 public interface ArticleInfoService {
 
     /**
-     * 最近发表的文章
+     * 登录用户最近发表的文章
      * */
     List<ArticleInfoEntity> getActicleList(Long userId) throws Exception;
+
+    /**
+     * 获取所有用户最近发表的文章
+     * */
+    List<ArticleInfoEntity> getArticleAll() throws Exception;
 }

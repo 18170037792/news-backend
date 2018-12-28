@@ -15,7 +15,7 @@ import java.util.Date;
 
 /**
  * Created by qujie on 2018/12/25
- * 用户管理控制器
+ * 用户管理信息控制器
  * */
 @Controller
 @RequestMapping("/admin/user")

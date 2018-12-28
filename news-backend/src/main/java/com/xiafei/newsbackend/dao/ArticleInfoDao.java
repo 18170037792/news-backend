@@ -24,6 +24,11 @@ public interface ArticleInfoDao {
     List<ArticleInfoTable> getActicleList(ArticleInfoSearchEntity searchEntity);
 
     /**
+     * 无参获取所有文章
+     * */
+    List<ArticleInfoTable> getArticleAll();
+
+    /**
      * 获取留言记录数
      * @param userId
      * @param articleId

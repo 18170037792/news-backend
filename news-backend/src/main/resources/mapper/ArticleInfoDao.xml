@@ -26,6 +26,13 @@
         limit 0,5
     </select>
 
+    <select id="getArticleAll" resultType="com.xiafei.newsbackend.pojo.table.ArticleInfoTable">
+        select *
+        from article_info
+        order by add_time desc
+        limit 0,5
+    </select>
+
     <select id="getMessageCount" resultType="int">
         select count(*)
         from article_info article

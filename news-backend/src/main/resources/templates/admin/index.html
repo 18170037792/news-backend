@@ -59,8 +59,8 @@
                                 <div class="panel-body">
                                     <ul class="list-group">
                                         <li class="list-group-item" th:each="article : ${acticleList}">
-                            <span class="badge badge-primary" ></span>
-                                            <a target="_blank" href="http://www.baidu.com" ></a>
+                            <span class="badge badge-primary" th:title="${article.messageCount}+'条评论'" th:text="${article.messageCount}"></span>
+                                            <a target="_blank" href="http://www.baidu.com" th:text="${article.title}"></a>
                                         </li>
                                     </ul>
                                 </div>
@@ -89,9 +89,9 @@
                                     <h4 class="panel-title">最新友链</h4>
                                 </div>
                                 <div class="panel-body">
-                                    <ul class="list-group" >
-                                        <li class="list-group-item" >
-                                            <span ></span>
+                                    <ul class="list-group">
+                                        <li class="list-group-item" th:each="link : ${linkList}">
+                                            <a target="_blank" th:href="${link.linkAddress}" th:text="${link.name}"></a>
                                         </li>
                                     </ul>
                                 </div>

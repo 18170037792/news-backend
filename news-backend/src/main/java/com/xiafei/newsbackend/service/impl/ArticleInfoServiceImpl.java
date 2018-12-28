@@ -21,6 +21,10 @@ public class ArticleInfoServiceImpl implements ArticleInfoService {
     @Autowired
     private ArticleInfoDao dao;
 
+    /**
+     * 登录用户最近发表的文章
+     * @param userId
+     * */
     @Override
     @Transactional(rollbackFor = Exception.class)
     public List<ArticleInfoEntity> getActicleList(Long userId) throws Exception{
@@ -41,6 +45,24 @@ public class ArticleInfoServiceImpl implements ArticleInfoService {
             entities.add(entity);
         }
         return entities;
+    }
 
+    /**
+     * 获取所有用户最近发表的文章
+     * */
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public List<ArticleInfoEntity> getArticleAll() throws Exception {
+        List<ArticleInfoTable> tables = dao.getArticleAll();
+        List<ArticleInfoEntity> entities = new ArrayList<>();
+        for (ArticleInfoTable table: tables
+        ) {
+            ArticleInfoEntity entity = new ArticleInfoEntity();
+            BeanUtils.copyProperties(table,entity);
+            int messageCount = dao.getMessageCount(entity.getAddUser(),entity.getId());
+            entity.setMessageCount(messageCount);
+            entities.add(entity);
+        }
+        return entities;
     }
 }

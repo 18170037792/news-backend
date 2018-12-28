@@ -1,11 +1,14 @@
 package com.xiafei.newsbackend.dao;
 
 import com.xiafei.newsbackend.entity.article.ArticleInfoSearchEntity;
+import com.xiafei.newsbackend.pojo.table.ArticleInfoTable;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import java.util.List;
 
 /**
  * Created by qujie on 2018/12/19
@@ -41,5 +44,14 @@ public class ArticleInfoDaoTest {
         }else {
             System.out.println(messageCount);
         }
+    }
+
+    /**
+     * 获取所有文章
+     * */
+    @Test
+    public void getArticleAll(){
+        List<ArticleInfoTable> tables = dao.getArticleAll();
+        System.out.println(tables);
     }
 }
