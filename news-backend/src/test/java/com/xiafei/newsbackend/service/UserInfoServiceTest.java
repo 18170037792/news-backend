@@ -1,12 +1,10 @@
 package com.xiafei.newsbackend.service;
 
-import com.github.pagehelper.PageInfo;
 import com.xiafei.newsbackend.entity.page.PageLimitEntity;
 import com.xiafei.newsbackend.entity.page.PageShowEntity;
 import com.xiafei.newsbackend.entity.user.UserInfoEntity;
 import com.xiafei.newsbackend.entity.user.UserLogEntity;
 import com.xiafei.newsbackend.entity.user.UserLoginEntity;
-import com.xiafei.newsbackend.util.GetMD5;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +44,7 @@ public class UserInfoServiceTest {
      * */
     @Test
     public void getUserWithPage() throws Exception{
-        PageShowEntity<UserInfoEntity> page = service.getUserWithPage(2, 10);
+        PageShowEntity<UserInfoEntity> page = service.getUserWithPage(11, 3);
         System.out.println(page);
     }
 }

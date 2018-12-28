@@ -79,21 +79,6 @@ public class UserInfoServiceImpl implements UserInfoService {
         return entities;
     }
 
-//    /**
-//     * 用户信息分页列表
-//     * @param page 当前页
-//     * @param limit 分页条数
-//     * @throws Exception
-//     * */
-//    @Override
-//    @Transactional(rollbackFor = Exception.class)
-//    public PageInfo<UserLogEntity> getUserWithPage(int page, int limit) throws Exception {
-//        PageHelper.startPage(page,limit);
-//        List<UserLogEntity> entities = this.getUserList();
-//        PageInfo<UserLogEntity> pageInfo = new PageInfo<>(entities);
-//        return pageInfo;
-//    }
-
     /**
      * 冻结用户
      * @param updateEntity

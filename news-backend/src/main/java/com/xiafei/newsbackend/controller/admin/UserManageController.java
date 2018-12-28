@@ -1,10 +1,8 @@
 package com.xiafei.newsbackend.controller.admin;
 
-import com.github.pagehelper.PageInfo;
 import com.xiafei.newsbackend.entity.page.PageShowEntity;
 import com.xiafei.newsbackend.entity.user.UserInfoEntity;
 import com.xiafei.newsbackend.entity.user.UserInfoUpdateEntity;
-import com.xiafei.newsbackend.entity.user.UserLogEntity;
 import com.xiafei.newsbackend.service.UserInfoService;
 import com.xiafei.newsbackend.util.Constant;
 import com.xiafei.newsbackend.util.JsonResult;
@@ -28,8 +26,8 @@ public class UserManageController {
 
     /**
      * 用户分页列表
-     * @param
-     * @param
+     * @param current 当前页
+     * @param row 分页条数
      * */
     @GetMapping("/list")
     public String userList(@RequestParam(value = "current", defaultValue = "1") int current,

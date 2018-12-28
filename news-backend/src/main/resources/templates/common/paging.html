@@ -4,11 +4,11 @@
 
 
 <div th:fragment="pageAdminNav(pageShowEntity)">
-    <div class="clearfix">
+    <div class="clearfix dropdown">
         <ul class="pagination m-b-5 pull-right">
 
-            <li th:if="${!pageShowEntity.isFirstPage}">
-                <a th:href="@{?current=1">
+            <li th:if="${!pageShowEntity.firstPage}">
+                <a th:href="@{'?current='+${pageShowEntity.indexPage}}">
                     &nbsp;首页
                 </a>
             </li>
@@ -19,26 +19,25 @@
                 </a>
             </li>
 
-            <th:block th:each="nav : ${pageShowEntity.navigatepageNums}">
-                <li th:class="${nav==pageShowEntity.pageNum}?'active':''"><a th:href="@{'?current='+${nav}}" th:text="${nav}"></a>
+            <!-- 迭代生成页码 -->
+            <th:block th:each="nav : ${pageShowEntity.navigatePageNumbers}">
+                <li th:class="${nav==pageShowEntity.current}?'active':''"><a th:href="@{'?current='+${nav}}" th:text="${nav}"></a>
                 </li>
             </th:block>
 
-            <th:block th:if="${pageShowEntity.hasNextPage}">
-                <li>
-                    <a th:href="@{'?current='+${pageShowEntity.nextPage}}" aria-label="Next">
-                        下一页&nbsp;<i class="fa fa-angle-right"></i>
-                    </a>
-                </li>
-            </th:block>
+            <li th:if="${pageShowEntity.hasNextPage}">
+                <a th:href="@{'?current='+${pageShowEntity.nextPage}}" aria-label="Next">
+                    下一页&nbsp;<i class="fa fa-angle-right"></i>
+                </a>
+            </li>
 
-            <li th:if="${!pageShowEntity.isLastPage}">
-                <a th:href="@{'?current='+${pageShowEntity.navigateLastPage}}">
+            <li th:if="${!pageShowEntity.lastPage}">
+                <a th:href="@{'?current='+${pageShowEntity.pageTotal}}">
                     &nbsp;末页
                 </a>
             </li>
 
-            <li><span th:text="'共'+${pageShowEntity.pages}+'页'"></span></li>
+            <li><span th:text="'共'+${pageShowEntity.pageTotal}+'页'"></span></li>
         </ul>
     </div>
 </div>

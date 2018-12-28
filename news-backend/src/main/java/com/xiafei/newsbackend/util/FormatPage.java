@@ -74,15 +74,15 @@ public class FormatPage {
         }
 
         /**
-         * 最长导航页码
+         * 初始化导航页码数
          * */
-        int navigatePages = 8;
+        int navigatePages = 5;
         /**
-         * 页码数组
+         * 初始化页码数组
          * */
-        int[] navigatePageNumbers = new int[0];
+        int[] navigatePageNumber = {};
 
-        calcNavigatePageNumbers(pageTotal,navigatePages,navigatePageNumbers,current);
+        int[] navigatePageNumbers = calcNavigatePageNumbers(pageTotal, navigatePages, navigatePageNumber, current);
 
         return format(current, page.getRow(), pageTotal, rowTatal,isFirstPage,isLastPage,hasPreviousPage,hasNextPage,prePage,nextPage,navigatePages,navigatePageNumbers);
     }
@@ -90,7 +90,7 @@ public class FormatPage {
     /**
      * 计算导航页
      */
-    private static void calcNavigatePageNumbers(int pageTotal,int navigatePages, int[] navigatePageNumbers, int current){
+    private static int[] calcNavigatePageNumbers(int pageTotal,int navigatePages, int[] navigatePageNumbers, int current){
         /**
          * 当总页数小于或等于导航页码数时
          * */
@@ -99,6 +99,7 @@ public class FormatPage {
             for(int i=0;i<pageTotal;i++){
                 navigatePageNumbers[i]=i+1;
             }
+            return navigatePageNumbers;
         }else{
             /**
              * 当总页数大于导航页码数时
@@ -131,6 +132,7 @@ public class FormatPage {
                     navigatePageNumbers[i]=startNum++;
                 }
             }
+            return navigatePageNumbers;
         }
     }
 

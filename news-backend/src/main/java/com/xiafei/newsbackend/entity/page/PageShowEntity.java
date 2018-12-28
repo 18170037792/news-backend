@@ -10,6 +10,11 @@ import java.util.List;
 public class PageShowEntity<T> {
 
     /**
+     * 首页
+     * */
+    private int indexPage=1;
+
+    /**
      * 当前页
      * */
     private int current;
@@ -28,11 +33,11 @@ public class PageShowEntity<T> {
     /**
      * 是否为第一页
      * */
-    private boolean isFirstPage;
+    private boolean firstPage;
     /**
      * 是否为最后一页
      * */
-    private boolean isLastPage;
+    private boolean lastPage;
     /**
      * 是否有前一页
      * */
@@ -97,19 +102,19 @@ public class PageShowEntity<T> {
     }
 
     public boolean isFirstPage() {
-        return isFirstPage;
+        return firstPage;
     }
 
     public void setFirstPage(boolean firstPage) {
-        isFirstPage = firstPage;
+        this.firstPage = firstPage;
     }
 
     public boolean isLastPage() {
-        return isLastPage;
+        return lastPage;
     }
 
     public void setLastPage(boolean lastPage) {
-        isLastPage = lastPage;
+        this.lastPage = lastPage;
     }
 
     public boolean isHasPreviousPage() {
@@ -168,15 +173,25 @@ public class PageShowEntity<T> {
         this.nextPage = nextPage;
     }
 
+
+    public int getIndexPage() {
+        return indexPage;
+    }
+
+    public void setIndexPage(int indexPage) {
+        this.indexPage = indexPage;
+    }
+
     @Override
     public String toString() {
         return "PageShowEntity{" +
-                "current=" + current +
+                "indexPage=" + indexPage +
+                ", current=" + current +
                 ", row=" + row +
                 ", pageTotal=" + pageTotal +
                 ", rowTotal=" + rowTotal +
-                ", isFirstPage=" + isFirstPage +
-                ", isLastPage=" + isLastPage +
+                ", firstPage=" + firstPage +
+                ", lastPage=" + lastPage +
                 ", hasPreviousPage=" + hasPreviousPage +
                 ", hasNextPage=" + hasNextPage +
                 ", navigatePages=" + navigatePages +
