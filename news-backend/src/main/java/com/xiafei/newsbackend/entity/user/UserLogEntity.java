@@ -35,6 +35,10 @@ public class UserLogEntity implements Serializable {
      * 最后登录地点
      * */
     private String ipHomeLocation;
+    /**
+     * 用户动作
+     * */
+    private String action;
 
     public Long getId() {
         return id;
@@ -100,6 +104,14 @@ public class UserLogEntity implements Serializable {
         this.ipHomeLocation = ipHomeLocation;
     }
 
+    public String getAction() {
+        return action;
+    }
+
+    public void setAction(String action) {
+        this.action = action;
+    }
+
     @Override
     public String toString() {
         return "UserLogEntity{" +
@@ -111,6 +123,7 @@ public class UserLogEntity implements Serializable {
                 ", homeUrl='" + homeUrl + '\'' +
                 ", lastLoginTime=" + lastLoginTime +
                 ", ipHomeLocation='" + ipHomeLocation + '\'' +
+                ", action='" + action + '\'' +
                 '}';
     }
 }

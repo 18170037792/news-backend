@@ -17,13 +17,18 @@
         where user.role_id = 1
     </select>
 
+    <!-- 获取用户信息，按最后登录时间排序 -->
     <select id="getUserList" parameterType="com.xiafei.newsbackend.entity.page.PageLimitEntity" resultType="com.xiafei.newsbackend.pojo.view.UserLogView">
-        select user.id, user.name, user.mobile, user.frozen, user.email, user.home_url, log.last_login_time, log.ip_home_location
+        SELECT * FROM(SELECT * FROM (
+        SELECT temp.*, @rn := IF(@prev = temp.last_login_time,@rn + 1,1) AS rn, @prev = temp.last_login_time FROM
+        (select user.id, user.name, user.mobile, user.frozen, user.email, user.home_url, log.last_login_time, log.ip_home_location,log.id AS logId
         from user_info user
         left join log_info log on user.id = log.author_id
         where user.role_id = 1
-        group by user.id
-        order by log.last_login_time desc
+        order by log.last_login_time DESC) as temp
+        JOIN (SELECT @rn:= 0) AS vars
+        ) t WHERE t.rn = 1 ORDER BY t.logId DESC) as tt
+        GROUP BY tt.id ORDER BY tt.last_login_time DESC
         limit #{offset},#{row}
     </select>
 

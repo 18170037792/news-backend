@@ -1,5 +1,6 @@
 package com.xiafei.newsbackend.dao;
 import com.xiafei.newsbackend.pojo.table.LogInfoTable;
+import com.xiafei.newsbackend.pojo.view.UserLogView;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -16,4 +17,10 @@ public interface LogInfoDao {
      * @param authorId
      * */
     List<LogInfoTable> getLogList(@Param("authorId") Long authorId);
+
+    /**
+     * 获取管理员日志的最新用户动态
+     * @return UserLogView
+     * */
+    List<UserLogView> getUserDynamic();
 }

@@ -46,4 +46,5 @@ public class UserInfoDaoTest {
         List<UserLogView> logViews = dao.getUserList(limitEntity);
         System.out.println(logViews);
     }
+
 }

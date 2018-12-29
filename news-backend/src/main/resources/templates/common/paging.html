@@ -6,7 +6,6 @@
 <div th:fragment="pageAdminNav(pageShowEntity)">
     <div class="clearfix dropdown">
         <ul class="pagination m-b-5 pull-right">
-
             <li th:if="${!pageShowEntity.firstPage}">
                 <a th:href="@{'?current='+${pageShowEntity.indexPage}}">
                     &nbsp;首页
@@ -41,6 +40,5 @@
         </ul>
     </div>
 </div>
-
 </body>
 </html>

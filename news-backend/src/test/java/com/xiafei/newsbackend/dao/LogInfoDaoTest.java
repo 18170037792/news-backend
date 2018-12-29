@@ -1,6 +1,7 @@
 package com.xiafei.newsbackend.dao;
 
 import com.xiafei.newsbackend.pojo.table.LogInfoTable;
+import com.xiafei.newsbackend.pojo.view.UserLogView;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,5 +34,14 @@ public class LogInfoDaoTest {
     public void getLogList(){
         List<LogInfoTable> logList = dao.getLogList(2L);
         System.out.println(logList);
+    }
+
+    /**
+     * 获取管理员日志的最新用户动态
+     * */
+    @Test
+    public void getUserDynamic(){
+        List<UserLogView> logViews = dao.getUserDynamic();
+        System.out.println(logViews);
     }
 }

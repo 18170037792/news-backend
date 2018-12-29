@@ -2,6 +2,7 @@ package com.xiafei.newsbackend.service;
 
 import com.xiafei.newsbackend.entity.log.LogInfoAddEntity;
 import com.xiafei.newsbackend.entity.log.LogInfoEntity;
+import com.xiafei.newsbackend.entity.user.UserLogEntity;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,5 +32,14 @@ public class LogInfoServiceTest {
     public void getLogInfo() throws Exception{
         List<LogInfoEntity> logInfoList = service.getLogInfoList(2L);
         System.out.println(logInfoList);
+    }
+
+    /**
+     * 获取管理员日志的最新用户动态
+     * */
+    @Test
+    public void getUserDynamic() throws Exception{
+        List<UserLogEntity> entities = service.getUserDynamic();
+        System.out.println(entities);
     }
 }

@@ -73,11 +73,9 @@
                                 </div>
                                 <div class="panel-body">
                                     <ul class="list-group" >
-                                        <li class="list-group-item" >
-                                            <div >
-                                                <a ></a>
-                                            </div>
-                                             <a > </a>
+                                        <li class="list-group-item" th:each="log : ${logInfoList}">
+                                            <span th:text="${log.name}+' 于'"></span>
+                                            <span th:text="${common.formatDate(log.lastLoginTime)} +' => '+ ${log.action}"></span>
                                         </li>
                                     </ul>
                                 </div>
@@ -91,7 +89,7 @@
                                 <div class="panel-body">
                                     <ul class="list-group">
                                         <li class="list-group-item" th:each="link : ${linkList}">
-                                            <a target="_blank" th:href="${link.linkAddress}" th:text="${link.name}"></a>
+                                            <a target="_blank" th:href="${link.linkAddress}" th:title="${link.linkAddress}" th:text="${link.name}"></a>
                                         </li>
                                     </ul>
                                 </div>

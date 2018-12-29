@@ -4,6 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xiafei.newsbackend.dao.ArticleInfoDao">
 
+    <!-- 根据登录用户统计文章数 -->
     <select id="getCount" resultType="int">
         select count(*)
         from article_info
@@ -14,6 +15,7 @@
         </where>
     </select>
 
+    <!-- 根据登录人id获取最新五篇文章 -->
     <select id="getActicleList" parameterType="com.xiafei.newsbackend.entity.article.ArticleInfoSearchEntity" resultType="com.xiafei.newsbackend.pojo.table.ArticleInfoTable">
         select *
         from article_info
@@ -26,6 +28,7 @@
         limit 0,5
     </select>
 
+    <!-- 无参获取管理员日志的最新五篇文章 -->
     <select id="getArticleAll" resultType="com.xiafei.newsbackend.pojo.table.ArticleInfoTable">
         select *
         from article_info
@@ -33,6 +36,7 @@
         limit 0,5
     </select>
 
+    <!-- 获取留言记录数 -->
     <select id="getMessageCount" resultType="int">
         select count(*)
         from article_info article
@@ -48,8 +52,22 @@
         </where>
     </select>
 
+    <!-- 统计文章总数 -->
     <select id="getArticleCount" resultType="int">
         select count(*)
         from article_info
+    </select>
+
+    <!-- 根据登录人id获取文章分页信息 -->
+    <select id="getArticleAllBySearch" parameterType="com.xiafei.newsbackend.entity.article.ArticleInfoSearchEntity" resultType="com.xiafei.newsbackend.pojo.table.ArticleInfoTable">
+        select *
+        from article_info
+        <where>
+            <if test="userId != null">
+                and add_user = #{userId}
+            </if>
+        </where>
+        order by add_time desc
+        limit #{limitEntity.offset},#{limitEntity.row}
     </select>
 </mapper>

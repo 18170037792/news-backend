@@ -5,6 +5,7 @@ import com.xiafei.newsbackend.entity.article.ArticleInfoEntity;
 import com.xiafei.newsbackend.entity.datas.StatisticsEntity;
 import com.xiafei.newsbackend.entity.links.LinksInfoEntity;
 import com.xiafei.newsbackend.entity.log.LogInfoEntity;
+import com.xiafei.newsbackend.entity.user.UserLogEntity;
 import com.xiafei.newsbackend.service.ArticleInfoService;
 import com.xiafei.newsbackend.service.LinksInfoService;
 import com.xiafei.newsbackend.service.LogInfoService;
@@ -31,7 +32,7 @@ public class AdminIndexController extends BaseController{
     @Autowired
     private LinksInfoService linksInfoService;
 
-    /**\
+    /**
      * 首页跳转
      * @param request
      * @throws Exception
@@ -41,6 +42,7 @@ public class AdminIndexController extends BaseController{
 
         List<ArticleInfoEntity> acticleList = articleInfoService.getArticleAll();
         List<LinksInfoEntity> linkList = linksInfoService.getList();
+        List<UserLogEntity> logEntities = logInfoService.getUserDynamic();
 
         /**
          * 通过request作用域向前端传参
@@ -49,6 +51,7 @@ public class AdminIndexController extends BaseController{
         request.setAttribute("statistics",statistics);
         request.setAttribute("acticleList",acticleList);
         request.setAttribute("linkList",linkList);
+        request.setAttribute("logInfoList",logEntities);
         return "admin/index";
     }
 }

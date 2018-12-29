@@ -35,6 +35,9 @@ public class ArticleInfoServiceImpl implements ArticleInfoService {
         searchEntity.setUserId(userId);
 
         List<ArticleInfoTable> tables = dao.getActicleList(searchEntity);
+        if(tables == null || tables.size() == 0){
+            return null;
+        }
         List<ArticleInfoEntity> entities = new ArrayList<>();
         for (ArticleInfoTable table: tables
              ) {
@@ -54,6 +57,34 @@ public class ArticleInfoServiceImpl implements ArticleInfoService {
     @Transactional(rollbackFor = Exception.class)
     public List<ArticleInfoEntity> getArticleAll() throws Exception {
         List<ArticleInfoTable> tables = dao.getArticleAll();
+        if(tables == null || tables.size() == 0){
+            return null;
+        }
+        List<ArticleInfoEntity> entities = new ArrayList<>();
+        for (ArticleInfoTable table: tables
+        ) {
+            ArticleInfoEntity entity = new ArticleInfoEntity();
+            BeanUtils.copyProperties(table,entity);
+            int messageCount = dao.getMessageCount(entity.getAddUser(),entity.getId());
+            entity.setMessageCount(messageCount);
+            entities.add(entity);
+        }
+        return entities;
+    }
+
+    /**
+     * 根据登录人id获取文章分页信息
+     * @param searchEntity
+     * @throws Exception
+     * @return ArticleInfoEntity
+     * */
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public List<ArticleInfoEntity> getArticleAllBySearch(ArticleInfoSearchEntity searchEntity) throws Exception {
+        List<ArticleInfoTable> tables = dao.getArticleAllBySearch(searchEntity);
+        if(tables == null || tables.size() == 0){
+            return null;
+        }
         List<ArticleInfoEntity> entities = new ArrayList<>();
         for (ArticleInfoTable table: tables
         ) {

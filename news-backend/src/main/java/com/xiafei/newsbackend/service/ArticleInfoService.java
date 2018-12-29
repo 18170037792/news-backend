@@ -13,11 +13,23 @@ public interface ArticleInfoService {
 
     /**
      * 登录用户最近发表的文章
+     * @throws Exception
+     * @return ArticleInfoEntity
      * */
     List<ArticleInfoEntity> getActicleList(Long userId) throws Exception;
 
     /**
      * 获取所有用户最近发表的文章
+     * @throws Exception
+     * @return ArticleInfoEntity
      * */
     List<ArticleInfoEntity> getArticleAll() throws Exception;
+
+    /**
+     * 根据登录人id获取文章分页信息
+     * @param searchEntity
+     * @throws Exception
+     * @return ArticleInfoEntity
+     * */
+    List<ArticleInfoEntity> getArticleAllBySearch(ArticleInfoSearchEntity searchEntity) throws Exception;
 }

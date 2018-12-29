@@ -1,6 +1,7 @@
 package com.xiafei.newsbackend.dao;
 
 import com.xiafei.newsbackend.entity.article.ArticleInfoSearchEntity;
+import com.xiafei.newsbackend.entity.page.PageLimitEntity;
 import com.xiafei.newsbackend.pojo.table.ArticleInfoTable;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -52,6 +53,21 @@ public class ArticleInfoDaoTest {
     @Test
     public void getArticleAll(){
         List<ArticleInfoTable> tables = dao.getArticleAll();
+        System.out.println(tables);
+    }
+
+    /**
+     * 根据登录人id获取文章分页信息
+     * */
+    @Test
+    public void getArticleAllByUserId(){
+        ArticleInfoSearchEntity searchEntity = new ArticleInfoSearchEntity();
+        searchEntity.setUserId(1L);
+        PageLimitEntity pageLimitEntity = new PageLimitEntity();
+        pageLimitEntity.setCurrent(1);
+        pageLimitEntity.setRow(5);
+        searchEntity.setLimitEntity(pageLimitEntity);
+        List<ArticleInfoTable> tables = dao.getArticleAllBySearch(searchEntity);
         System.out.println(tables);
     }
 }

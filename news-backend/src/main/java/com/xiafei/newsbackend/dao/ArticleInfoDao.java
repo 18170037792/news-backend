@@ -18,13 +18,13 @@ public interface ArticleInfoDao {
     int getCount(@Param("userId") Long userId);
 
     /**
-     * 根据登录人id获取列表
+     * 根据登录人id获取最新五篇文章
      * @param searchEntity
      * */
     List<ArticleInfoTable> getActicleList(ArticleInfoSearchEntity searchEntity);
 
     /**
-     * 无参获取所有文章
+     * 无参获取管理员日志的最新五篇文章
      * */
     List<ArticleInfoTable> getArticleAll();
 
@@ -40,4 +40,8 @@ public interface ArticleInfoDao {
      * */
     int getArticleCount();
 
+    /**
+     * 根据登录人id获取文章分页信息
+     * */
+    List<ArticleInfoTable> getArticleAllBySearch(ArticleInfoSearchEntity searchEntity);
 }

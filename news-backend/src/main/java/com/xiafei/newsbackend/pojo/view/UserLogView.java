@@ -38,6 +38,10 @@ public class UserLogView {
      * 最后登录地点
      * */
     private String ipHomeLocation;
+    /**
+     * 用户动作
+     * */
+    private String action;
 
     public Long getId() {
         return id;
@@ -103,6 +107,14 @@ public class UserLogView {
         this.ipHomeLocation = ipHomeLocation;
     }
 
+    public String getAction() {
+        return action;
+    }
+
+    public void setAction(String action) {
+        this.action = action;
+    }
+
     @Override
     public String toString() {
         return "UserLogView{" +
@@ -114,6 +126,7 @@ public class UserLogView {
                 ", homeUrl='" + homeUrl + '\'' +
                 ", lastLoginTime=" + lastLoginTime +
                 ", ipHomeLocation='" + ipHomeLocation + '\'' +
+                ", action='" + action + '\'' +
                 '}';
     }
 }
