@@ -31,7 +31,7 @@ public class UserManageController {
      * */
     @GetMapping("/list")
     public String userList(@RequestParam(value = "current", defaultValue = "1") int current,
-                           @RequestParam(value = "row", defaultValue = "10") int row, HttpServletRequest request) throws Exception {
+                           @RequestParam(value = "row", defaultValue = "7") int row, HttpServletRequest request) throws Exception {
         PageShowEntity<UserInfoEntity> pageShowEntity = userInfoService.getUserWithPage(current, row);
         request.setAttribute("users",pageShowEntity);
         return "admin/user_list";

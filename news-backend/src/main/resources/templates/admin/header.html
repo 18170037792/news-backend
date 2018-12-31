@@ -73,6 +73,11 @@
                        th:class="${active}=='article'?'waves-effect active':'waves-effect'"><i
                             class="fa fa-list" aria-hidden="true"></i><span> 文章管理 </span></a>
                 </li>
+                <li th:class="${active}=='article'?'active':''">
+                    <a th:href="@{/admin/article/list}"
+                       th:class="${active}=='article'?'waves-effect active':'waves-effect'"><i
+                            class="fa fa-list" aria-hidden="true"></i><span> 轮播管理 </span></a>
+                </li>
                 <li th:class="${active}=='users'?'active':''">
                     <a th:href="@{/admin/user/list}"
                        th:class="${active}=='users'?'waves-effect active':'waves-effect'"><i
