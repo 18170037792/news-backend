@@ -16,7 +16,7 @@
                             <thead>
                             <tr>
                                 <th width="35%">文章标题</th>
-                                <th width="15%">发布时间</th>
+                                <th width="25%">发布时间</th>
                                 <th>浏览量</th>
                                 <th>所属分类</th>
                                 <th width="8%">发布状态</th>
@@ -24,14 +24,14 @@
                             </tr>
                             </thead>
                             <tbody>
-
+                            <th:block th:each="article : ${articles.data}">
                                 <tr >
-                                    <td>
+                                    <td th:text="${article.title}">
                                         <a ></a>
                                     </td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td th:text="${common.formatDate(article.addTime)}"></td>
+                                    <td ></td>
+                                    <td th:text="${article.typeName}"></td>
                                     <td>
 
                                             <span class="label label-success">已发布</span>
@@ -49,6 +49,7 @@
                                                 class="fa fa-rocket"></i> <span>预览</span></a>
                                     </td>
                                 </tr>
+                            </th:block>
 
                             </tbody>
                         </table>

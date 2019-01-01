@@ -1,7 +1,9 @@
 package com.xiafei.newsbackend.service;
 
+import com.xiafei.newsbackend.entity.article.ArticleAndTypeEntity;
 import com.xiafei.newsbackend.entity.article.ArticleInfoEntity;
 import com.xiafei.newsbackend.entity.article.ArticleInfoSearchEntity;
+import com.xiafei.newsbackend.entity.page.PageShowEntity;
 
 import java.util.List;
 
@@ -26,10 +28,18 @@ public interface ArticleInfoService {
     List<ArticleInfoEntity> getArticleAll() throws Exception;
 
     /**
-     * 根据登录人id获取文章分页信息
+     * 根据登录人id获取文章列表
      * @param searchEntity
      * @throws Exception
      * @return ArticleInfoEntity
      * */
-    List<ArticleInfoEntity> getArticleAllBySearch(ArticleInfoSearchEntity searchEntity) throws Exception;
+    List<ArticleAndTypeEntity> getArticleAllBySearch(ArticleInfoSearchEntity searchEntity) throws Exception;
+
+    /**
+     * 根据登录人id获取文章分页信息
+     * @param searchEntity
+     * @throws Exception
+     * @return ArticleAndTypeEntity
+     * */
+    PageShowEntity<ArticleAndTypeEntity> getArticleWithPage(ArticleInfoSearchEntity searchEntity) throws Exception;
 }

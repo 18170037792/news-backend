@@ -2,6 +2,7 @@ package com.xiafei.newsbackend.dao;
 
 import com.xiafei.newsbackend.entity.article.ArticleInfoSearchEntity;
 import com.xiafei.newsbackend.pojo.table.ArticleInfoTable;
+import com.xiafei.newsbackend.pojo.view.ArticleTypeView;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -43,5 +44,5 @@ public interface ArticleInfoDao {
     /**
      * 根据登录人id获取文章分页信息
      * */
-    List<ArticleInfoTable> getArticleAllBySearch(ArticleInfoSearchEntity searchEntity);
+    List<ArticleTypeView> getArticleAllBySearch(ArticleInfoSearchEntity searchEntity);
 }

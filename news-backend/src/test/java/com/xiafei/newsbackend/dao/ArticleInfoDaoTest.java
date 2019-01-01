@@ -3,6 +3,7 @@ package com.xiafei.newsbackend.dao;
 import com.xiafei.newsbackend.entity.article.ArticleInfoSearchEntity;
 import com.xiafei.newsbackend.entity.page.PageLimitEntity;
 import com.xiafei.newsbackend.pojo.table.ArticleInfoTable;
+import com.xiafei.newsbackend.pojo.view.ArticleTypeView;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,7 +68,7 @@ public class ArticleInfoDaoTest {
         pageLimitEntity.setCurrent(1);
         pageLimitEntity.setRow(5);
         searchEntity.setLimitEntity(pageLimitEntity);
-        List<ArticleInfoTable> tables = dao.getArticleAllBySearch(searchEntity);
-        System.out.println(tables);
+        List<ArticleTypeView> articleTypeViews = dao.getArticleAllBySearch(searchEntity);
+        System.out.println(articleTypeViews);
     }
 }

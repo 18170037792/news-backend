@@ -1,12 +1,16 @@
 package com.xiafei.newsbackend.service.impl;
 
 import com.xiafei.newsbackend.dao.ArticleInfoDao;
+import com.xiafei.newsbackend.entity.article.ArticleAndTypeEntity;
 import com.xiafei.newsbackend.entity.article.ArticleInfoEntity;
 import com.xiafei.newsbackend.entity.article.ArticleInfoSearchEntity;
+import com.xiafei.newsbackend.entity.page.PageShowEntity;
 import com.xiafei.newsbackend.exception.ServiceException;
 import com.xiafei.newsbackend.pojo.table.ArticleInfoTable;
+import com.xiafei.newsbackend.pojo.view.ArticleTypeView;
 import com.xiafei.newsbackend.service.ArticleInfoService;
 import com.xiafei.newsbackend.util.Constant;
+import com.xiafei.newsbackend.util.FormatPage;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -73,27 +77,47 @@ public class ArticleInfoServiceImpl implements ArticleInfoService {
     }
 
     /**
-     * 根据登录人id获取文章分页信息
+     * 根据登录人id获取文章列表
      * @param searchEntity
      * @throws Exception
      * @return ArticleInfoEntity
      * */
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public List<ArticleInfoEntity> getArticleAllBySearch(ArticleInfoSearchEntity searchEntity) throws Exception {
-        List<ArticleInfoTable> tables = dao.getArticleAllBySearch(searchEntity);
-        if(tables == null || tables.size() == 0){
+    public List<ArticleAndTypeEntity> getArticleAllBySearch(ArticleInfoSearchEntity searchEntity) throws Exception {
+        List<ArticleTypeView> views = dao.getArticleAllBySearch(searchEntity);
+        if(views == null || views.size() == 0){
             return null;
         }
-        List<ArticleInfoEntity> entities = new ArrayList<>();
-        for (ArticleInfoTable table: tables
+        List<ArticleAndTypeEntity> entities = new ArrayList<>();
+        for (ArticleTypeView view: views
         ) {
-            ArticleInfoEntity entity = new ArticleInfoEntity();
-            BeanUtils.copyProperties(table,entity);
-            int messageCount = dao.getMessageCount(entity.getAddUser(),entity.getId());
-            entity.setMessageCount(messageCount);
+            ArticleAndTypeEntity entity = new ArticleAndTypeEntity();
+            BeanUtils.copyProperties(view,entity);
             entities.add(entity);
         }
         return entities;
+    }
+
+    /**
+     * 根据登录人id获取文章分页信息
+     * @param searchEntity
+     * @throws Exception
+     * @return ArticleAndTypeEntity
+     * */
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public PageShowEntity<ArticleAndTypeEntity> getArticleWithPage(ArticleInfoSearchEntity searchEntity) throws Exception {
+        /**
+         * 统计数据
+         * */
+        int count = dao.getCount(searchEntity.getUserId());
+        PageShowEntity showEntity = FormatPage.format(searchEntity.getLimitEntity(), count);
+        if(count <= 0){
+            return null;
+        }
+        List<ArticleAndTypeEntity> andTypeEntityList = this.getArticleAllBySearch(searchEntity);
+        showEntity.setData(andTypeEntityList);
+        return showEntity;
     }
 }

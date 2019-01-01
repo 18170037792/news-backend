@@ -59,15 +59,18 @@
     </select>
 
     <!-- 根据登录人id获取文章分页信息 -->
-    <select id="getArticleAllBySearch" parameterType="com.xiafei.newsbackend.entity.article.ArticleInfoSearchEntity" resultType="com.xiafei.newsbackend.pojo.table.ArticleInfoTable">
-        select *
-        from article_info
+    <select id="getArticleAllBySearch" parameterType="com.xiafei.newsbackend.entity.article.ArticleInfoSearchEntity" resultType="com.xiafei.newsbackend.pojo.view.ArticleTypeView">
+        select article.id, article.title, article.subtitle, article.content, article.add_time, type.name as typeName
+        from article_info article
+        left join article_type type on article.type_id = type.id
         <where>
             <if test="userId != null">
-                and add_user = #{userId}
+                and article.add_user = #{userId}
             </if>
         </where>
-        order by add_time desc
+        order by article.add_time desc
         limit #{limitEntity.offset},#{limitEntity.row}
     </select>
+
+    <!--  -->
 </mapper>
