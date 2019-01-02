@@ -9,6 +9,10 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * Created by qujie on 2018/12/19
+ * 登录拦截
+ * */
 public class LoginInterceptor implements HandlerInterceptor {
 
     public LoginInterceptor(){

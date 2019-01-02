@@ -4,6 +4,7 @@ import com.xiafei.newsbackend.dao.ArticleInfoDao;
 import com.xiafei.newsbackend.entity.article.ArticleAndTypeEntity;
 import com.xiafei.newsbackend.entity.article.ArticleInfoEntity;
 import com.xiafei.newsbackend.entity.article.ArticleInfoSearchEntity;
+import com.xiafei.newsbackend.entity.page.PageLimitEntity;
 import com.xiafei.newsbackend.entity.page.PageShowEntity;
 import com.xiafei.newsbackend.exception.ServiceException;
 import com.xiafei.newsbackend.pojo.table.ArticleInfoTable;
@@ -119,5 +120,57 @@ public class ArticleInfoServiceImpl implements ArticleInfoService {
         List<ArticleAndTypeEntity> andTypeEntityList = this.getArticleAllBySearch(searchEntity);
         showEntity.setData(andTypeEntityList);
         return showEntity;
+    }
+
+    /**
+     * 获取前台首页所有文章分页信息
+     * @param pageLimitEntity
+     * @throws Exception
+     * @return ArticleAndTypeEntity
+     * */
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public PageShowEntity<ArticleAndTypeEntity> getHomeArticleWithPage(PageLimitEntity pageLimitEntity) throws Exception {
+        /**
+         * 统计数据
+         * */
+        int count = dao.getArticleCount();
+        PageShowEntity showEntity = FormatPage.format(pageLimitEntity, count);
+        if(count<=0){
+            return null;
+        }
+
+        /**
+         * 分页数据
+         * */
+        List<ArticleTypeView> views = dao.getHomeArticleAll(pageLimitEntity);
+        List<ArticleAndTypeEntity> entities = new ArrayList<>();
+        for (ArticleTypeView view:views
+             ) {
+            ArticleAndTypeEntity entity = new ArticleAndTypeEntity();
+            BeanUtils.copyProperties(view,entity);
+            entity.setMessageCount(dao.getMessageCount(entity.getAddUser(),entity.getId()));
+            entities.add(entity);
+        }
+
+        showEntity.setData(entities);
+        return showEntity;
+    }
+
+    /**
+     * 单个文章信息详情
+     * @param articleId
+     * @throws Exception
+     * */
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public ArticleAndTypeEntity getArticleInfo(Long articleId) throws Exception {
+        ArticleTypeView view = dao.getArticleInfo(articleId);
+        if(view == null){
+            return null;
+        }
+        ArticleAndTypeEntity entity = new ArticleAndTypeEntity();
+        BeanUtils.copyProperties(view,entity);
+        return entity;
     }
 }

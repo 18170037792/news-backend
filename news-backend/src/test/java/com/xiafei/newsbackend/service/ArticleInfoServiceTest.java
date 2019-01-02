@@ -64,4 +64,26 @@ public class ArticleInfoServiceTest {
         PageShowEntity<ArticleAndTypeEntity> showEntity = service.getArticleWithPage(searchEntity);
         System.out.println(showEntity);
     }
+
+    /**
+     * 获取前台首页所有文章分页信息
+     * */
+    @Test
+    public void getHomeArticleWithPage() throws Exception{
+        PageLimitEntity pageLimitEntity = new PageLimitEntity();
+        pageLimitEntity.setCurrent(1);
+        pageLimitEntity.setRow(5);
+
+        PageShowEntity<ArticleAndTypeEntity> homeArticleWithPage = service.getHomeArticleWithPage(pageLimitEntity);
+        System.out.println(homeArticleWithPage);
+    }
+
+    /**
+     * 单个文章信息详情
+     * */
+    @Test
+    public void getArticle() throws Exception{
+        ArticleAndTypeEntity articleInfo = service.getArticleInfo(1L);
+        System.out.println(articleInfo);
+    }
 }

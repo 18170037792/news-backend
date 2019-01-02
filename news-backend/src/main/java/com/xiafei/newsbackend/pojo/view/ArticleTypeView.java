@@ -30,6 +30,15 @@ public class ArticleTypeView {
      * */
     private String typeName;
 
+    /**
+     * 作者名称
+     * */
+    private String authorName;
+    /**
+     * 作者id
+     * */
+    private Long addUser;
+
     public Long getId() {
         return id;
     }
@@ -78,6 +87,22 @@ public class ArticleTypeView {
         this.typeName = typeName;
     }
 
+    public String getAuthorName() {
+        return authorName;
+    }
+
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
+    }
+
+    public Long getAddUser() {
+        return addUser;
+    }
+
+    public void setAddUser(Long addUser) {
+        this.addUser = addUser;
+    }
+
     @Override
     public String toString() {
         return "ArticleTypeView{" +
@@ -87,6 +112,8 @@ public class ArticleTypeView {
                 ", content='" + content + '\'' +
                 ", addTime=" + addTime +
                 ", typeName='" + typeName + '\'' +
+                ", authorName='" + authorName + '\'' +
+                ", addUser=" + addUser +
                 '}';
     }
 }

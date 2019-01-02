@@ -32,7 +32,7 @@ public class WebMvcInterceptor extends WebMvcConfigurerAdapter {
                 "/index",
                 "/contact",
                 "/about",
-                "/single"
+                "/single/**",
         };
         registry.addInterceptor(baseInterceptor);
         registry.addInterceptor(loginInterceptor()).addPathPatterns("/*/**").excludePathPatterns(loginExcludePathPatterns);

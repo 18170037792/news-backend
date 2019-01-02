@@ -1,6 +1,7 @@
 package com.xiafei.newsbackend.dao;
 
 import com.xiafei.newsbackend.entity.article.ArticleInfoSearchEntity;
+import com.xiafei.newsbackend.entity.page.PageLimitEntity;
 import com.xiafei.newsbackend.pojo.table.ArticleInfoTable;
 import com.xiafei.newsbackend.pojo.view.ArticleTypeView;
 import org.apache.ibatis.annotations.Param;
@@ -45,4 +46,14 @@ public interface ArticleInfoDao {
      * 根据登录人id获取文章分页信息
      * */
     List<ArticleTypeView> getArticleAllBySearch(ArticleInfoSearchEntity searchEntity);
+
+    /**
+     * 获取前台首页所有文章分页信息
+     * */
+    List<ArticleTypeView> getHomeArticleAll(PageLimitEntity pageLimitEntity);
+
+    /**
+     * 单个文章信息详情
+     * */
+    ArticleTypeView getArticleInfo(@Param("articleId") Long articleId);
 }

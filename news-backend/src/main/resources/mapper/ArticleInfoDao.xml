@@ -72,5 +72,27 @@
         limit #{limitEntity.offset},#{limitEntity.row}
     </select>
 
-    <!--  -->
+    <!-- 获取前台首页所有文章分页信息 -->
+    <select id="getHomeArticleAll" parameterType="com.xiafei.newsbackend.entity.page.PageLimitEntity" resultType="com.xiafei.newsbackend.pojo.view.ArticleTypeView">
+        select article.id, article.add_user, article.title, article.subtitle, article.content, article.add_time, type.name as typeName, user.name as authorName
+        from article_info article
+        left join article_type type on article.type_id = type.id
+        left join user_info user on article.add_user = user.id
+        order by article.add_time desc
+        limit #{offset},#{row}
+    </select>
+
+    <!-- 单个文章信息详情 -->
+    <select id="getArticleInfo" resultType="com.xiafei.newsbackend.pojo.view.ArticleTypeView">
+        select article.id, article.add_user, article.title, article.subtitle, article.content, article.add_time, type.name as typeName, user.name as authorName
+        from article_info article
+        left join article_type type on article.type_id = type.id
+        left join user_info user on article.add_user = user.id
+        <where>
+            <if test="articleId != null">
+                article.id = #{articleId}
+            </if>
+        </where>
+        group by article.id
+    </select>
 </mapper>

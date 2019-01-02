@@ -3,7 +3,9 @@ package com.xiafei.newsbackend.service;
 import com.xiafei.newsbackend.entity.article.ArticleAndTypeEntity;
 import com.xiafei.newsbackend.entity.article.ArticleInfoEntity;
 import com.xiafei.newsbackend.entity.article.ArticleInfoSearchEntity;
+import com.xiafei.newsbackend.entity.page.PageLimitEntity;
 import com.xiafei.newsbackend.entity.page.PageShowEntity;
+import com.xiafei.newsbackend.pojo.view.ArticleTypeView;
 
 import java.util.List;
 
@@ -42,4 +44,19 @@ public interface ArticleInfoService {
      * @return ArticleAndTypeEntity
      * */
     PageShowEntity<ArticleAndTypeEntity> getArticleWithPage(ArticleInfoSearchEntity searchEntity) throws Exception;
+
+    /**
+     * 获取前台首页所有文章分页信息
+     * @param pageLimitEntity
+     * @throws Exception
+     * @return ArticleAndTypeEntity
+     * */
+    PageShowEntity<ArticleAndTypeEntity> getHomeArticleWithPage(PageLimitEntity pageLimitEntity) throws Exception;
+
+    /**
+     * 单个文章信息详情
+     * @param articleId
+     * @throws Exception
+     * */
+    ArticleAndTypeEntity getArticleInfo(Long articleId) throws Exception;
 }

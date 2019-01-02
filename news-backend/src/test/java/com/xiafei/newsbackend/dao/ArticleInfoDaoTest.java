@@ -71,4 +71,25 @@ public class ArticleInfoDaoTest {
         List<ArticleTypeView> articleTypeViews = dao.getArticleAllBySearch(searchEntity);
         System.out.println(articleTypeViews);
     }
+
+    /**
+     * 获取前台首页所有文章分页信息
+     * */
+    @Test
+    public void getHomeArticleAll(){
+        PageLimitEntity pageLimitEntity = new PageLimitEntity();
+        pageLimitEntity.setCurrent(1);
+        pageLimitEntity.setRow(5);
+        List<ArticleTypeView> views = dao.getHomeArticleAll(pageLimitEntity);
+        System.out.println(views);
+    }
+
+    /**
+     * 单个文章信息详情
+     * */
+    @Test
+    public void getArticleInfo(){
+        ArticleTypeView view = dao.getArticleInfo(1L);
+        System.out.println(view);
+    }
 }

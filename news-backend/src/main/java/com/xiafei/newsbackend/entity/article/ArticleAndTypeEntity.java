@@ -25,6 +25,21 @@ public class ArticleAndTypeEntity {
      * 文章分类
      * */
     private String typeName;
+
+    /**
+     * 作者名称
+     * */
+    private String authorName;
+    /**
+     * 作者id
+     * */
+    private Long addUser;
+
+    /**
+     * 评论数
+     * */
+    private Integer messageCount;
+
     /**
      * 浏览量
      * */
@@ -78,6 +93,30 @@ public class ArticleAndTypeEntity {
         this.typeName = typeName;
     }
 
+    public String getAuthorName() {
+        return authorName;
+    }
+
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
+    }
+
+    public Long getAddUser() {
+        return addUser;
+    }
+
+    public void setAddUser(Long addUser) {
+        this.addUser = addUser;
+    }
+
+    public Integer getMessageCount() {
+        return messageCount;
+    }
+
+    public void setMessageCount(Integer messageCount) {
+        this.messageCount = messageCount;
+    }
+
     public Integer getViews() {
         return views;
     }
@@ -95,6 +134,9 @@ public class ArticleAndTypeEntity {
                 ", content='" + content + '\'' +
                 ", addTime=" + addTime +
                 ", typeName='" + typeName + '\'' +
+                ", authorName='" + authorName + '\'' +
+                ", addUser=" + addUser +
+                ", messageCount=" + messageCount +
                 ", views=" + views +
                 '}';
     }
