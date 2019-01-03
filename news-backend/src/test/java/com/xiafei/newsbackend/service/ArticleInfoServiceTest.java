@@ -15,6 +15,7 @@ import java.util.List;
 
 /**
  * Created by qujie on 2018/12/20
+ * 文章信息模块测试
  * */
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -85,5 +86,14 @@ public class ArticleInfoServiceTest {
     public void getArticle() throws Exception{
         ArticleAndTypeEntity articleInfo = service.getArticleInfo(1L);
         System.out.println(articleInfo);
+    }
+
+    /**
+     * 前台作者介绍页根据作者id获取文章列表信息
+     * */
+    @Test
+    public void getArticleListByAuthorId()throws Exception{
+        List<ArticleAndTypeEntity> entities = service.getArticleListByAuthorId(6L);
+        System.out.println(entities);
     }
 }

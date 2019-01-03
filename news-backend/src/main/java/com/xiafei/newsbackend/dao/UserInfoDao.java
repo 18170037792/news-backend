@@ -5,6 +5,7 @@ import com.xiafei.newsbackend.entity.user.UserLoginEntity;
 import com.xiafei.newsbackend.pojo.table.UserInfoTable;
 import com.xiafei.newsbackend.pojo.view.UserInfoView;
 import com.xiafei.newsbackend.pojo.view.UserLogView;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -30,4 +31,10 @@ public interface UserInfoDao {
      * @param table
      * */
     int updateFrozen(UserInfoTable table);
+
+    /**
+     * 根据作者id查询作者信息
+     * @param
+     * */
+    UserInfoTable getUserByAuthorId(@Param("authorId") Long authorId);
 }

@@ -59,4 +59,11 @@ public interface ArticleInfoService {
      * @throws Exception
      * */
     ArticleAndTypeEntity getArticleInfo(Long articleId) throws Exception;
+
+    /**
+     * 前台作者介绍页根据作者id获取文章列表信息
+     * @param authorId
+     * @throws Exception
+     * */
+    List<ArticleAndTypeEntity> getArticleListByAuthorId(Long authorId) throws Exception;
 }

@@ -92,4 +92,13 @@ public class ArticleInfoDaoTest {
         ArticleTypeView view = dao.getArticleInfo(1L);
         System.out.println(view);
     }
+
+    /**
+     * 前台作者介绍页根据作者id获取文章分页信息
+     * */
+    @Test
+    public void getArticleListByAuthorId(){
+        List<ArticleTypeView> views = dao.getArticleListByAuthorId(6L);
+        System.out.println(views);
+    }
 }

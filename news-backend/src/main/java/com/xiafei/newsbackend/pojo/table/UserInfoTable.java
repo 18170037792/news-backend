@@ -16,6 +16,14 @@ public class UserInfoTable extends BaseTable{
      * */
     private String pwd;
     /**
+     * 个性签名
+     * */
+    private String personalizedSignature;
+    /**
+     * 个人简介
+     * */
+    private String personalProfile;
+    /**
      * 手机号
      * */
     private String mobile;
@@ -92,11 +100,29 @@ public class UserInfoTable extends BaseTable{
         this.homeUrl = homeUrl;
     }
 
+    public String getPersonalizedSignature() {
+        return personalizedSignature;
+    }
+
+    public void setPersonalizedSignature(String personalizedSignature) {
+        this.personalizedSignature = personalizedSignature;
+    }
+
+    public String getPersonalProfile() {
+        return personalProfile;
+    }
+
+    public void setPersonalProfile(String personalProfile) {
+        this.personalProfile = personalProfile;
+    }
+
     @Override
     public String toString() {
         return "UserInfoTable{" +
                 "name='" + name + '\'' +
                 ", pwd='" + pwd + '\'' +
+                ", personalizedSignature='" + personalizedSignature + '\'' +
+                ", personalProfile='" + personalProfile + '\'' +
                 ", mobile='" + mobile + '\'' +
                 ", frozen=" + frozen +
                 ", email='" + email + '\'' +

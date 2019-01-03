@@ -6,6 +6,8 @@ public class UserInfoEntity {
 
     private Long id;
     private String name;
+    private String personalizedSignature;
+    private String personalProfile;
     private String mobile;
     private Integer frozen;
     private String email;
@@ -28,6 +30,22 @@ public class UserInfoEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPersonalizedSignature() {
+        return personalizedSignature;
+    }
+
+    public void setPersonalizedSignature(String personalizedSignature) {
+        this.personalizedSignature = personalizedSignature;
+    }
+
+    public String getPersonalProfile() {
+        return personalProfile;
+    }
+
+    public void setPersonalProfile(String personalProfile) {
+        this.personalProfile = personalProfile;
     }
 
     public String getMobile() {
@@ -91,6 +109,8 @@ public class UserInfoEntity {
         return "UserInfoEntity{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", personalizedSignature='" + personalizedSignature + '\'' +
+                ", personalProfile='" + personalProfile + '\'' +
                 ", mobile='" + mobile + '\'' +
                 ", frozen=" + frozen +
                 ", email='" + email + '\'' +

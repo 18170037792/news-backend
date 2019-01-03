@@ -145,7 +145,7 @@
                     <div class="post-excerpt row">
                         <h5 class="post-meta">
                             <a href="#" class="date" th:text="${common.formatDate(article.addTime)}"></a>
-                            <span class="post-author"><i>by</i><a href="#" th:text="${article.authorName}"></a></span>
+                            <span class="post-author"><i>by</i><a th:href="@{'/about'+'?'+'authorId='+${article.addUser}}" th:text="${article.authorName}"></a></span>
                         </h5>
                         <h3 class="post-title"><a th:href="@{/single}"><span th:text="${article.title}"></span></a></h3>
                         <p th:text="${article.subtitle}"></p>

@@ -18,4 +18,13 @@ public interface UserInfoService {
     void frozenUser(UserInfoUpdateEntity updateEntity) throws Exception;
 
     PageShowEntity<UserInfoEntity> getUserWithPage(int current,int row) throws Exception;
+
+    /**
+     * 根据作者id查询作者信息
+     * @param authorId
+     * @throws Exception
+     * */
+    UserInfoEntity getUserByAuthorId(Long authorId) throws Exception;
+
+
 }

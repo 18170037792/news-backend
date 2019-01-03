@@ -47,4 +47,12 @@ public class UserInfoDaoTest {
         System.out.println(logViews);
     }
 
+    /**
+     * 根据作者id查询作者信息
+     * */
+    @Test
+    public void getUserByAuthorId(){
+        UserInfoTable table = dao.getUserByAuthorId(1L);
+        System.out.println(table);
+    }
 }

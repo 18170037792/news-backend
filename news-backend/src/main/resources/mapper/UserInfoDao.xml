@@ -37,4 +37,15 @@
         SET frozen = #{frozen},modify_time = #{modifyTime}
         where id = #{id}
     </update>
+
+    <!-- 前台作者介绍页根据作者id查询作者信息 -->
+    <select id="getUserByAuthorId" resultType="com.xiafei.newsbackend.pojo.table.UserInfoTable">
+        select *
+        from user_info
+        <where>
+            <if test="authorId != null">
+                id = #{authorId}
+            </if>
+        </where>
+    </select>
 </mapper>

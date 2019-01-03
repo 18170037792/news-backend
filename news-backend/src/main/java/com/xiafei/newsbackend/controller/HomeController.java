@@ -1,9 +1,12 @@
 package com.xiafei.newsbackend.controller;
 
 import com.xiafei.newsbackend.entity.article.ArticleAndTypeEntity;
+import com.xiafei.newsbackend.entity.article.ArticleInfoSearchEntity;
 import com.xiafei.newsbackend.entity.page.PageLimitEntity;
 import com.xiafei.newsbackend.entity.page.PageShowEntity;
+import com.xiafei.newsbackend.entity.user.UserInfoEntity;
 import com.xiafei.newsbackend.service.ArticleInfoService;
+import com.xiafei.newsbackend.service.UserInfoService;
 import com.xiafei.newsbackend.util.Constant;
 import com.xiafei.newsbackend.util.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +14,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 public class HomeController {
 
     @Autowired
     private ArticleInfoService articleInfoService;
+    @Autowired
+    private UserInfoService userInfoService;
 
     /**
      * 首页信息和文章列表分页
@@ -44,8 +50,18 @@ public class HomeController {
         return "home/contact";
     }
 
+    /**
+     * 根据作者id查询作者信息和文章分页信息
+     * @param authorId 作者id
+     * @throws Exception
+     * */
     @GetMapping("/about")
-    public String about(){
+    public String about(@RequestParam ("authorId") Long authorId,HttpServletRequest request) throws Exception {
+        UserInfoEntity entity = userInfoService.getUserByAuthorId(authorId);
+        List<ArticleAndTypeEntity> entities = articleInfoService.getArticleListByAuthorId(authorId);
+
+        request.setAttribute("author",entity);
+        request.setAttribute("articles",entities);
         return "home/about";
     }
 

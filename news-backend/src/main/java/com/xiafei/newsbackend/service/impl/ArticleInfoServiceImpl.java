@@ -173,4 +173,27 @@ public class ArticleInfoServiceImpl implements ArticleInfoService {
         BeanUtils.copyProperties(view,entity);
         return entity;
     }
+
+    /**
+     * 前台作者介绍页根据作者id获取文章列表信息
+     * @param authorId
+     * @throws Exception
+     * */
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public List<ArticleAndTypeEntity> getArticleListByAuthorId(Long authorId) throws Exception {
+        List<ArticleTypeView> views = dao.getArticleListByAuthorId(authorId);
+        if(views == null || views.size() == 0){
+            return null;
+        }
+        List<ArticleAndTypeEntity> entities = new ArrayList<>();
+        for (ArticleTypeView view: views
+        ) {
+            ArticleAndTypeEntity entity = new ArticleAndTypeEntity();
+            BeanUtils.copyProperties(view,entity);
+            entity.setMessageCount(dao.getMessageCount(authorId,entity.getId()));
+            entities.add(entity);
+        }
+        return entities;
+    }
 }

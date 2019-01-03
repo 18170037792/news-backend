@@ -56,4 +56,9 @@ public interface ArticleInfoDao {
      * 单个文章信息详情
      * */
     ArticleTypeView getArticleInfo(@Param("articleId") Long articleId);
+
+    /**
+     * 前台作者介绍页根据作者id获取文章列表信息
+     * */
+    List<ArticleTypeView> getArticleListByAuthorId(@Param("authorId") Long authorId);
 }

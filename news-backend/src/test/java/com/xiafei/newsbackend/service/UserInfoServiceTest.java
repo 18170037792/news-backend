@@ -47,4 +47,13 @@ public class UserInfoServiceTest {
         PageShowEntity<UserInfoEntity> page = service.getUserWithPage(11, 3);
         System.out.println(page);
     }
+
+    /**
+     * 根据作者id查询作者信息
+     * */
+    @Test
+    public void getUserByAuthorId() throws Exception{
+        UserInfoEntity entity = service.getUserByAuthorId(1L);
+        System.out.println(entity);
+    }
 }

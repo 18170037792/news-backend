@@ -118,5 +118,22 @@ public class UserInfoServiceImpl implements UserInfoService {
         return showEntity;
     }
 
+    /**
+     * 根据作者id查询作者信息
+     * @param authorId
+     * @throws Exception
+     * */
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public UserInfoEntity getUserByAuthorId(Long authorId) throws Exception {
+        UserInfoTable table = dao.getUserByAuthorId(authorId);
+        if(table == null){
+            return null;
+        }
+        UserInfoEntity entity = new UserInfoEntity();
+        BeanUtils.copyProperties(table,entity);
+        return entity;
+    }
+
 
 }
