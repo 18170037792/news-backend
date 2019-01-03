@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <!--========== The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags ==========-->
-<title>Chivalric</title>
+<title>文章详情</title>
 
 <!--==========Dependency============-->
 <link rel="stylesheet" href="/home/css/bootstrap.min.css"/>
@@ -39,19 +39,23 @@
     <div class="container">
         <div class="row top-header">
             <div class="col-sm-4 search-form-col">
-                <form action="#" method="get" class="search-form">
-                    <div class="input-group">
-                        <span class="input-group-addon"><img src="/home/images/search-icon-dark.png" alt=""/></span>
-                        <input type="search" class="form-control" placeholder="search"/>
-                    </div>
-                </form>
+                <div>
+                    <h4>编程技术</h4>
+                </div>
+                <!--<form action="#" method="get" class="search-form">-->
+                    <!--<div class="input-group">-->
+                        <!--&lt;!&ndash;<a href="http://www.baidu.com" class="input-group-addon"><img src="/home/images/search-icon-dark.png" alt=""/></a>&ndash;&gt;-->
+                        <!--<span class="input-group-addon"><img src="/home/images/search-icon-dark.png" alt=""/></span>-->
+                        <!--<input type="search" class="form-control" placeholder="搜索"/>-->
+                    <!--</div>-->
+                <!--</form>-->
             </div>
             <div class="col-sm-4 logo-col text-center">
-                <a href="index6.html"><img src="/home/images/logo-black-green.png" alt=""/></a>
+                <h3 class="post-title" th:text="${article.title}"></h3>
             </div>
             <div class="col-sm-4 menu-trigger-col">
                 <button class="menu-trigger black pull-right">
-                    <span class="active-page">Blog Details</span>
+                    <span class="active-page">文章详情</span>
                     <img src="/home/images/menu-align-dark.png" alt="" class="icon-burger"/>
                     <img src="/home/images/menu-close-dark.png" alt="" class="icon-cross"/>
                 </button>
@@ -61,38 +65,39 @@
     <div class="row menu-section">
         <div class="container">
             <div class="row">
-                <div class="col-sm-8 menu-col">
+                <div class="col-sm-6 menu-col">
                     <div class="row">
                         <ul class="nav column-menu white-bg">
-                            <li class="active dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Home <span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="index.html">Home Option 1</a></li>
-                                    <li><a href="index2.html">Home Option 2</a></li>
-                                    <li><a href="index3.html">Home Option 3</a></li>
-                                    <li><a href="index4.html">Home Option 4</a></li>
-                                    <li><a href="index5.html">Home Option 5</a></li>
-                                    <li><a href="index6.html">Home Option 6</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="about.html">About</a></li>
-                            <li><a href="single.html">Blog Single 1</a></li>
-                            <li><a href="single2.html">Blog single 2</a></li>
+                            <h4>文章分类</h4>
+                            <li><a href="about.html">自然科学</a></li>
+                            <li><a href="about.html">编程技术</a></li>
+                            <li><a href="about.html">历史军事</a></li>
+                            <li><a href="about.html">文学艺术</a></li>
+                            <li><a href="about.html">时事要闻</a></li>
                         </ul>
                         <ul class="nav column-menu white-bg">
-                            <li><a href="single3.html">Blog Single 3</a></li>
-                            
-                            <li><a href="contact.html">contact</a></li>
+                            <li><a href="contact.html">友情链接</a></li>
+                            <li><a href="contact.html">新浪新闻</a></li>
+                            <li><a href="about.html">腾讯新闻</a></li>
+                            <li><a href="about.html">百度搜索</a></li>
+                            <li><a href="about.html">环球网</a></li>
+                        </ul>
+                        <ul class="nav column-menu white-bg">
+                            <li><a href="contact.html">联系我们</a></li>
+                            <li><a href="contact.html">联系我们</a></li>
+                            <li><a href="about.html">关于我们</a></li>
+                            <li><a href="about.html">关于我们</a></li>
+                            <li><a href="about.html">关于我们</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-sm-4 subscribe-col">
-                    <h5 class="widget-title">subscribe to our newsletter.</h5>
+                    <h5 class="widget-title">订阅我们的消息</h5>
                     <form action="#" method="post" class="form-inline subscribe-form">                    
                         <div class="form-group">
                             <input type="email" class="form-control" placeholder="Email"/>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-sm"><span>send</span></button>
+                        <button type="submit" class="btn btn-primary btn-sm"><span>发送</span></button>
                     </form>
                     <ul class="nav social-nav white">
                         <li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -112,14 +117,10 @@
         <div class="row">
             <div class="col-sm-12 single-post-contents">
                 <article class="single-post-content v2 v2p1 row m0 post">
-                    <header class="row">                        
-                        <div class="row">
-                            <h5 class="taxonomy pull-left"><i>in</i> <a href="#">image</a>, <a href="#">entertainment</a></h5>
-                            <div class="response-count pull-right"><img src="/home/images/comment-icon-gray.png" alt=""/>5</div>
-                        </div>                        
-                        <h2 class="post-title">Nature, in the broadest sense, is the natural, physical, or material world or universe.</h2>
+                    <header class="row">
+                        <h2 class="post-title" th:text="${article.subtitle}"></h2>
                         <h5 class="post-meta">
-                            By <a href="#">Mark Sanders</a> | <a href="#" class="date">feb 17, 2016</a>
+                            By <a href="#" th:text="${article.authorName}"></a> | <a href="#" class="date" th:text="${common.formatDate(article.addTime)}"></a>
                         </h5>
                     </header>
                     <div class="featured-content row m0">
@@ -130,11 +131,11 @@
                             <div class="col-sm-4 post-author-about">
                                 <div class="media">
                                     <div class="media-left">
-                                        <a href="#"><img src="/home/images/author.png" alt="" class="img-circle"/></a>
+                                        <a href="#"><img src="/home/images/wyz.jpg" alt="" class="img-circle"/></a>
                                     </div>
                                     <div class="media-body">
-                                        <h3><a href="#">Mark Sanders</a></h3>
-                                        <h5>small title</h5>
+                                        <h3><a href="#" th:text="${article.authorName}"></a></h3>
+                                        <h5>无人陪我共黄昏</h5>
                                         <ul class="nav social-nav white">
                                             <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                                             <li><a href="#"><i class="fa fa-facebook-official"></i></a></li>
@@ -144,53 +145,70 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <p>The word nature is derived from the Latin word natura, or "essential qualities, innate disposition", and in ancient times, literally meant "birth".</p>
+                                <!-- 作者简介 -->
+                                <p>1995年3月生于江西南昌。主要写现代诗,散文,古诗词,赋文等。特长:摄影,编程等。座右铭:笔尖刻下倾世的温柔,总有人为你等候.</p>
                             </div>
-                            <h4>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</h4>
+                            <h4>
+                                暮色降临在寂静的山林中，旷野里弥漫着独特的原始野性，就是这样一片荒蛮地域，有一弯流淌潺湲乐声的小溪。
+                                溪流淙淙流经的山麓那头，有一眼望不到底的泉井，经年水雾不绝，如血色一般鲜红。每到七政归一之时，山下的村庄便会被升腾而起的团团粉雾所笼罩。
+                                晚色从陌生的树林中走来，它用村民所不懂的语言同氤氲在山村的粉色迷雾说话，像是长辈对顽闹孩童的谆谆教诲似的。那团粉雾，无论是春去秋来，物换星移，总是不停地往井外袅袅升腾。
+                            </h4>
                         </div>
                         <br/>
-                        <h3>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</h3>
+                        <h3>春酥花艳的时候，山间的平原异彩纷呈，随风而来的花瓣则铺满了整个山谷，粉雾甚浓之处尤为如此。原本是孩子们嬉戏游玩的好去处，却如亘古宇宙般的静谧，没有莺啼燕扰，更没有孩童的踪影。</h3>
                         <br/>
-                        <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                        <p>寡独的黄昏，幕着雾和雨，旷达天际也似溢光焕彩，拟出万丈流霞。坐在村口的大榕树下，听在悠闲下着棋的老人们说，那团粉色的雾中住着一位仙女，细眉，大眼，白皙的脸颊泛出朵朵桃红。</p>
                         <br/>
                         <blockquote class="has-sign row m0">                            
                             <div>
-                                <p>If everybody learns this simple art of loving his work, whatever it is, enjoying it without asking for any recognition, we would have more beautiful and celebrating world.</p>
+                                <p>相传很久以前，山下有户人家，阿云的父亲早逝，徒剩母子二人相依为命。阿云是一个沉默少言的青年，因为相貌一般又怕人耻笑，所以没有人愿意与他交往。母亲又卧病在床，阿云每天就靠替人打小工或在山里挖药材赚钱，直到现在。</p>
                                 <footer>OSHO</footer>
                             </div>
                         </blockquote>
-                        <h3>Sunt in culpa qui officia deserunt mollit anim id est laborum.</h3>
+                        <h3>傍晚，下起了一场大雨，阿云慌忙跑进了草屋里。一只粉色的蝴蝶在门口吃力的飞着，阿云打开门，说道：“进来吧！大家都一样，同命呀！”</h3>
                         <br/>
                         <ul class="triangle-list nav">
-                            <li>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</li>
-                            <li>Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</li>
+                            <li>蝴蝶飞了进来，第二天又走了。</li>
+                            <li>说也奇怪，自从这件事后阿云经常梦见一位粉衣姑娘。粉衣姑娘告诉阿云：“我叫粉蝶，如果你不嫌弃，我还会来的。”阿云点了点头说：“怎么会嫌弃，你来便是。”</li>
                         </ul>
                         <ul class="circle-list nav">
-                            <li>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</li>
-                            <li>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+                            <li>之后，阿云每天梦里都与粉蝶相会，每当伤心难过时粉蝶也会安慰他。粉蝶还说：“人应该有追求，是你的话一定会成功的。”</li>
+                            <li>阿云开始有了变化，做事更加勤奋，赚钱的点子也多了许多。众人怪之，想找到原因，但与阿云交往少，不好意思直问，只有暗中观察。</li>
                         </ul>
                         <br/>
                         <blockquote class="no-sign">
-                            <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+                            <p>晚上，待阿云回家之后，几个人就悄悄躲在草屋后。待灯灭时，阿云睡着，几个人才往房子内看。一只蝴蝶变成了粉衣姑娘，坐在阿云身旁。</p>
                         </blockquote>
                         <br/>
                         <div class="row">
                             <div class="col-sm-4">
-                                <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                                <p>
+                                    “妖孽。”几个人冲进去就将粉衣姑娘抓住绑走。阿云因为白天太累，睡得太死什么也不知道。
+                                    第二天粉衣姑娘被绑在树下，身旁堆满了材。阿云一眼就看出了那是粉蝶，向人们喊道：“住手。”几个男子将阿云按在了地上。
+                                    “我们是在救你，这是妖孽，迟早要害死你。”
+                                </p>
                             </div>
                             <div class="col-sm-4">
-                                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+                                <p>
+                                    “她是妖，恐怕你们才是吧！”
+                                    那几个男子抽了阿云一个大嘴巴，打的血也渗出来了。
+                                    火点燃了，粉蝶变成了蝴蝶的样子，粉蝶说：“阿云，再见了！请努力做好自己，我们来生再见吧，如果，那时，我轮回为人，你便娶我罢”粉蝶变成了灰烬，阿云的泪也停不下来。
+                                </p>
                             </div>
                             <div class="col-sm-4">
-                                <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                                <p>
+                                    后来，阿云将粉蝶的骨灰洒在了山间的泉井中，每当人们经过，总会看到袅袅升腾的粉色轻烟。
+                                    几年后参与了那场事的人得了怪病，长出了蝶的触角。阿云成了一个有本事的人，在那眼葬爱的泉井旁树了碑牌，写了“蝶仙”二字。
+                                    再后来，几世染云的粉雾便成了传说，那眼泉井也成为无人踏足的禁地。
+                                </p>
                             </div>
                         </div>
                         <br/>
-                        <!-- 此处播放视频 -->
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe class="embed-responsive-item" src=""></iframe>
-                        </div>
-                        <br/>
+                        <!--&lt;!&ndash; 此处播放视频 &ndash;&gt;-->
+                        <!--<div class="embed-responsive embed-responsive-16by9">-->
+                            <!--<iframe class="embed-responsive-item" src=""></iframe>-->
+                        <!--</div>-->
+                        <!--<br/>-->
                         
                         <!-- Place somewhere in the <body> of your page -->
                         <div class="thumbCarousel row m0">
@@ -218,12 +236,9 @@
                             </div>
                         </div>
                         <br/>
-                        <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
                     </div>
                     <div class="row m0 tags">
-                        <a href="#" class="tag">music</a>
-                        <a href="#" class="tag">tegs</a>
-                        <a href="#" class="tag">tegs hover</a>
+                        <a href="#" class="tag">编程技术</a>
                     </div>
 
                     <!--<ul class="pager">-->
@@ -240,89 +255,89 @@
                     <!--</ul>-->
                     
                     <div class="row m0 comments">                    
-                        <h5 class="response-count">5 comments<a href="#comment-form" class="btn btn-primary pull-right"><span>add comment</span></a></h5>
-                        <!--Comments-->
-                        <div class="media comment">
-                            <div class="media-left">
-                                <a href="#"><img src="/home/images/posts/c1.jpg" alt="" class="img-circle"/></a>
-                            </div>
-                            <div class="media-body">
-                                <h4><a href="#">Mark Sanders</a></h4>
-                                <h5><a href="#" class="date">feb 17, 2016 at 3:30pm</a> | <a href="#" class="reply-link">reply</a></h5>
-                                <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>                                
-                                <!--Comments-->
-                                <div class="media comment reply">
-                                    <div class="media-left">
-                                        <a href="#"><img src="/home/images/posts/c2.jpg" alt="" class="img-circle"/></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <h4><a href="#">Mark Sanders</a></h4>
-                                        <h5><a href="#" class="date">feb 17, 2016 at 3:30pm</a> | <a href="#" class="reply-link">reply</a></h5>
-                                        <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-                                        <!--Comments-->
-                                        <div class="media comment reply">
-                                            <div class="media-left">
-                                                <a href="#"><img src="/home/images/posts/c1.jpg" alt="" class="img-circle"/></a>
-                                            </div>
-                                            <div class="media-body">
-                                                <h4><a href="#">Mark Sanders</a></h4>
-                                                <h5><a href="#" class="date">feb 17, 2016 at 3:30pm</a> | <a href="#" class="reply-link">reply</a></h5>
-                                                <p>Remaining essentially unchanged.</p>
-                                                <!--Comments-->
-                                                <div class="media comment reply">
-                                                    <div class="media-left">
-                                                        <a href="#"><img src="/home/images/posts/c2.jpg" alt="" class="img-circle"/></a>
-                                                    </div>
-                                                    <div class="media-body">
-                                                        <h4><a href="#">Mark Sanders</a></h4>
-                                                        <h5><a href="#" class="date">feb 17, 2016 at 3:30pm</a> | <a href="#" class="reply-link">reply</a></h5>
-                                                        <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                                                
-                        <!--Comments-->
-                        <div class="media comment">
-                            <div class="media-left">
-                                <a href="#"><img src="/home/images/posts/c1.jpg" alt="" class="img-circle"/></a>
-                            </div>
-                            <div class="media-body">
-                                <h4><a href="#">Mark Sanders</a></h4>
-                                <h5><a href="#" class="date">feb 17, 2016 at 3:30pm</a> | <a href="#" class="reply-link">reply</a></h5>
-                                <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-                            </div>
-                        </div>
-                    </div>
+                        <h5 class="response-count">留言板<a href="#comment-form" class="btn btn-primary pull-right"><span>我要留言</span></a></h5>
+                        <!--&lt;!&ndash;Comments&ndash;&gt;-->
+                        <!--<div class="media comment">-->
+                            <!--<div class="media-left">-->
+                                <!--<a href="#"><img src="/home/images/posts/c1.jpg" alt="" class="img-circle"/></a>-->
+                            <!--</div>-->
+                            <!--<div class="media-body">-->
+                                <!--<h4><a href="#">Mark Sanders</a></h4>-->
+                                <!--<h5><a href="#" class="date">feb 17, 2016 at 3:30pm</a> | <a href="#" class="reply-link">reply</a></h5>-->
+                                <!--<p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>                                -->
+                                <!--&lt;!&ndash;Comments&ndash;&gt;-->
+                                <!--<div class="media comment reply">-->
+                                    <!--<div class="media-left">-->
+                                        <!--<a href="#"><img src="/home/images/posts/c2.jpg" alt="" class="img-circle"/></a>-->
+                                    <!--</div>-->
+                                    <!--<div class="media-body">-->
+                                        <!--<h4><a href="#">Mark Sanders</a></h4>-->
+                                        <!--<h5><a href="#" class="date">feb 17, 2016 at 3:30pm</a> | <a href="#" class="reply-link">reply</a></h5>-->
+                                        <!--<p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>-->
+                                        <!--&lt;!&ndash;Comments&ndash;&gt;-->
+                                        <!--<div class="media comment reply">-->
+                                            <!--<div class="media-left">-->
+                                                <!--<a href="#"><img src="/home/images/posts/c1.jpg" alt="" class="img-circle"/></a>-->
+                                            <!--</div>-->
+                                            <!--<div class="media-body">-->
+                                                <!--<h4><a href="#">Mark Sanders</a></h4>-->
+                                                <!--<h5><a href="#" class="date">feb 17, 2016 at 3:30pm</a> | <a href="#" class="reply-link">reply</a></h5>-->
+                                                <!--<p>Remaining essentially unchanged.</p>-->
+                                                <!--&lt;!&ndash;Comments&ndash;&gt;-->
+                                                <!--<div class="media comment reply">-->
+                                                    <!--<div class="media-left">-->
+                                                        <!--<a href="#"><img src="/home/images/posts/c2.jpg" alt="" class="img-circle"/></a>-->
+                                                    <!--</div>-->
+                                                    <!--<div class="media-body">-->
+                                                        <!--<h4><a href="#">Mark Sanders</a></h4>-->
+                                                        <!--<h5><a href="#" class="date">feb 17, 2016 at 3:30pm</a> | <a href="#" class="reply-link">reply</a></h5>-->
+                                                        <!--<p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit</p>-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                                                <!---->
+                        <!--&lt;!&ndash;Comments&ndash;&gt;-->
+                        <!--<div class="media comment">-->
+                            <!--<div class="media-left">-->
+                                <!--<a href="#"><img src="/home/images/posts/c1.jpg" alt="" class="img-circle"/></a>-->
+                            <!--</div>-->
+                            <!--<div class="media-body">-->
+                                <!--<h4><a href="#">Mark Sanders</a></h4>-->
+                                <!--<h5><a href="#" class="date">feb 17, 2016 at 3:30pm</a> | <a href="#" class="reply-link">reply</a></h5>-->
+                                <!--<p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
                     </div>
                     <form action="#" method="post" class="comment-form row" id="comment-form">
-                        <h5 class="form-title">leave a reply</h5>
+                        <h4 class="form-title">在这里留言:</h4>
                         <div class="form-group col-sm-6">
-                            <label for="name">full name*</label>
-                            <input type="text" id="name" class="form-control" placeholder="Your name" required="required"/>
+                            <label for="name">姓名*</label>
+                            <input type="text" id="name" class="form-control" placeholder="你的姓名" required="required"/>
                         </div>
                         <div class="form-group col-sm-6">
-                            <label for="email">full name*</label>
-                            <input type="email" id="email" class="form-control" placeholder="Your email address here" required="required"/>
+                            <label for="email">邮箱*</label>
+                            <input type="email" id="email" class="form-control" placeholder="邮箱地址" required="required"/>
                         </div>
                         <div class="form-group col-sm-6">
-                            <label for="website">website</label>
-                            <input type="url" id="website" class="form-control" placeholder="Your website url"/>
+                            <label for="website">网站</label>
+                            <input type="url" id="website" class="form-control" placeholder="网站地址"/>
                         </div>
                         <div class="form-group col-sm-6">
-                            <label for="subject">subject</label>
-                            <input type="text" id="subject" class="form-control" placeholder="Write subject here" required="required"/>
+                            <label for="subject">标题</label>
+                            <input type="text" id="subject" class="form-control" placeholder="标题" required="required"/>
                         </div>
                         <div class="form-group col-sm-12">
-                            <label for="message">message</label>
-                            <textarea name="message" id="message" class="form-control" placeholder="Write message here"></textarea>
+                            <label for="message">留言内容</label>
+                            <textarea name="message" id="message" class="form-control" placeholder="留言内容"></textarea>
                         </div>
                         <div class="col-sm-12">
-                            <button type="submit" class="btn-primary"><span>send</span></button>
-                            <h5 class="pull-right">*required fields</h5>
+                            <button type="submit" class="btn-primary"><span>提交</span></button>
+                            <h5 class="pull-right">*为必填项</h5>
                         </div>
                     </form>
                 </article>
@@ -341,25 +356,21 @@
             <div class="widget col-sm-5 widget-menu">
                 <div class="row">
                     <ul class="nav column-menu white-bg">
-                        <li class="active"><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="single.html">Blog Single 1</a></li>
-                        <li><a href="single2.html">Blog Single 2</a></li>
+                        <li class="active"><a href="index.html">首页</a></li>
+                        <li><a href="about.html">关于我们</a></li>
                     </ul>
                     <ul class="nav column-menu white-bg">
-                        <li><a href="single3.html">Blog Single 3</a></li>
-                        
-                        <li><a href="contact.html">contact</a></li>
+                        <li><a href="contact.html">联系我们</a></li>
                     </ul>
                 </div>
             </div>
             <div class="widget col-sm-4 widget-subscribe">
-                <h5 class="widget-title">subscribe to our newsletter.</h5>
+                <h5 class="widget-title">订阅我们的消息</h5>
                 <form action="#" method="post" class="form-inline subscribe-form">                    
                     <div class="form-group">
                         <input type="email" class="form-control" placeholder="Email"/>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-sm"><span>send</span></button>
+                    <button type="submit" class="btn btn-primary btn-sm"><span>发送</span></button>
                 </form>
             </div>
         </div>

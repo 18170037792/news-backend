@@ -49,6 +49,9 @@ public class HomeController {
         return "home/about";
     }
 
+    /**
+     * 根据文章id查询单个文章信息
+     * */
     @GetMapping("/single")
     public String single(@RequestParam ("articleId") Long articleId, HttpServletRequest request) throws Exception {
         ArticleAndTypeEntity articleInfo = articleInfoService.getArticleInfo(articleId);
@@ -56,11 +59,4 @@ public class HomeController {
         return "home/single";
     }
 
-    @PostMapping("/single/article")
-    @ResponseBody
-    public JsonResult singleArticle(Long articleId,HttpServletRequest request) throws Exception {
-        ArticleAndTypeEntity articleInfo = articleInfoService.getArticleInfo(articleId);
-        request.setAttribute("article",articleInfo);
-        return new JsonResult(Constant.SUCCESS_CODE,Constant.QUERY_SUCCESS);
-    }
 }

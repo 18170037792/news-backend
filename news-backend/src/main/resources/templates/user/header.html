@@ -94,6 +94,10 @@
                        th:class="${active}=='attach'?'waves-effect active':'waves-effect'"><i
                             class="fa fa-cloud-upload" aria-hidden="true"></i><span> 文件管理 </span></a>
                 </li>
+                <li>
+                    <a th:href="@{/user/profile}"><i class="fa fa-sun-o">
+                    </i> 个人设置</a>
+                </li>
                 <li th:class="${active}=='setting'?'active':''">
                     <a th:href="@{/user/setting}"
                        th:class="${active}=='setting'?'waves-effect active':'waves-effect'"><i
