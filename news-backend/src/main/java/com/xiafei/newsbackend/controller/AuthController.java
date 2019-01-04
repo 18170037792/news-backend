@@ -99,20 +99,20 @@ public class AuthController extends BaseController{
     }
 
     /**
-     * 注销登录
+     * 注销登录，
+     * 不需要重定向，session清除后会被拦截器拦截到登录页面
      * @throws Exception
      * @return JsonResult
      * */
-    @PostMapping("/logout")
-    @ResponseBody
-    public JsonResult logout(HttpServletRequest request, HttpServletResponse response) throws Exception{
+    @GetMapping("/logout")
+    public void logout(HttpServletRequest request) throws Exception{
         HttpSession session = request.getSession();
-        if(session.getAttribute("user")!=null){
+        if(session.getAttribute("user") == null){
+            if(session.getAttribute("admin") != null){
+                session.removeAttribute("admin");
+            }
+        }else {
             session.removeAttribute("user");
-            //重定向到登录页面
-            response.sendRedirect("/admin/login");
-            return new JsonResult(Constant.SUCCESS_CODE,Constant.UNLOGIN_SUCCESS);
         }
-        return new JsonResult(Constant.FAILED_CODE,Constant.UNLOGIN_FAILED);
     }
 }
