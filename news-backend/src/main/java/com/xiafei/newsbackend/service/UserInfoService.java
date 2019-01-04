@@ -2,10 +2,8 @@ package com.xiafei.newsbackend.service;
 
 import com.xiafei.newsbackend.entity.page.PageLimitEntity;
 import com.xiafei.newsbackend.entity.page.PageShowEntity;
-import com.xiafei.newsbackend.entity.user.UserInfoEntity;
-import com.xiafei.newsbackend.entity.user.UserInfoUpdateEntity;
-import com.xiafei.newsbackend.entity.user.UserLogEntity;
-import com.xiafei.newsbackend.entity.user.UserLoginEntity;
+import com.xiafei.newsbackend.entity.user.*;
+import com.xiafei.newsbackend.pojo.table.UserInfoTable;
 
 import java.util.List;
 
@@ -26,5 +24,18 @@ public interface UserInfoService {
      * */
     UserInfoEntity getUserByAuthorId(Long authorId) throws Exception;
 
+    /**
+     * 根据用户id获取原密码
+     * @param id
+     * @throws Exception
+     * */
+    String getOldPwd(Long id) throws Exception;
 
+    /**
+     * 修改密码
+     * @param id 用户id
+     * @param newPwd 新密码
+     * @throws Exception
+     * */
+    void updatePwd(Long id,String newPwd) throws Exception;
 }

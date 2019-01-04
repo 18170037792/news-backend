@@ -55,4 +55,24 @@ public class UserInfoDaoTest {
         UserInfoTable table = dao.getUserByAuthorId(1L);
         System.out.println(table);
     }
+
+    /**
+     * 根据用户id获取原密码
+     * */
+    @Test
+    public void getOldPwd(){
+        String oldPwd = dao.getOldPwd(1L);
+        System.out.println(oldPwd);
+    }
+
+    /**
+     * 用户修改密码
+     * */
+    @Test
+    public void updatePwdById(){
+        UserInfoTable table = new UserInfoTable();
+        table.setId(5L);
+        table.setPwd("123456");
+        dao.updatePwdById(table);
+    }
 }

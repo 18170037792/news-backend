@@ -3,10 +3,7 @@ package com.xiafei.newsbackend.service.impl;
 import com.xiafei.newsbackend.dao.UserInfoDao;
 import com.xiafei.newsbackend.entity.page.PageLimitEntity;
 import com.xiafei.newsbackend.entity.page.PageShowEntity;
-import com.xiafei.newsbackend.entity.user.UserInfoEntity;
-import com.xiafei.newsbackend.entity.user.UserInfoUpdateEntity;
-import com.xiafei.newsbackend.entity.user.UserLogEntity;
-import com.xiafei.newsbackend.entity.user.UserLoginEntity;
+import com.xiafei.newsbackend.entity.user.*;
 import com.xiafei.newsbackend.exception.ServiceException;
 import com.xiafei.newsbackend.pojo.table.UserInfoTable;
 import com.xiafei.newsbackend.pojo.view.UserInfoView;
@@ -45,7 +42,9 @@ public class UserInfoServiceImpl implements UserInfoService {
         if(ValidateUtil.isNull(loginEntity.getName())||ValidateUtil.isNull(loginEntity.getPwd())){
             throw new ServiceException(Constant.LOGIN_NULL);
         }
-        //md5加密密码
+        /**
+         * md5加密密码
+         * */
         loginEntity.setPwd(GetMD5.getMD5(loginEntity.getPwd()));
         UserInfoView view = dao.login(loginEntity);
         if(view == null){
@@ -135,5 +134,34 @@ public class UserInfoServiceImpl implements UserInfoService {
         return entity;
     }
 
+    /**
+     * 根据用户id获取原密码
+     * @param id
+     * @throws Exception
+     * */
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public String getOldPwd(Long id) throws Exception {
+        String oldPwd = dao.getOldPwd(id);
+        if(ValidateUtil.isNull(oldPwd)){
+            throw  new ServiceException(Constant.SYSTEM_ERROR);
+        }
+        return oldPwd;
+    }
+
+    /**
+     * 修改密码
+     * @param id 用户id
+     * @param newPwd 新密码
+     * @throws Exception
+     * */
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void updatePwd(Long id,String newPwd) throws Exception {
+        UserInfoTable table = new UserInfoTable();
+        table.setId(id);
+        table.setPwd(GetMD5.getMD5(newPwd));
+        dao.updatePwdById(table);
+    }
 
 }

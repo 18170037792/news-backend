@@ -48,4 +48,18 @@
             </if>
         </where>
     </select>
+
+    <!--根据用户id获取原密码-->
+    <select id="getOldPwd" resultType="String" parameterType="Long">
+        SELECT pwd
+        FROM user_info
+        WHERE id = #{id}
+    </select>
+
+    <!-- 根据用户id修改密码 -->
+    <select id="updatePwdById" parameterType="com.xiafei.newsbackend.pojo.table.UserInfoTable">
+        UPDATE user_info
+        SET pwd = #{pwd}
+        WHERE id = #{id}
+    </select>
 </mapper>

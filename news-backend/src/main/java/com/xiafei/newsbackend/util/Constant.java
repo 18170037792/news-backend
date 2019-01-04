@@ -59,4 +59,12 @@ public class Constant {
     public final static String NUMBER_IS_BEYOND = "您输入密码已经错误超过3次，请10分钟后尝试";
 
     public static final String AUTH_ERROR = "此用户没有权限";
+
+    public static final String FULL_VALIDATION = "请确保输入信息完整";
+
+    public static final String PWD_NOT_LIKE = "原密码与输入项不一致";
+
+    public static final String PWD_LENGTH_ERROR = "密码长度错误";
+
+    public static final String NOT_THE_SAME = "新旧密码不能相同";
 }

@@ -34,7 +34,18 @@ public interface UserInfoDao {
 
     /**
      * 根据作者id查询作者信息
-     * @param
+     * @param authorId
      * */
     UserInfoTable getUserByAuthorId(@Param("authorId") Long authorId);
+
+    /**
+     * 根据用户id获取原密码
+     * */
+    String getOldPwd(@Param("id") Long id);
+
+    /**
+     * 根据id修改密码
+     * @param table
+     * */
+    void updatePwdById(UserInfoTable table);
 }
