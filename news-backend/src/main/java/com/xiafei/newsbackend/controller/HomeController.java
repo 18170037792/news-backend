@@ -24,10 +24,10 @@ public class HomeController {
     @Autowired
     private UserInfoService userInfoService;
 
-    @GetMapping("/ueditor")
-    public String showPage(){
-        return "index";
-    }
+//    @GetMapping("/ueditor")
+//    public String showPage(){
+//        return "index";
+//    }
 
     /**
      * 首页信息和文章列表分页
