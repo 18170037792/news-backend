@@ -1,5 +1,9 @@
 package com.xiafei.newsbackend.util;
 
+/**
+ * Created by qujie on 2019/1/6
+ * ueditor上传返回的响应
+ * */
 public class UeditorJson {
 
     private String state;

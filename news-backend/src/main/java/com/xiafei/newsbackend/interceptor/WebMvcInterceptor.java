@@ -22,10 +22,10 @@ public class WebMvcInterceptor extends WebMvcConfigurerAdapter {
     @Resource
     BaseInterceptor baseInterceptor;
 
-//    @Bean
-//    LoginInterceptor loginInterceptor(){
-//        return new LoginInterceptor();
-//    }
+    @Bean
+    LoginInterceptor loginInterceptor(){
+        return new LoginInterceptor();
+    }
 
     /**
      * 添加拦截器
@@ -45,19 +45,19 @@ public class WebMvcInterceptor extends WebMvcConfigurerAdapter {
                 "/ueditor"
         };
         registry.addInterceptor(baseInterceptor);
-        //registry.addInterceptor(loginInterceptor()).addPathPatterns("/*/**").excludePathPatterns(loginExcludePathPatterns);
+        registry.addInterceptor(loginInterceptor()).addPathPatterns("/*/**").excludePathPatterns(loginExcludePathPatterns);
         super.addInterceptors(registry);
     }
 
     /**
      * 添加静态资源文件，外部可以直接访问地址
-     * addResourceHandler 配置需要处理的资源映射
-     * addResourceLocations
+     * addResourceHandler 配置资源访问的映射
+     * addResourceLocations 配置文件所在的资源路径
      * @param registry
      */
 //    @Override
 //    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-//        registry.addResourceHandler("/"+uploadPath+"/**").addResourceLocations("file:"+ uploadPath);
+//        registry.addResourceHandler("/image/**").addResourceLocations("file:"+ uploadPath+"image/");
 //        super.addResourceHandlers(registry);
 //    }
 

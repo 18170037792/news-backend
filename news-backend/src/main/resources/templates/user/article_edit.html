@@ -56,7 +56,7 @@
                             </div>
 
                             <div class="form-group col-md-6" style="padding: 0 0 0 10px;">
-                                <input type="text" class="form-control" placeholder="自定义访问路径，如：my-first-article  默认为文章id" name="slug"
+                                <input type="text" class="form-control" placeholder="请输入文章副标题" name="subtitle"
                                        />
                             </div>
 
@@ -66,7 +66,8 @@
                             </div>
 
                             <div class="form-group col-md-6">
-                                <select id="multiple-sel" class="select2 form-control" data-placeholder="请选择分类...">
+                                <select class="select2 form-control">
+                                    <option value="">请选择分类...</option>
                                     <th:block th:each="type : ${types}">
                                         <option th:value="${type.name}" th:text="${type.name}"></option>
                                     </th:block>
