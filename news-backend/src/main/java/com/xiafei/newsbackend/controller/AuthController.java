@@ -112,7 +112,22 @@ public class AuthController extends BaseController{
                 session.removeAttribute("admin");
             }
         }else {
+            UserInfoEntity user = (UserInfoEntity) session.getAttribute("user");
+            /**
+             * 添加系统日志
+             * */
+            LogInfoAddEntity logInfoAddEntity = new LogInfoAddEntity();
+            logInfoAddEntity.setAuthorId(user.getId());
+            logInfoAddEntity.setAction(LogActions.LOGOUT.getAction());
+            logInfoAddEntity.setIpHomeLocation(AddressUtils.getIpDescr(GetIpAndMac.getIp(request)));
+            logInfoAddEntity.setLastLoginIp(GetIpAndMac.getIp(request));
+            logInfoAddEntity.setLastLoginTime(new Date());
+
+            logInfoService.insertLog(logInfoAddEntity);
+
             session.removeAttribute("user");
         }
+
     }
+
 }
