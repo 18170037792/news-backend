@@ -27,7 +27,6 @@ public class ArticleTypeServiceImpl implements ArticleTypeService {
      * 拉取文章分类列表
      * */
     @Override
-    @Transactional(rollbackFor = Exception.class)
     public List<ArticleTypeEntity> getTypeList() throws Exception {
         List<ArticleTypeTable> tables = typeDao.getTypeList();
         if(tables == null || tables.size() == 0){

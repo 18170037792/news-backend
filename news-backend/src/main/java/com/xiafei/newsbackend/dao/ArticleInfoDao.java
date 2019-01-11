@@ -1,6 +1,7 @@
 package com.xiafei.newsbackend.dao;
 
 import com.xiafei.newsbackend.entity.article.ArticleInfoSearchEntity;
+import com.xiafei.newsbackend.entity.article.ArticlePublishEntity;
 import com.xiafei.newsbackend.entity.page.PageLimitEntity;
 import com.xiafei.newsbackend.pojo.table.ArticleInfoTable;
 import com.xiafei.newsbackend.pojo.view.ArticleTypeView;
@@ -44,21 +45,41 @@ public interface ArticleInfoDao {
 
     /**
      * 根据登录人id获取文章分页信息
+     * @param searchEntity
+     * @return ArticleTypeView
      * */
     List<ArticleTypeView> getArticleAllBySearch(ArticleInfoSearchEntity searchEntity);
 
     /**
      * 获取前台首页所有文章分页信息
+     * @param pageLimitEntity
+     * @return ArticleTypeView
      * */
     List<ArticleTypeView> getHomeArticleAll(PageLimitEntity pageLimitEntity);
 
     /**
      * 单个文章信息详情
+     * @param articleId
+     * @return ArticleTypeView
      * */
     ArticleTypeView getArticleInfo(@Param("articleId") Long articleId);
 
     /**
      * 前台作者介绍页根据作者id获取文章列表信息
+     * @param authorId
+     * @return ArticleTypeView
      * */
     List<ArticleTypeView> getArticleListByAuthorId(@Param("authorId") Long authorId);
+
+    /**
+     * 新增文章
+     * @param table
+     * @return int
+     * */
+    int addArticle(ArticleInfoTable table);
+
+    /**
+     * 删除文章
+     * */
+    int deleteArticle(@Param("id") Long id);
 }

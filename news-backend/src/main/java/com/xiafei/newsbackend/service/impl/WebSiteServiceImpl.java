@@ -33,7 +33,6 @@ public class WebSiteServiceImpl implements WebSiteService{
      * 加载用户的统计数据
      * */
     @Override
-    @Transactional(rollbackFor = Exception.class)
     public StatisticsEntity getStatistics(Long userId) throws Exception {
         if(userId == null){
             throw new ServiceException(Constant.SYSTEM_ERROR);
@@ -52,7 +51,6 @@ public class WebSiteServiceImpl implements WebSiteService{
      * 加载管理员的统计数据
      * */
     @Override
-    @Transactional(rollbackFor = Exception.class)
     public StatisticsEntity getAdminStatistics() throws Exception {
         StatisticsEntity statisticsEntity = new StatisticsEntity();
         int articleCount = articleInfoDao.getArticleCount();
