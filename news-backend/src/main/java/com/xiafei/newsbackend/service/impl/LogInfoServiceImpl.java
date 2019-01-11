@@ -47,7 +47,6 @@ public class LogInfoServiceImpl implements LogInfoService {
      * 查询系统日志列表
      * */
     @Override
-    @Transactional(rollbackFor = Exception.class)
     public List<LogInfoEntity> getLogInfoList(Long userId) throws Exception{
         if(userId == null){
             throw new ServiceException(Constant.SYSTEM_ERROR);
@@ -71,7 +70,6 @@ public class LogInfoServiceImpl implements LogInfoService {
      * @return UserLoginEntity
      * */
     @Override
-    @Transactional(rollbackFor = Exception.class)
     public List<UserLogEntity> getUserDynamic() throws Exception {
         List<UserLogView> views = dao.getUserDynamic();
         if(views == null || views.size() == 0){

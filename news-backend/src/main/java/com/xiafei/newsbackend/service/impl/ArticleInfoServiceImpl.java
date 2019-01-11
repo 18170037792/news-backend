@@ -4,6 +4,7 @@ import com.xiafei.newsbackend.dao.ArticleInfoDao;
 import com.xiafei.newsbackend.entity.article.ArticleAndTypeEntity;
 import com.xiafei.newsbackend.entity.article.ArticleInfoEntity;
 import com.xiafei.newsbackend.entity.article.ArticleInfoSearchEntity;
+import com.xiafei.newsbackend.entity.article.ArticlePublishEntity;
 import com.xiafei.newsbackend.entity.page.PageLimitEntity;
 import com.xiafei.newsbackend.entity.page.PageShowEntity;
 import com.xiafei.newsbackend.exception.ServiceException;
@@ -31,7 +32,6 @@ public class ArticleInfoServiceImpl implements ArticleInfoService {
      * @param userId
      * */
     @Override
-    @Transactional(rollbackFor = Exception.class)
     public List<ArticleInfoEntity> getActicleList(Long userId) throws Exception{
         if(userId == null){
             throw new ServiceException(Constant.SYSTEM_ERROR);
@@ -59,7 +59,6 @@ public class ArticleInfoServiceImpl implements ArticleInfoService {
      * 获取所有用户最近发表的文章
      * */
     @Override
-    @Transactional(rollbackFor = Exception.class)
     public List<ArticleInfoEntity> getArticleAll() throws Exception {
         List<ArticleInfoTable> tables = dao.getArticleAll();
         if(tables == null || tables.size() == 0){
@@ -84,7 +83,6 @@ public class ArticleInfoServiceImpl implements ArticleInfoService {
      * @return ArticleInfoEntity
      * */
     @Override
-    @Transactional(rollbackFor = Exception.class)
     public List<ArticleAndTypeEntity> getArticleAllBySearch(ArticleInfoSearchEntity searchEntity) throws Exception {
         List<ArticleTypeView> views = dao.getArticleAllBySearch(searchEntity);
         if(views == null || views.size() == 0){
@@ -107,7 +105,6 @@ public class ArticleInfoServiceImpl implements ArticleInfoService {
      * @return ArticleAndTypeEntity
      * */
     @Override
-    @Transactional(rollbackFor = Exception.class)
     public PageShowEntity<ArticleAndTypeEntity> getArticleWithPage(ArticleInfoSearchEntity searchEntity) throws Exception {
         /**
          * 统计数据
@@ -129,7 +126,6 @@ public class ArticleInfoServiceImpl implements ArticleInfoService {
      * @return ArticleAndTypeEntity
      * */
     @Override
-    @Transactional(rollbackFor = Exception.class)
     public PageShowEntity<ArticleAndTypeEntity> getHomeArticleWithPage(PageLimitEntity pageLimitEntity) throws Exception {
         /**
          * 统计数据
@@ -163,7 +159,6 @@ public class ArticleInfoServiceImpl implements ArticleInfoService {
      * @throws Exception
      * */
     @Override
-    @Transactional(rollbackFor = Exception.class)
     public ArticleAndTypeEntity getArticleInfo(Long articleId) throws Exception {
         ArticleTypeView view = dao.getArticleInfo(articleId);
         if(view == null){
@@ -180,7 +175,6 @@ public class ArticleInfoServiceImpl implements ArticleInfoService {
      * @throws Exception
      * */
     @Override
-    @Transactional(rollbackFor = Exception.class)
     public List<ArticleAndTypeEntity> getArticleListByAuthorId(Long authorId) throws Exception {
         List<ArticleTypeView> views = dao.getArticleListByAuthorId(authorId);
         if(views == null || views.size() == 0){
@@ -195,5 +189,42 @@ public class ArticleInfoServiceImpl implements ArticleInfoService {
             entities.add(entity);
         }
         return entities;
+    }
+
+    /**
+     * 发布文章
+     * @param publishEntity
+     * @throws Exception
+     * */
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void publishArticle(ArticlePublishEntity publishEntity) throws Exception {
+        /**
+         * 文章发布实体赋值给数据库实体
+         * publish -> table
+         * */
+        ArticleInfoTable table = new ArticleInfoTable();
+        BeanUtils.copyProperties(publishEntity,table);
+        /**
+         * 新增文章
+         * */
+        int result = dao.addArticle(table);
+        if(result <1){
+            throw new ServiceException(Constant.PUBLISH_FAILED);
+        }
+    }
+
+    /**
+     * 删除文章
+     * @param id
+     * @throws Exception
+     * */
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void deleteArticle(Long id) throws Exception {
+        int count = dao.deleteArticle(id);
+        if(count <1){
+            throw new ServiceException(Constant.SYSTEM_ERROR);
+        }
     }
 }

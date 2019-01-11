@@ -37,7 +37,6 @@ public class UserInfoServiceImpl implements UserInfoService {
      * @throws Exception
      * */
     @Override
-    @Transactional(rollbackFor = Exception.class)
     public UserInfoEntity login(UserLoginEntity loginEntity) throws Exception {
         if(ValidateUtil.isNull(loginEntity.getName())||ValidateUtil.isNull(loginEntity.getPwd())){
             throw new ServiceException(Constant.LOGIN_NULL);
@@ -61,7 +60,6 @@ public class UserInfoServiceImpl implements UserInfoService {
      * @throws Exception
      * */
     @Override
-    @Transactional(rollbackFor = Exception.class)
     public List<UserLogEntity> getUserList(PageLimitEntity limitEntity) throws Exception {
         List<UserLogView> views = dao.getUserList(limitEntity);
         if(views == null || views.size()==0){
@@ -93,8 +91,13 @@ public class UserInfoServiceImpl implements UserInfoService {
         }
     }
 
+    /**
+     * 拉取用户分页数据列表
+     * @param current
+     * @param row
+     * @throws Exception
+     * */
     @Override
-    @Transactional(rollbackFor = Exception.class)
     public PageShowEntity<UserInfoEntity> getUserWithPage(int current, int row) throws Exception {
         /**
          * 分页条件
@@ -123,7 +126,6 @@ public class UserInfoServiceImpl implements UserInfoService {
      * @throws Exception
      * */
     @Override
-    @Transactional(rollbackFor = Exception.class)
     public UserInfoEntity getUserByAuthorId(Long authorId) throws Exception {
         UserInfoTable table = dao.getUserByAuthorId(authorId);
         if(table == null){
@@ -140,7 +142,6 @@ public class UserInfoServiceImpl implements UserInfoService {
      * @throws Exception
      * */
     @Override
-    @Transactional(rollbackFor = Exception.class)
     public String getOldPwd(Long id) throws Exception {
         String oldPwd = dao.getOldPwd(id);
         if(ValidateUtil.isNull(oldPwd)){

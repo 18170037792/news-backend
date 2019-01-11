@@ -108,4 +108,16 @@
         </where>
         order by article.add_time desc
     </select>
+
+    <!-- 新增文章 -->
+    <insert id="addArticle" parameterType="com.xiafei.newsbackend.pojo.table.ArticleInfoTable">
+        insert into article_info (title,subtitle,content,type_id,add_time,add_user,add_ip)
+        values (#{title}, #{subtitle}, #{content}, #{typeId}, #{addTime}, #{addUser}, #{addIp})
+    </insert>
+
+    <!-- 删除文章 -->
+    <delete id="deleteArticle" parameterType="Long">
+        delete from article_info
+        where id = #{id}
+    </delete>
 </mapper>

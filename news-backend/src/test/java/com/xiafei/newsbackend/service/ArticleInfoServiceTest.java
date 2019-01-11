@@ -3,6 +3,7 @@ package com.xiafei.newsbackend.service;
 import com.xiafei.newsbackend.entity.article.ArticleAndTypeEntity;
 import com.xiafei.newsbackend.entity.article.ArticleInfoEntity;
 import com.xiafei.newsbackend.entity.article.ArticleInfoSearchEntity;
+import com.xiafei.newsbackend.entity.article.ArticlePublishEntity;
 import com.xiafei.newsbackend.entity.page.PageLimitEntity;
 import com.xiafei.newsbackend.entity.page.PageShowEntity;
 import org.junit.Test;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -95,5 +97,31 @@ public class ArticleInfoServiceTest {
     public void getArticleListByAuthorId()throws Exception{
         List<ArticleAndTypeEntity> entities = service.getArticleListByAuthorId(6L);
         System.out.println(entities);
+    }
+
+    /**
+     * 发布文章
+     * */
+    @Test
+    public void publishArticle() throws Exception{
+        ArticlePublishEntity publishEntity = new ArticlePublishEntity();
+        publishEntity.setTitle("红楼梦");
+        publishEntity.setSubtitle("111");
+        publishEntity.setContent("222");
+        publishEntity.setAddTime(new Date());
+
+        service.publishArticle(publishEntity);
+    }
+
+    /**
+     * 编辑文章
+     * */
+
+    /**
+     * 删除文章
+     * */
+    @Test
+    public void deleteArticle() throws Exception{
+        service.deleteArticle(20L);
     }
 }

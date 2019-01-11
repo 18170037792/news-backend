@@ -41,12 +41,13 @@
 
                                     </td>
                                     <td>
-                                        <a class="btn btn-primary btn-sm waves-effect waves-light m-b-5"><i
-                                                class="fa fa-edit"></i> <span>编辑</span></a>
-                                        <a href="javascript:void(0)" class="btn btn-danger btn-sm waves-effect waves-light m-b-5"><i
-                                                class="fa fa-trash-o"></i> <span>删除</span></a>
-                                        <a class="btn btn-warning btn-sm waves-effect waves-light m-b-5" target="_blank"><i
-                                                class="fa fa-rocket"></i> <span>预览</span></a>
+                                        <a class="btn btn-primary btn-sm waves-effect waves-light m-b-5">
+                                            <i class="fa fa-edit"></i> <span>编辑</span></a>
+                                        <a href="javascript:void(0)" th:onclick="'delArticle('+${article.id}+');'"
+                                           class="btn btn-danger btn-sm waves-effect waves-light m-b-5">
+                                            <i class="fa fa-trash-o"></i> <span>删除</span></a>
+                                        <a class="btn btn-warning btn-sm waves-effect waves-light m-b-5" target="_blank">
+                                            <i class="fa fa-rocket"></i> <span>预览</span></a>
                                     </td>
                                 </tr>
                             </th:block>
@@ -65,18 +66,18 @@
 <script type="text/javascript">
     /*<![CDATA[*/
     var news = new $.news();
-    function delPost(id) {
-        tale.alertConfirm({
+    function delArticle(id) {
+        news.alertConfirm({
             title:'确定删除该文章吗?',
             then: function () {
-                tale.post({
+                news.post({
                     url : '/user/article/delete',
                     data: {id: id},
                     success: function (result) {
-                        if(result && result.success){
-                            tale.alertOkAndReload('文章删除成功');
+                        if(result.code == 200){
+                            news.alertOkAndReload('文章删除成功');
                         } else {
-                            tale.alertError(result.msg || '文章删除失败');
+                            news.alertError(result.msg || '文章删除失败');
                         }
                     }
                 });

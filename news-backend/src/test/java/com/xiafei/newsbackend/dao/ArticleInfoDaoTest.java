@@ -1,6 +1,7 @@
 package com.xiafei.newsbackend.dao;
 
 import com.xiafei.newsbackend.entity.article.ArticleInfoSearchEntity;
+import com.xiafei.newsbackend.entity.article.ArticlePublishEntity;
 import com.xiafei.newsbackend.entity.page.PageLimitEntity;
 import com.xiafei.newsbackend.pojo.table.ArticleInfoTable;
 import com.xiafei.newsbackend.pojo.view.ArticleTypeView;
@@ -100,5 +101,22 @@ public class ArticleInfoDaoTest {
     public void getArticleListByAuthorId(){
         List<ArticleTypeView> views = dao.getArticleListByAuthorId(6L);
         System.out.println(views);
+    }
+
+    /**
+     * 新增文章
+     * */
+    @Test
+    public void addArticle(){
+        ArticleInfoTable table = new ArticleInfoTable();
+        table.setTitle("三国演义");
+        table.setSubtitle("传奇巨作");
+        table.setContent("讲的刘关张和梁山泊一百零八将的故事");
+        table.setTypeId(1L);
+
+        int count = dao.addArticle(table);
+        if(count <1){
+            System.out.println("新增失败");
+        }
     }
 }

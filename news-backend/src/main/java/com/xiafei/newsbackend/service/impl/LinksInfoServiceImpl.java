@@ -43,7 +43,6 @@ public class LinksInfoServiceImpl implements LinksInfoService {
      * @return List<LinksInfoEntity>
      * */
     @Override
-    @Transactional(rollbackFor = Exception.class)
     public List<LinksInfoEntity> getList() throws Exception {
         List<LinksInfoTable> tables = infoDao.getList();
         List<LinksInfoEntity> entities = new ArrayList<>();
