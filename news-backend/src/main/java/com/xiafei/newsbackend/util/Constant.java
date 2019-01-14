@@ -46,6 +46,8 @@ public class Constant {
 
     public final static String PARAMETER_ERROR = "参数错误";
 
+    public final static String PARAMETER_NOT_NULL = "参数不能为空";
+
     public final static String LENGTH_ERROR="请注意字段长度";
 
     public final static String OPERATION_SUCCESS = "成功";

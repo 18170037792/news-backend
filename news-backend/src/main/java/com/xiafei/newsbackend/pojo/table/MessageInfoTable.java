@@ -26,6 +26,8 @@ public class MessageInfoTable extends BaseTable{
      * */
     private String content;
 
+    private Integer status;
+
     public String getName() {
         return name;
     }
@@ -64,5 +66,13 @@ public class MessageInfoTable extends BaseTable{
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }

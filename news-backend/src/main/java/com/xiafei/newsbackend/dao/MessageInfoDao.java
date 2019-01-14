@@ -1,7 +1,11 @@
 package com.xiafei.newsbackend.dao;
 
+import com.xiafei.newsbackend.entity.message.MessageInfoSearchEntity;
 import com.xiafei.newsbackend.pojo.table.MessageInfoTable;
+import com.xiafei.newsbackend.pojo.view.MessageArticleView;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface MessageInfoDao {
 
@@ -12,4 +16,16 @@ public interface MessageInfoDao {
      * @param userId
      * */
     int getCount(@Param("userId") Long userId);
+
+    /**
+     * 根据用户id获取后台留言管理分页列表
+     * @param searchEntity
+     * */
+    List<MessageArticleView> getMessagePageList(MessageInfoSearchEntity searchEntity);
+
+    /**
+     * 修改留言状态
+     * @param table
+     * */
+    int update(MessageInfoTable table);
 }

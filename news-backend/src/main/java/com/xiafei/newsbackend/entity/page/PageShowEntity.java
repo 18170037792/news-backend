@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  * Created by qujie on 2018/12/27
- * 分类数据展示类
+ * 分类数据视图实体
  * */
 public class PageShowEntity<T> {
 

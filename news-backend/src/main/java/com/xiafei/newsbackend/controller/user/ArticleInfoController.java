@@ -55,12 +55,13 @@ public class ArticleInfoController extends BaseController {
         PageLimitEntity limitEntity = new PageLimitEntity();
         limitEntity.setCurrent(current);
         limitEntity.setRow(row);
-        /**
-         * 根据查询条件查询分页数据，并赋值
-         * */
         ArticleInfoSearchEntity searchEntity = new ArticleInfoSearchEntity();
         searchEntity.setUserId(userId);
         searchEntity.setLimitEntity(limitEntity);
+
+        /**
+         * 调用service，执行分页列表查询
+         * */
         PageShowEntity<ArticleAndTypeEntity> showEntity = service.getArticleWithPage(searchEntity);
         request.setAttribute("articles",showEntity);
 

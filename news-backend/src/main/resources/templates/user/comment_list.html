@@ -26,38 +26,49 @@
                             </tr>
                             </thead>
                             <tbody>
-                                <tr >
+                            <th:block th:each="comment : ${comments.data}">
+                                <tr>
                                     <td>
-                                        <a ></a>
+                                        <a th:href="@{'/single'+'?'+'articleId='+${comment.articleId}}"
+                                           target="_blank" th:text="${comment.title}"></a>
                                     </td>
-                                    <td ></td>
-                                    <td ></td>
-                                    <td ></td>
-                                    <td><a ></a>
-                                    </td>
+                                    <td th:text="${comment.name}"></td>
+                                    <td th:text="${comment.content}"></td>
+                                    <td th:text="${common.formatDate(comment.commentTime)}"></td>
+                                    <td th:text="${comment.email}"></td>
                                     <td>
-                                        <!--<th:block th:if="${comment.status == 'approved'}">-->
-                                            <!--<span class="label label-success">审核通过</span>-->
-                                        <!--</th:block>-->
-                                        <!--<th:block th:if="${comment.status == 'not_audit'}">-->
-                                            <!--<span class="label label-default">未审核</span>-->
-                                        <!--</th:block>-->
-                                        <!--<th:block th:if="${comment.status == 'not_audit'}">-->
-                                            <!--<span class="label label-default">审核未通过</span>-->
-                                        <!--</th:block>-->
+                                        <a th:href="@{${comment.webSiteUrl}}" target="_blank" th:text="${comment.webSiteUrl}"></a>
                                     </td>
                                     <td>
-                                        <!--<th:block th:if="${comment.status == 'not_audit'}">-->
-                                            <!--<a href="javascript:void(0)"-->
-                                               <!--th:onclick="'updateStatus('+${comment.coid}+', approved);'"-->
-                                               <!--class="btn btn-danger btn-sm waves-effect waves-light m-b-5"><i-->
-                                                    <!--class="fa fa-trash-o"></i> <span>通过</span></a>-->
-                                        <!--</th:block>-->
-                                        <!--<a href="javascript:void(0)" th:onclick="'delComment('+${comment.coid}+');'"-->
-                                           <!--class="btn btn-danger btn-sm waves-effect waves-light m-b-5"><i-->
-                                                <!--class="fa fa-trash-o"></i> <span>删除</span></a>-->
+                                        <th:block th:if="${comment.status == 2}">
+                                            <span class="label label-success">审核通过</span>
+                                        </th:block>
+                                        <th:block th:if="${comment.status == 0}">
+                                            <span class="label label-default">未审核</span>
+                                        </th:block>
+                                        <th:block th:if="${comment.status == 1}">
+                                            <span class="label label-danger">审核未通过</span>
+                                        </th:block>
+                                    </td>
+                                    <td>
+                                        <th:block th:if="${comment.status == 0 || comment.status == 1}">
+                                            <a href="javascript:void(0)"
+                                               th:onclick="'passStatus('+${comment.id}+');'"
+                                               class="btn btn-danger btn-sm waves-effect waves-light m-b-5"><i
+                                                    class="glyphicon glyphicon-remove-sign"></i> <span>通过</span></a>
+                                        </th:block>
+                                        <th:block th:if="${comment.status == 2}">
+                                            <a href="javascript:void(0)"
+                                               th:onclick="'notPassStatus('+${comment.id}+');'"
+                                               class="btn btn-success btn-sm waves-effect waves-light m-b-5"><i
+                                                    class="glyphicon glyphicon-ok-sign"></i> <span>不通过</span></a>
+                                        </th:block>
+                                        <a href="javascript:void(0)" th:onclick="'delComment('+${comment.id}+');'"
+                                           class="btn btn-danger btn-sm waves-effect waves-light m-b-5"><i
+                                                class="fa fa-trash-o"></i> <span>删除</span></a>
                                     </td>
                                 </tr>
+                            </th:block>
                             </tbody>
                         </table>
                         <div ></div>
@@ -71,7 +82,25 @@
 <div th:replace="user/footer :: footer"></div>
 <script type="text/javascript">
     /*<![CDATA[*/
-
+    var news = new $.news();
+    function passStatus(id){
+       news.alertConfirm({
+            title:'确定通过该留言吗?',
+            then: function(){
+                 news.post({
+                    url: '/user/comments/updateStatus',
+                    data: {id: id,status: 2},
+                    success: function (result) {
+                        if (result.code == 200) {
+                            news.alertOkAndReload(result.msg);
+                        } else {
+                            news.alertError(result.msg || '用户启用失败');
+                        }
+                    }
+                 });
+            }
+       });
+    }
     /*]]>*/
 </script>
 </body>

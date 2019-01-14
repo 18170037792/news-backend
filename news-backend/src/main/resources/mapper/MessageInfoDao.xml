@@ -20,4 +20,34 @@
             </if>
         </where>
     </select>
+
+    <!-- 根据用户id获取后台留言管理分页列表 -->
+    <select id="getMessagePageList"
+            parameterType="com.xiafei.newsbackend.entity.message.MessageInfoSearchEntity" resultType="com.xiafei.newsbackend.pojo.view.MessageArticleView">
+        select message.id, article.title, article.id as articleId, message.name, message.content, message.add_time as commentTime, message.email, message.web_site_url, message.status
+        from message_info as message
+        left join user_article_message as uam on message.id = uam.message_id
+        left join article_info as article on uam.article_id = article.id
+        <where>
+            <if test="userId != null">
+                uam.author_id = #{userId}
+            </if>
+        </where>
+        order by message.add_time desc
+        limit #{limitEntity.offset},#{limitEntity.row}
+    </select>
+
+    <!-- 修改留言信息 -->
+    <update id="update" parameterType="com.xiafei.newsbackend.pojo.table.MessageInfoTable">
+        update message_info
+        <set>
+            <if test="status!=null ">
+                status = #{status}
+            </if>
+            <if test="modifyUser!=null ">
+                modify_user = #{modifyUser}
+            </if>
+        </set>
+        where id=#{id}
+    </update>
 </mapper>
