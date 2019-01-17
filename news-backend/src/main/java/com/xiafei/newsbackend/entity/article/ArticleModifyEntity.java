@@ -37,6 +37,8 @@ public class ArticleModifyEntity {
     @NotNull(message = "文章分类不能为空")
     private Long typeId;
 
+    private Integer status;
+
     private Date modifyTime;
     private Long modifyUser;
     private String modifyIp;
@@ -74,6 +76,14 @@ public class ArticleModifyEntity {
 
     public void setContent(@NotNull String content) {
         this.content = content;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     @NotNull

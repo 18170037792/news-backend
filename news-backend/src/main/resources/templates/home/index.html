@@ -102,7 +102,7 @@
 
 <section class="row featured-post-carousel">
     <div class="item post">
-        <a href="single.html"><img src="/home/images/featured-posts/1.jpg" alt="" class="img-responsive main-bg"/></a>
+        <a href="single.html"><img src="/home/images/featured-posts/wen2.jpg" alt="" class="img-responsive main-bg"/></a>
         <div class="post-content">
             <div class="container">
                 <h5 class="post-meta"><i>in</i> <a href="#">作者 简介</a> | <a href="#">feb 17, 2016</a></h5>
@@ -140,7 +140,9 @@
             <article class="col-sm-4 post post-masonry post-format-image">
                 <div class="post-wrapper row">
                     <div class="featured-content row">
-                        <a th:href="@{'/single'+'?'+'articleId='+${article.id}}" ><img src="/home/images/posts/masonry/2.jpg" th:title="${article.title}" class="img-responsive"/></a>
+                        <a th:href="@{'/single'+'?'+'articleId='+${article.id}}" >
+                            <img class="img-responsive"
+                                 th:src="@{${common.getFirstImg(article.content)!=null}?${common.getFirstImg(article.content)}:'/home/images/featured-posts/wen.jpg'}" th:title="${article.title}"/></a>
                     </div>
                     <div class="post-excerpt row">
                         <h5 class="post-meta">

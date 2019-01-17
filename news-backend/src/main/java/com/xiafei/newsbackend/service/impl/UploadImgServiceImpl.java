@@ -37,7 +37,7 @@ public class UploadImgServiceImpl implements UploadImgService {
      * */
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public String upload(MultipartFile file,Long userId) throws Exception {
+    public String upload(MultipartFile file,Long userId,String imagePath) throws Exception {
 
         /**
          * 获取jar包所在的资源路径
@@ -55,9 +55,9 @@ public class UploadImgServiceImpl implements UploadImgService {
         /**
          * 重新赋值文件名
          * */
-        fileName = GetMD5.getMD5(fileName.substring(fileName.indexOf(".")-1) + "avatar"+ GetRandom.getRandom())+ UUID.randomUUID()+suffixName;
+        fileName = GetMD5.getMD5(fileName.substring(fileName.indexOf(".")-1) + "image"+ GetRandom.getRandom())+ UUID.randomUUID()+suffixName;
 
-        File dest = new File(path +"/upload/image/avatar/"+ fileName);
+        File dest = new File(path + imagePath + fileName);
         /**
          * 检测是否存在目录
          */
@@ -71,7 +71,7 @@ public class UploadImgServiceImpl implements UploadImgService {
          * */
         UserInfoTable userInfoTable = new UserInfoTable();
         userInfoTable.setId(userId);
-        userInfoTable.setAvatar("/upload/image/avatar/"+ fileName);
+        userInfoTable.setAvatar("http://localhost:8083"+ imagePath + fileName);
         userInfoDao.updateUser(userInfoTable);
 
         return fileName;

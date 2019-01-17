@@ -37,6 +37,11 @@ public class ArticlePublishEntity {
     @NotNull(message = "文章分类不能为空")
     private Long typeId;
 
+    /**
+     * 文章状态
+     * */
+    private Integer status;
+
     private Long addUser;
 
     private Date addTime;
@@ -80,6 +85,14 @@ public class ArticlePublishEntity {
 
     public void setTypeId(Long typeId) {
         this.typeId = typeId;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public Long getAddUser() {

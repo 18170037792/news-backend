@@ -26,6 +26,7 @@ function subArticle(status) {
     /**属性赋值*/
     parseInt($('#articleForm #typeId').val($('#sel').val()));
     $('#content-editor').val(content);
+    $("#articleForm #status").val(status);
     var params = $('#articleForm').serialize();
     var url = $('#articleForm #id').val() != '' ? '/user/article/modify' : '/user/article/publish';
     news.post({

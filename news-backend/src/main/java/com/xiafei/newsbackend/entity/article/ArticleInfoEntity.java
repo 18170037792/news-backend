@@ -23,7 +23,7 @@ public class ArticleInfoEntity {
     /**
      * 排序
      * */
-    private Integer sort;
+    private Integer status;
 
     private Long addUser;
 
@@ -69,12 +69,12 @@ public class ArticleInfoEntity {
         this.typeId = typeId;
     }
 
-    public Integer getSort() {
-        return sort;
+    public Integer getStatus() {
+        return status;
     }
 
-    public void setSort(Integer sort) {
-        this.sort = sort;
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public Integer getMessageCount() {
@@ -101,7 +101,7 @@ public class ArticleInfoEntity {
                 ", subtitle='" + subtitle + '\'' +
                 ", content='" + content + '\'' +
                 ", typeId=" + typeId +
-                ", sort=" + sort +
+                ", status=" + status +
                 ", addUser=" + addUser +
                 ", messageCount=" + messageCount +
                 '}';

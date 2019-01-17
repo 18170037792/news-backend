@@ -60,7 +60,7 @@
 
     <!-- 根据登录人id获取文章分页信息 -->
     <select id="getArticleAllBySearch" parameterType="com.xiafei.newsbackend.entity.article.ArticleInfoSearchEntity" resultType="com.xiafei.newsbackend.pojo.view.ArticleTypeView">
-        select article.id, article.title, article.subtitle, article.content, article.add_time, type.name as typeName
+        select article.id, article.title, article.subtitle, article.content, article.status, article.add_time, type.name as typeName
         from article_info article
         left join article_type type on article.type_id = type.id
         <where>
@@ -74,10 +74,11 @@
 
     <!-- 获取前台首页所有文章分页信息 -->
     <select id="getHomeArticleAll" parameterType="com.xiafei.newsbackend.entity.page.PageLimitEntity" resultType="com.xiafei.newsbackend.pojo.view.ArticleTypeView">
-        select article.id, article.add_user, article.title, article.subtitle, article.content, article.add_time, type.name as typeName, user.name as authorName
+        select article.id, article.add_user, article.title, article.subtitle, article.content, article.status, article.add_time, type.name as typeName, user.name as authorName,user.avatar
         from article_info article
         left join article_type type on article.type_id = type.id
         left join user_info user on article.add_user = user.id
+        where article.status = 1
         order by article.add_time desc
         limit #{offset},#{row}
     </select>
@@ -111,8 +112,8 @@
 
     <!-- 新增文章 -->
     <insert id="addArticle" parameterType="com.xiafei.newsbackend.pojo.table.ArticleInfoTable">
-        insert into article_info (title,subtitle,content,type_id,add_time,add_user,add_ip)
-        values (#{title}, #{subtitle}, #{content}, #{typeId}, #{addTime}, #{addUser}, #{addIp})
+        insert into article_info (title, subtitle, content, type_id, status, add_time, add_user, add_ip)
+        values (#{title}, #{subtitle}, #{content}, #{typeId}, #{status}, #{addTime}, #{addUser}, #{addIp})
     </insert>
 
     <!-- 修改文章 -->
@@ -130,6 +131,9 @@
             </if>
             <if test="typeId!=null">
                 type_id = #{typeId},
+            </if>
+            <if test="status!=null">
+                status = #{status},
             </if>
             <if test="modifyTime!=null">
                 modify_time = #{modifyTime},

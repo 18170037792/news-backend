@@ -14,7 +14,7 @@ public interface UploadImgService {
      * @return
      * @throws Exception
      */
-    public String upload(MultipartFile file,Long userId) throws Exception;
+    public String upload(MultipartFile file,Long userId,String imagePath) throws Exception;
 
     public UeditorJson uploadUeditor(MultipartFile file) throws Exception;
 }

@@ -17,6 +17,12 @@ public class ArticleAndTypeEntity {
      * 内容
      * */
     private String content;
+
+    /**
+     * 文章状态
+     * */
+    private Integer status;
+
     /**
      * 发布时间
      * */
@@ -34,6 +40,10 @@ public class ArticleAndTypeEntity {
      * 作者id
      * */
     private Long addUser;
+    /**
+     * 作者头像
+     * */
+    private String avatar;
 
     /**
      * 评论数
@@ -77,6 +87,14 @@ public class ArticleAndTypeEntity {
         this.content = content;
     }
 
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
     public Date getAddTime() {
         return addTime;
     }
@@ -109,6 +127,14 @@ public class ArticleAndTypeEntity {
         this.addUser = addUser;
     }
 
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
     public Integer getMessageCount() {
         return messageCount;
     }
@@ -132,10 +158,12 @@ public class ArticleAndTypeEntity {
                 ", title='" + title + '\'' +
                 ", subtitle='" + subtitle + '\'' +
                 ", content='" + content + '\'' +
+                ", status=" + status +
                 ", addTime=" + addTime +
                 ", typeName='" + typeName + '\'' +
                 ", authorName='" + authorName + '\'' +
                 ", addUser=" + addUser +
+                ", avatar='" + avatar + '\'' +
                 ", messageCount=" + messageCount +
                 ", views=" + views +
                 '}';

@@ -119,7 +119,7 @@
                                     <h3 class="panel-title">头像上传</h3>
                                 </div>
                                 <div class="panel-body">
-                                    <form class="form-horizontal" id="avatarForm" enctype="multipart/form-data" action="/upload/image" method="POST">
+                                    <form class="form-horizontal" id="avatarForm" enctype="multipart/form-data" action="/upload/avatar" method="POST">
                                         <div class="form-group">
                                             <div style="position: relative;border: 5px solid lightblue;width: 150px;height:150px;margin: 5px auto;border-radius: 50%;">
                                                 <img id="avatar_img" th:src="@{${profile!=null and profile.avatar!=null }?${profile.avatar}: '/home/images/featured-posts/wen.jpg'}"

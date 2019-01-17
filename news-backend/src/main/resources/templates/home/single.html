@@ -123,15 +123,16 @@
                             By <a href="#" th:text="${article.authorName}"></a> | <a href="#" class="date" th:text="${common.formatDate(article.addTime)}"></a>
                         </h5>
                     </header>
-                    <div class="featured-content row m0">
-                        <a href="#"><img src="/home/images/featured-posts/3.jpg" alt=""/></a>
-                    </div>
+                    <!--<div class="featured-content row m0">-->
+                        <!--<a href="#"><img src="/home/images/featured-posts/3.jpg" alt=""/></a>-->
+                    <!--</div>-->
                     <div class="post-content row">
                         <div class="row m0">
                             <div class="col-sm-4 post-author-about">
                                 <div class="media">
                                     <div class="media-left">
-                                        <a href="#"><img src="/home/images/wyz.jpg" alt="" class="img-circle"/></a>
+                                        <a href="#"><img class="img-circle"
+                                                         th:src="@{${article !=null and article.avatar !=null}?${article.avatar}:'/home/images/wyz.jpg'}" alt=""/></a>
                                     </div>
                                     <div class="media-body">
                                         <h3><a href="#" th:text="${article.authorName}"></a></h3>

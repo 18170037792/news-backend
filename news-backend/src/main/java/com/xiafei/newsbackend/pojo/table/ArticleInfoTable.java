@@ -25,7 +25,7 @@ public class ArticleInfoTable extends BaseTable{
     /**
      * 排序
      * */
-    private Integer sort;
+    private Integer status;
 
     public String getTitle() {
         return title;
@@ -59,12 +59,12 @@ public class ArticleInfoTable extends BaseTable{
         this.typeId = typeId;
     }
 
-    public Integer getSort() {
-        return sort;
+    public Integer getStatus() {
+        return status;
     }
 
-    public void setSort(Integer sort) {
-        this.sort = sort;
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     @Override
@@ -74,7 +74,7 @@ public class ArticleInfoTable extends BaseTable{
                 ", subtitle='" + subtitle + '\'' +
                 ", content='" + content + '\'' +
                 ", typeId=" + typeId +
-                ", sort=" + sort +
+                ", status=" + status +
                 '}';
     }
 }

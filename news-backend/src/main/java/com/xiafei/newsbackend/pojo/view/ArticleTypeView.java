@@ -21,6 +21,12 @@ public class ArticleTypeView {
      * 内容
      * */
     private String content;
+
+    /**
+     * 文章状态
+     * */
+    private Integer status;
+
     /**
      * 发布时间
      * */
@@ -38,6 +44,10 @@ public class ArticleTypeView {
      * 作者id
      * */
     private Long addUser;
+    /**
+     * 作者头像
+     * */
+    private String avatar;
 
     public Long getId() {
         return id;
@@ -69,6 +79,14 @@ public class ArticleTypeView {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public Date getAddTime() {
@@ -103,6 +121,14 @@ public class ArticleTypeView {
         this.addUser = addUser;
     }
 
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
     @Override
     public String toString() {
         return "ArticleTypeView{" +
@@ -110,10 +136,12 @@ public class ArticleTypeView {
                 ", title='" + title + '\'' +
                 ", subtitle='" + subtitle + '\'' +
                 ", content='" + content + '\'' +
+                ", status=" + status +
                 ", addTime=" + addTime +
                 ", typeName='" + typeName + '\'' +
                 ", authorName='" + authorName + '\'' +
                 ", addUser=" + addUser +
+                ", avatar='" + avatar + '\'' +
                 '}';
     }
 }

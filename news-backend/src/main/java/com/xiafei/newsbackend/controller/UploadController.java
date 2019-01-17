@@ -22,21 +22,30 @@ public class UploadController extends BaseController{
     UploadImgService uploadService;
 
     /**
-     * 普通图片上传
+     * 用户头像上传
      * */
-    @PostMapping("/image")
+    @PostMapping("/avatar")
     public void uploadImage(@RequestParam(value = "file", required = false) MultipartFile file, HttpServletRequest request, HttpServletResponse response) throws Exception{
-
+        /**
+         * 获取登录用户信息
+         * */
         Long userId = this.getUserId(request, response);
-
         /**
          * 调用service
          * */
-        String upload = uploadService.upload(file,userId);
+        String upload = uploadService.upload(file,userId,"/upload/image/avatar/");
         /**
          * 重定向个人信息
          * */
         response.sendRedirect("/user/profile");
+    }
+
+    /**
+     * 文章封面图上传
+     * */
+    @PostMapping("/cover")
+    public void uploadCover() throws Exception{
+
     }
 
     /**
