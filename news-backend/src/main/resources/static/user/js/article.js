@@ -14,17 +14,13 @@ function subArticle(status) {
     /**获取文章副标题*/
     var subtitle = $('#articleForm input[name=subtitle]').val();
     /**获取富文本内容*/
-    var content = UE.getEditor('myEditor').getContent()
+    var content = UE.getEditor('myEditor').getContent();
     if (title == '') {
         news.alertWarn('请输入文章标题');
         return;
     }
     if(subtitle == ''){
         news.alertWarn('请输入文章副标题');
-        return;
-    }
-    if (content == '') {
-        news.alertWarn('请输入文章内容');
         return;
     }
     /**属性赋值*/

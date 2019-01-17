@@ -1,22 +1,25 @@
 package com.xiafei.newsbackend.controller.user;
 
 import com.xiafei.newsbackend.controller.BaseController;
+import com.xiafei.newsbackend.entity.enu.LogActions;
+import com.xiafei.newsbackend.entity.log.LogInfoAddEntity;
 import com.xiafei.newsbackend.entity.message.MessageArticleEntity;
 import com.xiafei.newsbackend.entity.message.MessageInfoSearchEntity;
 import com.xiafei.newsbackend.entity.message.MessageInfoUpdateEntity;
 import com.xiafei.newsbackend.entity.page.PageLimitEntity;
 import com.xiafei.newsbackend.entity.page.PageShowEntity;
+import com.xiafei.newsbackend.service.LogInfoService;
 import com.xiafei.newsbackend.service.MessageInfoService;
-import com.xiafei.newsbackend.util.Constant;
-import com.xiafei.newsbackend.util.JsonResult;
-import com.xiafei.newsbackend.util.ValidateUtil;
+import com.xiafei.newsbackend.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.util.Date;
 
 /**
  * Created by qujie on 2019/1/14
@@ -29,6 +32,8 @@ public class CommentController extends BaseController {
 
     @Autowired
     private MessageInfoService messageInfoService;
+    @Autowired
+    private LogInfoService logInfoService;
 
     @GetMapping("")
     public String commentPage(@RequestParam(value = "current", defaultValue = "1") int current,
@@ -53,24 +58,64 @@ public class CommentController extends BaseController {
         return "user/comment_list";
     }
 
-    @PostMapping("/updateStatus")
+    /**
+     * 修改留言状态
+     * @param updateEntity
+     * @param bindingResult
+     * @param request
+     * @param response
+     * @throws Exception
+     * */
+    @RequestMapping("/updateStatus")
     @ResponseBody
-    public JsonResult updateStatus(@Valid MessageInfoUpdateEntity updateEntity) throws Exception{
+    public JsonResult updateStatus(@RequestBody @Valid MessageInfoUpdateEntity updateEntity,BindingResult bindingResult,HttpServletRequest request, HttpServletResponse response) throws Exception{
+        /**
+         * 字段验证
+         * */
+        if(bindingResult.hasErrors()){
+            String defaultMessage = bindingResult.getFieldError().getDefaultMessage();
+            return new JsonResult(Constant.FAILED_CODE,defaultMessage);
+        }
 
+        /**
+         * 获取登录用户id
+         * */
+        Long userId = this.getUserId(request, response);
+        updateEntity.setModifyUser(userId);
+        /**
+         * 调用service执行修改
+         * */
+        messageInfoService.updateMessage(updateEntity);
+        return new JsonResult(Constant.SUCCESS_CODE,Constant.UPDATE_SUCCESS);
+    }
 
+    /**
+     * 删除留言并上传日志
+     * */
+    @RequestMapping("/delete")
+    @ResponseBody
+    public JsonResult delComment(@RequestParam Long id,HttpServletRequest request,HttpServletResponse response) throws Exception{
+        /**
+         * 获取登录人用户id
+         * */
+        Long userId = this.getUserId(request, response);
+        /**
+         * 调用service删除
+         * */
+        messageInfoService.delComment(id);
 
-//        /**
-//         * 验证字段
-//         * */
-//        if(ValidateUtil.isNull(status)){
-//            return new JsonResult(Constant.FAILED_CODE,Constant.PARAMETER_NOT_NULL);
-//        }
-//
-//        if(status == 2){
-//            messageInfoService.updateMessage();
-//        }
-//
-        return null;
+        /**
+         * 添加系统日志
+         * */
+        LogInfoAddEntity logInfoAddEntity = new LogInfoAddEntity();
+        logInfoAddEntity.setAuthorId(userId);
+        logInfoAddEntity.setAction(LogActions.DEL_COMMENT.getAction());
+        logInfoAddEntity.setIpHomeLocation(AddressUtils.getIpDescr(GetIpAndMac.getIp(request)));
+        logInfoAddEntity.setLastLoginIp(GetIpAndMac.getIp(request));
+        logInfoAddEntity.setLastLoginTime(new Date());
+
+        logInfoService.insertLog(logInfoAddEntity);
+        return new JsonResult(Constant.SUCCESS_CODE,Constant.DELETE_SUCCESS);
     }
 
 }

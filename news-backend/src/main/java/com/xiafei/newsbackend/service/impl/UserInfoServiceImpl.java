@@ -165,4 +165,21 @@ public class UserInfoServiceImpl implements UserInfoService {
         dao.updatePwdById(table);
     }
 
+    /**
+     * 修改用户信息
+     * @param entity
+     * @throws Exception
+     * */
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void updateUser(UserInfoEntity entity) throws Exception {
+        UserInfoTable table = new UserInfoTable();
+        BeanUtils.copyProperties(entity,table);
+
+        int count = dao.updateUser(table);
+        if(count <1){
+            throw new ServiceException(Constant.SYSTEM_ERROR);
+        }
+    }
+
 }

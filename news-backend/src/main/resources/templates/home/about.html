@@ -97,7 +97,7 @@
         <div class="row">
             <div class="col-md-8 page-contents">
                 <div class="row page-content">
-                    <img src="/home/images/author.jpg" alt="" class="img-responsive"/>
+                    <img th:src="@{${author!=null and author.avatar!=null }?${author.avatar}: '/home/images/featured-posts/wen.jpg'}" class="img-responsive"/>
                     
                     <div class="contents row">
                         <h4 th:text="${author.personalizedSignature}"></h4>
@@ -120,7 +120,7 @@
                                 <h5 class="post-meta">
                                     <a href="#" class="date" th:text="${common.formatDate(article.addTime)}"></a>
                                 </h5>
-                                <h3 class="post-title"><a th:href="@{/single}"><span th:text="${article.title}"></span></a></h3>
+                                <h3 class="post-title"><a th:href="@{'/single'+'?'+'articleId='+${article.id}}"><span th:text="${article.title}"></span></a></h3>
                                 <p th:text="${article.subtitle}"></p>
                                 <footer class="row">
                                     <h5 class="taxonomy"><i>in</i> <a href="#"><span th:text="${article.typeName}"></span></a></h5>

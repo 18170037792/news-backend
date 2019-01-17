@@ -38,4 +38,11 @@ public interface UserInfoService {
      * @throws Exception
      * */
     void updatePwd(Long id,String newPwd) throws Exception;
+
+    /**
+     * 修改用户信息
+     * @param entity
+     * @throws Exception
+     * */
+    void updateUser(UserInfoEntity entity) throws Exception;
 }

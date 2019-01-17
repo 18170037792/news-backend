@@ -62,4 +62,33 @@
         SET pwd = #{pwd}
         WHERE id = #{id}
     </select>
+
+    <!-- 修改用户信息 -->
+    <update id="updateUser" parameterType="com.xiafei.newsbackend.pojo.table.UserInfoTable">
+        update user_info
+        <set>
+            <if test="avatar!=null and avatar!=''">
+                avatar = #{avatar},
+            </if>
+            <if test="name!=null and name!=''">
+                name = #{name},
+            </if>
+            <if test="personalizedSignature!=null and personalizedSignature!=''">
+                personalized_signature = #{personalizedSignature},
+            </if>
+            <if test="personalProfile!=null and personalProfile!=''">
+                personal_profile = #{personalProfile},
+            </if>
+            <if test="mobile!=null and mobile!=''">
+                mobile = #{mobile},
+            </if>
+            <if test="email!=null and email!=''">
+                email = #{email},
+            </if>
+            <if test="homeUrl!=null and homeUrl!=''">
+                home_url = #{homeUrl}
+            </if>
+        </set>
+        where id=#{id}
+    </update>
 </mapper>

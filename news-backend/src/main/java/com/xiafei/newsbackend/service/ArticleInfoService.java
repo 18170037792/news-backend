@@ -1,9 +1,6 @@
 package com.xiafei.newsbackend.service;
 
-import com.xiafei.newsbackend.entity.article.ArticleAndTypeEntity;
-import com.xiafei.newsbackend.entity.article.ArticleInfoEntity;
-import com.xiafei.newsbackend.entity.article.ArticleInfoSearchEntity;
-import com.xiafei.newsbackend.entity.article.ArticlePublishEntity;
+import com.xiafei.newsbackend.entity.article.*;
 import com.xiafei.newsbackend.entity.page.PageLimitEntity;
 import com.xiafei.newsbackend.entity.page.PageShowEntity;
 import com.xiafei.newsbackend.pojo.view.ArticleTypeView;
@@ -74,6 +71,13 @@ public interface ArticleInfoService {
      * @throws Exception
      * */
     void publishArticle(ArticlePublishEntity publishEntity) throws Exception;
+
+    /**
+     * 编辑文章
+     * @param modifyEntity
+     * @throws Exception
+     * */
+    void modifyArticle(ArticleModifyEntity modifyEntity) throws Exception;
 
     /**
      * 删除文章

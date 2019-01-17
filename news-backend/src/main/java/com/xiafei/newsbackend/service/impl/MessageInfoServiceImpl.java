@@ -78,4 +78,29 @@ public class MessageInfoServiceImpl implements MessageInfoService {
             throw new ServiceException(Constant.SYSTEM_ERROR);
         }
     }
+
+    /**
+     * 删除单个留言信息
+     * @param id
+     * @throws Exception
+     * */
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void delComment(Long id) throws Exception {
+        /**
+         * 判断是否存在
+         * */
+        int count = messageInfoDao.isExist(id);
+        if(count <1){
+            throw new ServiceException(Constant.WAIT_AGAIN);
+        }
+
+        /**
+         * 执行删除
+         * */
+        int result = messageInfoDao.delete(id);
+        if(result <1){
+            throw new ServiceException(Constant.SYSTEM_ERROR);
+        }
+    }
 }

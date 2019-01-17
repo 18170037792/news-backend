@@ -3,6 +3,7 @@ package com.xiafei.newsbackend.controller.user;
 import com.xiafei.newsbackend.controller.BaseController;
 import com.xiafei.newsbackend.entity.article.ArticleAndTypeEntity;
 import com.xiafei.newsbackend.entity.article.ArticleInfoSearchEntity;
+import com.xiafei.newsbackend.entity.article.ArticleModifyEntity;
 import com.xiafei.newsbackend.entity.article.ArticlePublishEntity;
 import com.xiafei.newsbackend.entity.enu.LogActions;
 import com.xiafei.newsbackend.entity.log.LogInfoAddEntity;
@@ -108,7 +109,8 @@ public class ArticleInfoController extends BaseController {
      * */
     @PostMapping("/publish")
     @ResponseBody
-    public JsonResult publicArticle(@Valid ArticlePublishEntity publishEntity, BindingResult bindingResult,HttpServletRequest request, HttpServletResponse response) throws Exception{
+    public JsonResult publicArticle(@Valid ArticlePublishEntity publishEntity,
+                                    BindingResult bindingResult,HttpServletRequest request, HttpServletResponse response) throws Exception{
 
         /**
          * 字段验证
@@ -136,9 +138,35 @@ public class ArticleInfoController extends BaseController {
     /**
      * 文章编辑
      * */
+    @PostMapping("/modify")
+    @ResponseBody
+    public JsonResult modifyArticle(@Valid ArticleModifyEntity modifyEntity,
+                                    BindingResult bindingResult, HttpServletRequest request, HttpServletResponse response) throws Exception{
+        /**
+         * 字段验证
+         * */
+        if(bindingResult.hasErrors()){
+            String defaultMessage = bindingResult.getFieldError().getDefaultMessage();
+            return new JsonResult(Constant.FAILED_CODE,defaultMessage);
+        }
+
+        /**
+         * 获取登录人信息
+         * */
+        Long userId = this.getUserId(request, response);
+        modifyEntity.setModifyUser(userId);
+        modifyEntity.setModifyTime(new Date());
+        modifyEntity.setModifyIp(GetIpAndMac.getIp(request));
+
+        /**
+         * 调用service
+         * */
+        service.modifyArticle(modifyEntity);
+        return new JsonResult(Constant.SUCCESS_CODE,Constant.UPDATE_SUCCESS);
+    }
 
     /**
-     * 文章删除
+     * 文章删除并上传日志
      * @param id
      * @param request
      * @param response

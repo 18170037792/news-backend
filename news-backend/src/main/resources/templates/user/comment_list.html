@@ -44,24 +44,34 @@
                                             <span class="label label-success">审核通过</span>
                                         </th:block>
                                         <th:block th:if="${comment.status == 0}">
-                                            <span class="label label-default">未审核</span>
+                                            <span class="label label-default">待审核</span>
                                         </th:block>
                                         <th:block th:if="${comment.status == 1}">
                                             <span class="label label-danger">审核未通过</span>
                                         </th:block>
                                     </td>
                                     <td>
-                                        <th:block th:if="${comment.status == 0 || comment.status == 1}">
+                                        <th:block th:if="${comment.status == 0}">
                                             <a href="javascript:void(0)"
                                                th:onclick="'passStatus('+${comment.id}+');'"
+                                               class="btn btn-success btn-sm waves-effect waves-light m-b-5"><i
+                                                    class="glyphicon glyphicon-ok-sign"></i> <span>通过</span></a>
+                                            <a href="javascript:void(0)"
+                                               th:onclick="'notPassStatus('+${comment.id}+');'"
                                                class="btn btn-danger btn-sm waves-effect waves-light m-b-5"><i
-                                                    class="glyphicon glyphicon-remove-sign"></i> <span>通过</span></a>
+                                                    class="glyphicon glyphicon-remove-sign"></i> <span>不通过</span></a>
+                                        </th:block>
+                                        <th:block th:if="${comment.status == 1}">
+                                            <a href="javascript:void(0)"
+                                               th:onclick="'passStatus('+${comment.id}+');'"
+                                               class="btn btn-success btn-sm waves-effect waves-light m-b-5"><i
+                                                    class="glyphicon glyphicon-ok-sign"></i> <span>通过</span></a>
                                         </th:block>
                                         <th:block th:if="${comment.status == 2}">
                                             <a href="javascript:void(0)"
                                                th:onclick="'notPassStatus('+${comment.id}+');'"
-                                               class="btn btn-success btn-sm waves-effect waves-light m-b-5"><i
-                                                    class="glyphicon glyphicon-ok-sign"></i> <span>不通过</span></a>
+                                               class="btn btn-danger btn-sm waves-effect waves-light m-b-5"><i
+                                                    class="glyphicon glyphicon-remove-sign"></i> <span>不通过</span></a>
                                         </th:block>
                                         <a href="javascript:void(0)" th:onclick="'delComment('+${comment.id}+');'"
                                            class="btn btn-danger btn-sm waves-effect waves-light m-b-5"><i
@@ -71,7 +81,7 @@
                             </th:block>
                             </tbody>
                         </table>
-                        <div ></div>
+                        <div th:replace="common/paging :: pageAdminNav(${comments})"></div>
                     </div>
                 </div>
                 <div th:replace="user/footer :: footer-content"></div>
@@ -83,23 +93,79 @@
 <script type="text/javascript">
     /*<![CDATA[*/
     var news = new $.news();
+
     function passStatus(id){
+       var status = 2;
+       var param = {
+            "id": id,
+            "status": parseInt(status)
+       }
+       var updateEntity = JSON.stringify(param);
        news.alertConfirm({
             title:'确定通过该留言吗?',
             then: function(){
-                 news.post({
-                    url: '/user/comments/updateStatus',
-                    data: {id: id,status: 2},
-                    success: function (result) {
-                        if (result.code == 200) {
+                 <!-- 自定义ajax -->
+                 $.ajax({
+		            type : "POST",
+			        contentType : "application/json",
+			        data : updateEntity,
+			        url : "/user/comments/updateStatus",
+			        success : function(result) {
+				        if (result.code == 200) {
                             news.alertOkAndReload(result.msg);
-                        } else {
-                            news.alertError(result.msg || '用户启用失败');
+                        } else if(result.code == 400){
+                            news.alertError(result.msg);
                         }
-                    }
-                 });
+			        }
+		         });
             }
        });
+    }
+
+    function notPassStatus(id){
+       var status = 1;
+       var param = {
+            "id": id,
+            "status": parseInt(status)
+       }
+       var updateEntity = JSON.stringify(param);
+       news.alertConfirm({
+            title:'确定不通过该留言吗?',
+            then: function(){
+                 $.ajax({
+		            type : "POST",
+			        contentType : "application/json",
+			        data : updateEntity,
+			        url : "/user/comments/updateStatus",
+			        success : function(result) {
+				        if (result.code == 200) {
+                            news.alertOkAndReload(result.msg);
+                        } else if(result.code == 400){
+                            news.alertError(result.msg);
+                        }
+			        }
+		         });
+            }
+       });
+    }
+
+    function delComment(id) {
+        news.alertConfirm({
+            title:'确定删除该条留言吗?',
+            then: function () {
+                news.post({
+                    url : '/user/comments/delete',
+                    data: {id: id},
+                    success: function (result) {
+                        if(result.code == 200){
+                            news.alertOkAndReload('删除成功');
+                        } else {
+                            news.alertError(result.msg);
+                        }
+                    }
+                });
+            }
+        });
     }
     /*]]>*/
 </script>

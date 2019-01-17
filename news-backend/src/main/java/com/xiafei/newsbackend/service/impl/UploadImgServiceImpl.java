@@ -1,11 +1,14 @@
 package com.xiafei.newsbackend.service.impl;
 
+import com.xiafei.newsbackend.dao.UserInfoDao;
+import com.xiafei.newsbackend.pojo.table.UserInfoTable;
 import com.xiafei.newsbackend.service.UploadImgService;
 import com.xiafei.newsbackend.util.GetMD5;
 import com.xiafei.newsbackend.util.GetRandom;
 import com.xiafei.newsbackend.util.UeditorJson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,15 +29,21 @@ import java.util.UUID;
 public class UploadImgServiceImpl implements UploadImgService {
     Logger logger = LoggerFactory.getLogger(UploadImgServiceImpl.class);
 
-    @Value("${web.upload-path}")
-    String webPath;
+    @Autowired
+    private UserInfoDao userInfoDao;
 
     /**
      * 普通图片上传
      * */
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public String upload(MultipartFile file) throws Exception {
+    public String upload(MultipartFile file,Long userId) throws Exception {
+
+        /**
+         * 获取jar包所在的资源路径
+         * */
+        String path = ResourceUtils.getFile("classpath:static/").getPath();
+
         /**
          * 获取文件名
          */
@@ -43,9 +52,12 @@ public class UploadImgServiceImpl implements UploadImgService {
          * 获取文件的后缀名
          */
         String suffixName = fileName.substring(fileName.lastIndexOf("."));
-        fileName = GetMD5.getMD5(fileName.substring(fileName.indexOf(".")-1) + "image"+ GetRandom.getRandom())+ UUID.randomUUID()+suffixName;
+        /**
+         * 重新赋值文件名
+         * */
+        fileName = GetMD5.getMD5(fileName.substring(fileName.indexOf(".")-1) + "avatar"+ GetRandom.getRandom())+ UUID.randomUUID()+suffixName;
 
-        File dest = new File(webPath + fileName);
+        File dest = new File(path +"/upload/image/avatar/"+ fileName);
         /**
          * 检测是否存在目录
          */
@@ -53,6 +65,15 @@ public class UploadImgServiceImpl implements UploadImgService {
             dest.getParentFile().mkdirs();
         }
         file.transferTo(dest);
+
+        /**
+         * 保存图片信息
+         * */
+        UserInfoTable userInfoTable = new UserInfoTable();
+        userInfoTable.setId(userId);
+        userInfoTable.setAvatar("/upload/image/avatar/"+ fileName);
+        userInfoDao.updateUser(userInfoTable);
+
         return fileName;
     }
 

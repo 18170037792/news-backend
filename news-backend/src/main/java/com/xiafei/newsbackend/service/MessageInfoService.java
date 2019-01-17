@@ -23,4 +23,11 @@ public interface MessageInfoService {
      * @param updateEntity
      * */
     void updateMessage(MessageInfoUpdateEntity updateEntity) throws Exception;
+
+    /**
+     * 删除单条留言信息
+     * @param id
+     * @throws Exception
+     * */
+    void delComment(Long id) throws Exception;
 }

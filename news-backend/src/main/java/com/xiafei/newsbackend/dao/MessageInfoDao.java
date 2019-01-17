@@ -28,4 +28,15 @@ public interface MessageInfoDao {
      * @param table
      * */
     int update(MessageInfoTable table);
+
+    /**
+     * 根据id查询留言是否存在
+     * */
+    int isExist(@Param("id") Long id);
+
+    /**
+     * 删除单个留言状态
+     * @param
+     * */
+    int delete(@Param("id") Long id);
 }

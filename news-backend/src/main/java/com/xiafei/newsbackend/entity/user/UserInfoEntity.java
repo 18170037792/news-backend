@@ -5,6 +5,7 @@ import java.util.Date;
 public class UserInfoEntity {
 
     private Long id;
+    private String avatar;
     private String name;
     private String personalizedSignature;
     private String personalProfile;
@@ -22,6 +23,14 @@ public class UserInfoEntity {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public String getName() {
@@ -108,6 +117,7 @@ public class UserInfoEntity {
     public String toString() {
         return "UserInfoEntity{" +
                 "id=" + id +
+                ", avatar='" + avatar + '\'' +
                 ", name='" + name + '\'' +
                 ", personalizedSignature='" + personalizedSignature + '\'' +
                 ", personalProfile='" + personalProfile + '\'' +

@@ -57,4 +57,19 @@ public class MessageInfoDaoTest {
         List<MessageArticleView> views = dao.getMessagePageList(searchEntity);
         System.out.println(views);
     }
+
+    /**
+     * 修改信息
+     * */
+    @Test
+    public void updateStatus(){
+        MessageInfoTable table = new MessageInfoTable();
+        table.setId(10L);
+        table.setStatus(1);
+        table.setModifyUser(1L);
+        int count = dao.update(table);
+        if(count <1){
+            System.out.println("修改失败");
+        }
+    }
 }

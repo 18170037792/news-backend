@@ -119,4 +119,20 @@ public class ArticleInfoDaoTest {
             System.out.println("新增失败");
         }
     }
+
+    /**
+     * 修改文章
+     * */
+    @Test
+    public void updateArticle(){
+        ArticleInfoTable table = new ArticleInfoTable();
+        table.setId(1L);
+        table.setTitle("水浒传");
+        table.setContent("讲的刘关张和梁山泊一百零八将的故事");
+        table.setTypeId(1L);
+        int count = dao.updateArticle(table);
+        if(count<1){
+            System.out.println("修改失败");
+        }
+    }
 }

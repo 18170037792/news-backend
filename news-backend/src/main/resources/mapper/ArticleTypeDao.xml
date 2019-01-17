@@ -9,3 +9,6 @@
         order by sort
     </select>
 </mapper>
+<!--set title = #{title}, subtitle = #{subtitle}, content = #{content}, type_id = #{typeId},
+        modify_time = #{modifyTime}, modify_user = #{modifyUser}, modify_ip = #{modifyIp}
+        where id=#{id}-->

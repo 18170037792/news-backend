@@ -1,10 +1,7 @@
 package com.xiafei.newsbackend.service.impl;
 
 import com.xiafei.newsbackend.dao.ArticleInfoDao;
-import com.xiafei.newsbackend.entity.article.ArticleAndTypeEntity;
-import com.xiafei.newsbackend.entity.article.ArticleInfoEntity;
-import com.xiafei.newsbackend.entity.article.ArticleInfoSearchEntity;
-import com.xiafei.newsbackend.entity.article.ArticlePublishEntity;
+import com.xiafei.newsbackend.entity.article.*;
 import com.xiafei.newsbackend.entity.page.PageLimitEntity;
 import com.xiafei.newsbackend.entity.page.PageShowEntity;
 import com.xiafei.newsbackend.exception.ServiceException;
@@ -215,6 +212,29 @@ public class ArticleInfoServiceImpl implements ArticleInfoService {
     }
 
     /**
+     * 编辑文章
+     * @param modifyEntity
+     * @throws Exception
+     * */
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void modifyArticle(ArticleModifyEntity modifyEntity) throws Exception {
+        /**
+         * 拷贝赋值
+         * */
+        ArticleInfoTable table = new ArticleInfoTable();
+        BeanUtils.copyProperties(modifyEntity,table);
+
+        /**
+         * 修改文章
+         * */
+        int count = dao.updateArticle(table);
+        if(count <1){
+            throw new ServiceException(Constant.SYSTEM_ERROR);
+        }
+    }
+
+    /**
      * 删除文章
      * @param id
      * @throws Exception
@@ -222,6 +242,17 @@ public class ArticleInfoServiceImpl implements ArticleInfoService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void deleteArticle(Long id) throws Exception {
+        /**
+         * 判断文章是否存在
+         * */
+        int result = dao.isExist(id);
+        if(result <1){
+            throw new ServiceException(Constant.WAIT_AGAIN);
+        }
+
+        /**
+         * 删除文章并判断数量级
+         * */
         int count = dao.deleteArticle(id);
         if(count <1){
             throw new ServiceException(Constant.SYSTEM_ERROR);

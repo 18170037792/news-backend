@@ -48,4 +48,10 @@ public interface UserInfoDao {
      * @param table
      * */
     void updatePwdById(UserInfoTable table);
+
+    /**
+     * 修改用户信息
+     * @param
+     * */
+    int updateUser(UserInfoTable table);
 }

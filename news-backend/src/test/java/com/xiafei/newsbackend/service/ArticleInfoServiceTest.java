@@ -1,9 +1,6 @@
 package com.xiafei.newsbackend.service;
 
-import com.xiafei.newsbackend.entity.article.ArticleAndTypeEntity;
-import com.xiafei.newsbackend.entity.article.ArticleInfoEntity;
-import com.xiafei.newsbackend.entity.article.ArticleInfoSearchEntity;
-import com.xiafei.newsbackend.entity.article.ArticlePublishEntity;
+import com.xiafei.newsbackend.entity.article.*;
 import com.xiafei.newsbackend.entity.page.PageLimitEntity;
 import com.xiafei.newsbackend.entity.page.PageShowEntity;
 import org.junit.Test;
@@ -116,6 +113,14 @@ public class ArticleInfoServiceTest {
     /**
      * 编辑文章
      * */
+    @Test
+    public void modifyArticle() throws Exception{
+        ArticleModifyEntity modifyEntity = new ArticleModifyEntity();
+        modifyEntity.setId(1L);
+        modifyEntity.setModifyTime(new Date());
+        modifyEntity.setModifyUser(1L);
+        service.modifyArticle(modifyEntity);
+    }
 
     /**
      * 删除文章

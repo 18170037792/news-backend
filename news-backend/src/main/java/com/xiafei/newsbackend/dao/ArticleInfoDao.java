@@ -79,6 +79,18 @@ public interface ArticleInfoDao {
     int addArticle(ArticleInfoTable table);
 
     /**
+     * 修改文章
+     * @param table
+     * @return int
+     * */
+    int updateArticle(ArticleInfoTable table);
+
+    /**
+     * 根据id查询文章是否存在
+     * */
+    int isExist(@Param("id") Long id);
+
+    /**
      * 删除文章
      * */
     int deleteArticle(@Param("id") Long id);

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * Created by qujie on 2018/1/4
@@ -26,7 +27,14 @@ public class UserProfileController extends BaseController {
     private UserInfoService userInfoService;
 
     @GetMapping("/profile")
-    public String profile(){
+    public String profile(HttpServletRequest request,HttpServletResponse response) throws Exception {
+        /**
+         * 获取登录人id
+         * */
+        Long userId = this.getUserId(request, response);
+        UserInfoEntity userInfoEntity = userInfoService.getUserByAuthorId(userId);
+
+        request.setAttribute("profile",userInfoEntity);
         return "user/profile";
     }
 

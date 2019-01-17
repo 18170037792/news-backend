@@ -40,14 +40,20 @@
     <!-- 修改留言信息 -->
     <update id="update" parameterType="com.xiafei.newsbackend.pojo.table.MessageInfoTable">
         update message_info
-        <set>
-            <if test="status!=null ">
-                status = #{status}
-            </if>
-            <if test="modifyUser!=null ">
-                modify_user = #{modifyUser}
-            </if>
-        </set>
+        set status = #{status}, modify_user = #{modifyUser}
         where id=#{id}
     </update>
+
+    <!-- 根据id查询留言是否存在 -->
+    <select id="isExist" parameterType="Long" resultType="int">
+        select count(*)
+        from message_info
+        where id = #{id}
+    </select>
+
+    <!-- 删除单个留言状态 -->
+    <delete id="delete" parameterType="Long">
+        delete from message_info
+        where id = #{id}
+    </delete>
 </mapper>

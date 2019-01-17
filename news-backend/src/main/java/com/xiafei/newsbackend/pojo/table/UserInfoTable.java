@@ -8,6 +8,11 @@ import java.util.Date;
 public class UserInfoTable extends BaseTable{
 
     /**
+     * 头像
+     * */
+    private String avatar;
+
+    /**
      * 用户名
      * */
     private String name;
@@ -43,6 +48,14 @@ public class UserInfoTable extends BaseTable{
      * 用户主页
      * */
     private String homeUrl;
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
 
     public String getName() {
         return name;
@@ -119,7 +132,8 @@ public class UserInfoTable extends BaseTable{
     @Override
     public String toString() {
         return "UserInfoTable{" +
-                "name='" + name + '\'' +
+                "avatar='" + avatar + '\'' +
+                ", name='" + name + '\'' +
                 ", pwd='" + pwd + '\'' +
                 ", personalizedSignature='" + personalizedSignature + '\'' +
                 ", personalProfile='" + personalProfile + '\'' +
