@@ -38,7 +38,7 @@ public class HomeController {
      * */
     @GetMapping("/index")
     public String index(@RequestParam(value = "current", defaultValue = "1") int current,
-                        @RequestParam(value = "row", defaultValue = "5") int row, HttpServletRequest request) throws Exception{
+                        @RequestParam(value = "row", defaultValue = "6") int row, HttpServletRequest request) throws Exception{
         PageLimitEntity pageLimitEntity = new PageLimitEntity();
         pageLimitEntity.setCurrent(current);
         pageLimitEntity.setRow(row);

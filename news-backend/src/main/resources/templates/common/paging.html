@@ -2,6 +2,23 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <body>
 
+<!--&lt;!&ndash; 前台分页 &ndash;&gt;-->
+<!--<ol class="page-navigator" th:fragment="pageNav(pageShowEntity, prevText, nextText, prefix)">-->
+    <!--<th:block th:if="${pageShowEntity.hasPreviousPage}">-->
+        <!--<li class="prev"><a th:href="@{'?current='+${pageShowEntity.prePage}}" th:text="${prevText}"></a></li>-->
+    <!--</th:block>-->
+
+
+    <!--<th:block th:each="navIndex :${ pageShowEntity.navigatePageNumbers}">-->
+        <!--<li th:class="${pageShowEntity.current==navIndex}?'current':''"><a  th:href="@{'?current='+${nav}}" th:text="${navIndex}"></a></li>-->
+    <!--</th:block>-->
+
+
+    <!--<th:block th:if="${pageShowEntity.hasNextPage}">-->
+        <!--<li class="next"><a th:href="@{'?current='+${pageShowEntity.next}}" th:text="${nextText}"></a></li>-->
+    <!--</th:block>-->
+
+<!--</ol>-->
 
 <div th:fragment="pageAdminNav(pageShowEntity)">
     <div class="clearfix dropdown">

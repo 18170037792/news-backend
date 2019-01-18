@@ -161,7 +161,12 @@
             </th:block>
         </div>
     </div>
+
+    <div th:replace="common/paging :: pageNav(${articles},'←','→','page')"></div>
+
 </section>
+
+
 
 <!--Footer-->
 <footer class="row" id="footer">
