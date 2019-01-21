@@ -2,10 +2,12 @@ package com.xiafei.newsbackend.controller;
 
 import com.xiafei.newsbackend.entity.article.ArticleAndTypeEntity;
 import com.xiafei.newsbackend.entity.article.ArticleInfoSearchEntity;
+import com.xiafei.newsbackend.entity.banner.IndexBannerEntity;
 import com.xiafei.newsbackend.entity.page.PageLimitEntity;
 import com.xiafei.newsbackend.entity.page.PageShowEntity;
 import com.xiafei.newsbackend.entity.user.UserInfoEntity;
 import com.xiafei.newsbackend.service.ArticleInfoService;
+import com.xiafei.newsbackend.service.IndexBannerService;
 import com.xiafei.newsbackend.service.UserInfoService;
 import com.xiafei.newsbackend.util.Constant;
 import com.xiafei.newsbackend.util.JsonResult;
@@ -23,6 +25,8 @@ public class HomeController {
     private ArticleInfoService articleInfoService;
     @Autowired
     private UserInfoService userInfoService;
+    @Autowired
+    private IndexBannerService bannerService;
 
 //    @GetMapping("/ueditor")
 //    public String showPage(){
@@ -44,8 +48,13 @@ public class HomeController {
         pageLimitEntity.setRow(row);
 
         PageShowEntity<ArticleAndTypeEntity> homeArticleWithPage = articleInfoService.getHomeArticleWithPage(pageLimitEntity);
+        /**
+         * 首页轮播信息列表
+         * */
+        List<IndexBannerEntity> bannerEntities = bannerService.getHomeArticleBanner();
 
         request.setAttribute("articles",homeArticleWithPage);
+        request.setAttribute("banners",bannerEntities);
 
         return "home/index";
     }

@@ -160,8 +160,13 @@ public class ArticleInfoServiceImpl implements ArticleInfoService {
     public ArticleAndTypeEntity getArticleInfo(Long articleId) throws Exception {
         ArticleTypeView view = dao.getArticleInfo(articleId);
         if(view == null){
-            return null;
+            throw new ServiceException(Constant.ARTICLE_IS_NULL);
         }
+
+        if(view != null && view.getStatus() == 2){
+            throw new ServiceException(Constant.PUBLISH_NOT);
+        }
+
         ArticleAndTypeEntity entity = new ArticleAndTypeEntity();
         BeanUtils.copyProperties(view,entity);
         return entity;
@@ -259,4 +264,22 @@ public class ArticleInfoServiceImpl implements ArticleInfoService {
             throw new ServiceException(Constant.SYSTEM_ERROR);
         }
     }
+
+    /**
+     * 文章预览
+     * @param articleId
+     * @throws Exception
+     * */
+    @Override
+    public ArticleAndTypeEntity previewArticle(Long articleId) throws Exception {
+        ArticleTypeView view = dao.getArticleInfo(articleId);
+        if(view == null){
+            throw  new ServiceException(Constant.ARTICLE_IS_NULL);
+        }
+
+        ArticleAndTypeEntity entity = new ArticleAndTypeEntity();
+        BeanUtils.copyProperties(view,entity);
+        return entity;
+    }
+
 }

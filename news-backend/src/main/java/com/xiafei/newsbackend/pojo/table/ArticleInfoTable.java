@@ -27,6 +27,11 @@ public class ArticleInfoTable extends BaseTable{
      * */
     private Integer status;
 
+    /**
+     * 是否置顶轮播 1为置顶，2为不置顶
+     * */
+    private Integer banner;
+
     public String getTitle() {
         return title;
     }
@@ -67,6 +72,14 @@ public class ArticleInfoTable extends BaseTable{
         this.status = status;
     }
 
+    public Integer getBanner() {
+        return banner;
+    }
+
+    public void setBanner(Integer banner) {
+        this.banner = banner;
+    }
+
     @Override
     public String toString() {
         return "ArticleInfoTable{" +
@@ -75,6 +88,7 @@ public class ArticleInfoTable extends BaseTable{
                 ", content='" + content + '\'' +
                 ", typeId=" + typeId +
                 ", status=" + status +
+                ", banner=" + banner +
                 '}';
     }
 }

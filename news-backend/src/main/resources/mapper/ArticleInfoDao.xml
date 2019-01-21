@@ -85,7 +85,7 @@
 
     <!-- 单个文章信息详情 -->
     <select id="getArticleInfo" resultType="com.xiafei.newsbackend.pojo.view.ArticleTypeView">
-        select article.id, article.add_user, article.title, article.subtitle, article.content, article.add_time, type.name as typeName, user.name as authorName
+        select article.id, article.add_user, article.title, article.subtitle, article.content, article.status, article.add_time, type.name as typeName, user.name as authorName
         from article_info article
         left join article_type type on article.type_id = type.id
         left join user_info user on article.add_user = user.id

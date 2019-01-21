@@ -101,36 +101,39 @@
 </header>
 
 <section class="row featured-post-carousel">
+    <th:block th:each="banner : ${banners}">
     <div class="item post">
-        <a href="single.html"><img src="/home/images/featured-posts/wen2.jpg" alt="" class="img-responsive main-bg"/></a>
+        <img class="img-responsive main-bg"
+              th:src="@{${common.getFirstImg(banner.content)}}"/>
         <div class="post-content">
             <div class="container">
-                <h5 class="post-meta"><i>in</i> <a href="#">作者 简介</a> | <a href="#">feb 17, 2016</a></h5>
-                <h2 class="post-title"><a href="single.html">此处文章详情页链接</a></h2>
-                <a href="single.html" class="btn btn-primary"><span>read more</span></a>
+                <h5 class="post-meta"><i>by</i> <a href="#" th:text="${banner.authorName}"></a> | <a href="#" th:text="${common.formatDate(banner.addTime)}"></a></h5>
+                <h2 class="post-title"><a th:href="@{'/single'+'?'+'articleId='+${banner.articleId}}" th:text="${banner.title}"></a></h2>
+                <a th:href="@{'/single'+'?'+'articleId='+${banner.articleId}}" class="btn btn-primary"><span>了解 更多</span></a>
             </div>
         </div>
     </div>
-    <div class="item post">
-        <img src="/home/images/featured-posts/1-1.jpg" alt="" class="img-responsive main-bg"/>
-        <div class="post-content">
-            <div class="container">
-                <h5 class="post-meta"><i>in</i> <a href="#">Author Profile</a> | <a href="#">feb 17, 2016</a></h5>
-                <h2 class="post-title"><a href="single.html">Nature, in the broadest sense, is the natural, physical, or material world or universe.</a></h2>
-                <a href="single.html" class="btn btn-primary"><span>read more</span></a>
-            </div>
-        </div>
-    </div>
-    <div class="item post">
-        <img src="/home/images/featured-posts/1-2.jpg" alt="" class="img-responsive main-bg"/>
-        <div class="post-content">
-            <div class="container">
-                <h5 class="post-meta"><i>in</i> <a href="#">Author Profile</a> | <a href="#">feb 17, 2016</a></h5>
-                <h2 class="post-title"><a href="single.html">Nature, in the broadest sense, is the natural, physical, or material world or universe.</a></h2>
-                <a href="single.html" class="btn btn-primary"><span>read more</span></a>
-            </div>
-        </div>
-    </div>
+    </th:block>
+    <!--<div class="item post">-->
+        <!--<img src="/home/images/featured-posts/1-1.jpg" alt="" class="img-responsive main-bg"/>-->
+        <!--<div class="post-content">-->
+            <!--<div class="container">-->
+                <!--<h5 class="post-meta"><i>in</i> <a href="#">Author Profile</a> | <a href="#">feb 17, 2016</a></h5>-->
+                <!--<h2 class="post-title"><a href="single.html">Nature, in the broadest sense, is the natural, physical, or material world or universe.</a></h2>-->
+                <!--<a href="single.html" class="btn btn-primary"><span>read more</span></a>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="item post">-->
+        <!--<img src="/home/images/featured-posts/1-2.jpg" alt="" class="img-responsive main-bg"/>-->
+        <!--<div class="post-content">-->
+            <!--<div class="container">-->
+                <!--<h5 class="post-meta"><i>in</i> <a href="#">Author Profile</a> | <a href="#">feb 17, 2016</a></h5>-->
+                <!--<h2 class="post-title"><a href="single.html">Nature, in the broadest sense, is the natural, physical, or material world or universe.</a></h2>-->
+                <!--<a href="single.html" class="btn btn-primary"><span>read more</span></a>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
 </section>
 <div class="tlinks">Collect from <a href="http://www.cssmoban.com/" ></a></div>
 <section class="row content-wrap">

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiafei.newsbackend.dao.IndexBannerDao">
+
+    <!-- 查询首页轮播文章信息 -->
+    <select id="getHomeArticleBanner" resultType="com.xiafei.newsbackend.pojo.view.IndexBannerView">
+        select banner.id, banner.article_id, article.title, article.content, article.add_user, user.name as authorName, article.add_time
+        from index_banner banner
+        left join article_info article on banner.article_id = article.id
+        left join user_info user on article.add_user = user.id
+        where article.status = 1
+        order by banner.sort desc
+    </select>
+</mapper>

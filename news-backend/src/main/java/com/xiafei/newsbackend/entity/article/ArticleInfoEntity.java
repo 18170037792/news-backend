@@ -1,5 +1,7 @@
 package com.xiafei.newsbackend.entity.article;
 
+import java.util.Date;
+
 public class ArticleInfoEntity {
 
     private Long id;
@@ -21,9 +23,19 @@ public class ArticleInfoEntity {
      * */
     private Long typeId;
     /**
-     * 排序
+     * 文章状态
      * */
     private Integer status;
+
+    /**
+     * 是否置顶轮播
+     * */
+    private Integer banner;
+
+    /**
+     * 发布时间
+     * */
+    private Date addTime;
 
     private Long addUser;
 
@@ -93,6 +105,22 @@ public class ArticleInfoEntity {
         this.addUser = addUser;
     }
 
+    public Integer getBanner() {
+        return banner;
+    }
+
+    public void setBanner(Integer banner) {
+        this.banner = banner;
+    }
+
+    public Date getAddTime() {
+        return addTime;
+    }
+
+    public void setAddTime(Date addTime) {
+        this.addTime = addTime;
+    }
+
     @Override
     public String toString() {
         return "ArticleInfoEntity{" +
@@ -102,6 +130,8 @@ public class ArticleInfoEntity {
                 ", content='" + content + '\'' +
                 ", typeId=" + typeId +
                 ", status=" + status +
+                ", banner=" + banner +
+                ", addTime=" + addTime +
                 ", addUser=" + addUser +
                 ", messageCount=" + messageCount +
                 '}';

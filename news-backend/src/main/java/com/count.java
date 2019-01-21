@@ -25,7 +25,7 @@ public class count {
 
     public static void main(String[] args) throws IOException {
         //用法示例
-        int num = getProjectFileNumber(new File("F:\\news-backend\\news-backend\\src\\main\\resources\\templates"), ".html");
+        int num = getProjectFileNumber(new File("F:\\news-backend\\news-backend\\src\\main"), ".java");
         System.out.println(num);
     }
 

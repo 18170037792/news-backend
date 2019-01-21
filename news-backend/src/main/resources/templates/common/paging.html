@@ -47,7 +47,7 @@
                 </a>
             </li>
 
-            <li th:if="${!pageShowEntity.lastPage}">
+            <li th:if="${!pageShowEntity.lastPage} and ${pageShowEntity.pageTotal} &gt;1">
                 <a th:href="@{'?current='+${pageShowEntity.pageTotal}}">
                     &nbsp;末页
                 </a>

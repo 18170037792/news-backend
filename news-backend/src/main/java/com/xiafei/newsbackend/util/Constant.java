@@ -38,6 +38,8 @@ public class Constant {
 
     public final static String PUBLISH_SUCCESS = "发布成功";
 
+    public final static String PUBLISH_NOT = "文章未发布";
+
     public final static String UPLOAD_SUCCESS = "上传成功";
 
     public final static String UPLOAD_FALIED = "上传失败";
@@ -75,4 +77,6 @@ public class Constant {
     public static final String NOT_THE_SAME = "新旧密码不能相同";
 
     public static final String DELETE_SUCCESS = "删除成功";
+
+    public static final String ARTICLE_IS_NULL = "文章不存在";
 }

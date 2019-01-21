@@ -194,4 +194,15 @@ public class ArticleInfoController extends BaseController {
         return new JsonResult(Constant.SUCCESS_CODE,Constant.DELETE_SUCCESS);
     }
 
+    /**
+     * 文章预览
+     * @param articleId
+     * @param request
+     * */
+    @GetMapping("/preview")
+    public String previewArticle(@RequestParam ("articleId") Long articleId, HttpServletRequest request) throws Exception{
+        ArticleAndTypeEntity articleInfo = service.previewArticle(articleId);
+        request.setAttribute("article",articleInfo);
+        return "home/single";
+    }
 }

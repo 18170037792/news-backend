@@ -85,4 +85,11 @@ public interface ArticleInfoService {
      * @throws Exception
      * */
     void deleteArticle(Long id) throws Exception;
+
+    /**
+     * 文章预览
+     * @param articleId
+     * @throws Exception
+     * */
+    ArticleAndTypeEntity previewArticle(Long articleId) throws Exception;
 }
