@@ -3,7 +3,7 @@
 <header th:replace="user/header::headerFragment(${title},${active})"></header>
 <body class="fixed-left">
 <div id="wrapper">
-    <div th:replace="user/header::header-body"></div>
+    <div th:replace="admin/header::header-body"></div>
     <div class="content-page">
         <div class="content">
             <div class="container">
@@ -24,47 +24,47 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <th:block th:each="article : ${articles.data}">
+
                                 <tr>
-                                    <td th:text="${article.title}">
+                                    <td >
                                         <a ></a>
                                     </td>
-                                    <td th:text="${article.title}">
+                                    <td >
                                         <a ></a>
                                     </td>
-                                    <td th:text="${common.formatDate(article.addTime)}"></td>
                                     <td ></td>
-                                    <td th:text="${article.typeName}"></td>
+                                    <td ></td>
+                                    <td ></td>
                                     <td>
-                                        <th:block th:if="${article.status == 1}">
-                                            <span class="label label-success">已发布</span>
-                                        </th:block>
-                                        <th:block th:if="${article.status == 2}">
-                                            <span class="label label-default">草稿</span>
-                                        </th:block>
+                                        <!--<th:block th:if="${article.status == 1}">-->
+                                            <!--<span class="label label-success">已发布</span>-->
+                                        <!--</th:block>-->
+                                        <!--<th:block th:if="${article.status == 2}">-->
+                                            <!--<span class="label label-default">草稿</span>-->
+                                        <!--</th:block>-->
                                     </td>
                                     <td>
-                                        <a th:href="@{'/user/article/'+${article.id}}"
+                                        <a
                                            class="btn btn-primary btn-sm waves-effect waves-light m-b-5"><i
                                                 class="fa fa-edit"></i> <span>置顶</span></a>
-                                        <a href="javascript:void(0)" th:onclick="'delArticle('+${article.id}+');'"
+                                        <a href="javascript:void(0)"
                                            class="btn btn-danger btn-sm waves-effect waves-light m-b-5">
                                             <i class="fa fa-trash-o"></i> <span>冻结</span></a>
                                     </td>
                                 </tr>
-                            </th:block>
+
 
                             </tbody>
                         </table>
-                        <div th:replace="common/paging :: pageAdminNav(${articles})"></div>
+                        <div ></div>
                     </div>
                 </div>
-                <div th:replace="user/footer :: footer-content"></div>
+                <div ></div>
             </div>
         </div>
     </div>
 </div>
-<div th:replace="user/footer :: footer"></div>
+<div th:replace="admin/footer :: footer"></div>
 <script type="text/javascript">
     /*<![CDATA[*/
     /*]]>*/

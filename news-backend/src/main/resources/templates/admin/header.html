@@ -74,8 +74,8 @@
                             class="fa fa-list" aria-hidden="true"></i><span> 文章管理 </span></a>
                 </li>
                 <li th:class="${active}=='banner'?'active':''">
-                    <a th:href="@{/admin/article/list}"
-                       th:class="${active}=='article'?'waves-effect active':'waves-effect'"><i
+                    <a th:href="@{/admin/banner/list}"
+                       th:class="${active}=='banner'?'waves-effect active':'waves-effect'"><i
                             class="fa fa-list" aria-hidden="true"></i><span> 轮播管理 </span></a>
                 </li>
                 <li th:class="${active}=='users'?'active':''">
@@ -83,10 +83,10 @@
                        th:class="${active}=='users'?'waves-effect active':'waves-effect'"><i
                             class="glyphicon glyphicon-user" aria-hidden="true"></i><span> 用户管理 </span></a>
                 </li>
-                <li th:class="${active}=='attach'?'active':''">
-                    <a th:href="@{/admin/attach}"
-                       th:class="${active}=='attach'?'waves-effect active':'waves-effect'"><i
-                            class="fa fa-cloud-upload" aria-hidden="true"></i><span> 文件管理 </span></a>
+                <li th:class="${active}=='category'?'active':''">
+                    <a th:href="@{/admin/category}"
+                       th:class="${active}=='category'?'waves-effect active':'waves-effect'"><i
+                            class="fa fa-tags" aria-hidden="true"></i><span> 分类管理 </span></a>
                 </li>
                 <li th:class="${active}=='links'?'active':''">
                     <a th:href="@{/admin/links}" th:class="${active}=='links'?'waves-effect active':'waves-effect'"><i

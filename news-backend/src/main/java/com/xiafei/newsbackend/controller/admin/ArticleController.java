@@ -4,6 +4,7 @@ import com.xiafei.newsbackend.controller.BaseController;
 import com.xiafei.newsbackend.service.ArticleInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -17,5 +18,9 @@ public class ArticleController extends BaseController {
     @Autowired
     private ArticleInfoService articleService;
 
+    @GetMapping("/list")
+    public String article(){
+        return "admin/article_list";
+    }
 
 }
