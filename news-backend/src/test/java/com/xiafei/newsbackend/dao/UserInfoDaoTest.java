@@ -5,12 +5,14 @@ import com.xiafei.newsbackend.entity.user.UserLoginEntity;
 import com.xiafei.newsbackend.pojo.table.UserInfoTable;
 import com.xiafei.newsbackend.pojo.view.UserInfoView;
 import com.xiafei.newsbackend.pojo.view.UserLogView;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.Date;
 import java.util.List;
 
 @SpringBootTest
@@ -74,5 +76,21 @@ public class UserInfoDaoTest {
         table.setId(5L);
         table.setPwd("123456");
         dao.updatePwdById(table);
+    }
+
+    /**
+     * 修改用户信息
+     * */
+    @Test
+    public void updateUser(){
+        UserInfoTable table = new UserInfoTable();
+        table.setId(1L);
+        table.setNickname("瞿杰");
+        table.setGender(1);
+        table.setPersonalizedSignature("白茶清欢无别事");
+        table.setMobile("11244522221");
+        table.setModifyTime(new Date());
+        int result = dao.updateUser(table);
+        Assert.assertTrue(result>0);
     }
 }

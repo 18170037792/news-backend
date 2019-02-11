@@ -49,6 +49,31 @@ public class UserInfoTable extends BaseTable{
      * */
     private String homeUrl;
 
+    /**
+     * 昵称
+     * */
+    private String nickname;
+    /**
+     * 性别
+     * */
+    private Integer gender;
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public Integer getGender() {
+        return gender;
+    }
+
+    public void setGender(Integer gender) {
+        this.gender = gender;
+    }
+
     public String getAvatar() {
         return avatar;
     }
@@ -142,6 +167,8 @@ public class UserInfoTable extends BaseTable{
                 ", email='" + email + '\'' +
                 ", roleId=" + roleId +
                 ", homeUrl='" + homeUrl + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", gender=" + gender +
                 '}';
     }
 }

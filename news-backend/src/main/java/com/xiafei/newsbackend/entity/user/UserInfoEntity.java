@@ -17,6 +17,53 @@ public class UserInfoEntity {
     private Date lastLoginTime;
     private String lastLoginIp;
 
+    private String nickname;
+    private Integer gender;
+    private String genderStr;
+
+    private Date modifyTime;
+    private String modifyIp;
+
+    public Date getModifyTime() {
+        return modifyTime;
+    }
+
+    public void setModifyTime(Date modifyTime) {
+        this.modifyTime = modifyTime;
+    }
+
+    public String getModifyIp() {
+        return modifyIp;
+    }
+
+    public void setModifyIp(String modifyIp) {
+        this.modifyIp = modifyIp;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public Integer getGender() {
+        return gender;
+    }
+
+    public void setGender(Integer gender) {
+        this.gender = gender;
+    }
+
+    public String getGenderStr() {
+        return genderStr;
+    }
+
+    public void setGenderStr(String genderStr) {
+        this.genderStr = genderStr;
+    }
+
     public Long getId() {
         return id;
     }
@@ -128,6 +175,9 @@ public class UserInfoEntity {
                 ", homeUrl='" + homeUrl + '\'' +
                 ", lastLoginTime=" + lastLoginTime +
                 ", lastLoginIp='" + lastLoginIp + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", gender=" + gender +
+                ", genderStr='" + genderStr + '\'' +
                 '}';
     }
 }

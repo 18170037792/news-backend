@@ -133,6 +133,17 @@ public class UserInfoServiceImpl implements UserInfoService {
         }
         UserInfoEntity entity = new UserInfoEntity();
         BeanUtils.copyProperties(table,entity);
+        switch (entity.getGender()){
+            case 1:
+                entity.setGenderStr("男");
+                break;
+            case 2:
+                entity.setGenderStr("女");
+                break;
+            default :
+                entity.setGenderStr("");
+                break;
+        }
         return entity;
     }
 
@@ -175,7 +186,6 @@ public class UserInfoServiceImpl implements UserInfoService {
     public void updateUser(UserInfoEntity entity) throws Exception {
         UserInfoTable table = new UserInfoTable();
         BeanUtils.copyProperties(entity,table);
-
         int count = dao.updateUser(table);
         if(count <1){
             throw new ServiceException(Constant.SYSTEM_ERROR);

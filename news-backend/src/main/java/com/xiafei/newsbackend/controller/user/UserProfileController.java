@@ -3,17 +3,16 @@ package com.xiafei.newsbackend.controller.user;
 import com.xiafei.newsbackend.controller.BaseController;
 import com.xiafei.newsbackend.entity.user.UserInfoEntity;
 import com.xiafei.newsbackend.service.UserInfoService;
-import com.xiafei.newsbackend.util.Constant;
-import com.xiafei.newsbackend.util.GetMD5;
-import com.xiafei.newsbackend.util.JsonResult;
-import com.xiafei.newsbackend.util.ValidateUtil;
+import com.xiafei.newsbackend.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.io.IOException;
+import java.util.Date;
 
 /**
  * Created by qujie on 2018/1/4
@@ -33,11 +32,47 @@ public class UserProfileController extends BaseController {
          * */
         Long userId = this.getUserId(request, response);
         UserInfoEntity userInfoEntity = userInfoService.getUserByAuthorId(userId);
-
         request.setAttribute("profile",userInfoEntity);
         return "user/profile";
     }
 
+    /**
+     * 编辑个人信息
+     * @param userInfoEntity
+     * @param request
+     * @param response
+     * */
+    @PostMapping("/profile/save")
+    @ResponseBody
+    public JsonResult saveProfile(@Valid UserInfoEntity userInfoEntity,HttpServletRequest request,HttpServletResponse response) throws Exception{
+
+        /**
+         * 获取登录人信息
+         * */
+        Long userId = this.getUserId(request, response);
+        userInfoEntity.setModifyTime(new Date());
+        userInfoEntity.setModifyIp(GetIpAndMac.getIp(request));
+
+        if(userInfoEntity.getGenderStr().equals("男")){
+            userInfoEntity.setGender(1);
+        }else if(userInfoEntity.getGenderStr().equals("女")){
+            userInfoEntity.setGender(2);
+        }
+
+        /**
+         * 调用service
+         * */
+        userInfoService.updateUser(userInfoEntity);
+        return new JsonResult(Constant.SUCCESS_CODE,Constant.UPDATE_SUCCESS);
+    }
+
+    /**
+     * 修改用户密码
+     * @param oldPwd
+     * @param newPwd
+     * @param request
+     * @param response
+     * */
     @PostMapping("/updatePwd")
     @ResponseBody
     public JsonResult updatePwd(@RequestParam String oldPwd,@RequestParam String newPwd,

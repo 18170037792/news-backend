@@ -19,56 +19,65 @@
                             </div>
                             <div class="panel-body">
                                 <form class="form-horizontal" role="form" id="user-form">
+                                    <input type="hidden" name="id" id="id" th:value="${profile!=null and profile.id!=null}?${profile.id}: ''"/>
+                                    <input type="hidden" name="personalProfile" th:value="${profile!=null and profile.personalProfile !=null}?${profile.personalProfile}: ''" id="content-personal"/>
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">账号</label>
                                         <div class="col-md-9">
-                                            <input type="text"  class="form-control"  readonly="readonly" disabled="disabled"/>
+                                            <input type="text"  class="form-control"  readonly="readonly" disabled="disabled"
+                                                   th:value="${profile!=null and profile.name !=null}?${profile.name}: ''"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">昵称</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="screenName" placeholder="输入您的姓名"
-                                                    required="required" aria-required="true"/>
+                                            <input type="text" class="form-control" name="nickname" placeholder="输入您的昵称"
+                                                   required="required" aria-required="true"
+                                                   th:value="${profile!=null and profile.nickname !=null}?${profile.nickname}: ''"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">性别</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="email" placeholder="输入您的邮箱"
-                                                    required="required" aria-required="true"/>
+                                            <input type="text" class="form-control" name="genderStr" placeholder="输入您的性别，男或女"
+                                                    required="required" aria-required="true"
+                                                   th:value="${profile!=null and profile.genderStr !=null}?${profile.genderStr}: ''"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label">生日</label>
+                                        <label class="col-md-3 control-label">邮箱</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="email" placeholder="输入您的邮箱"
-                                                   required="required" aria-required="true"/>
+                                            <input type="email" class="form-control" name="email" placeholder="输入您的邮箱"
+                                                   required="required" aria-required="true"
+                                                   th:value="${profile!=null and profile.email !=null}?${profile.email}: ''"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">主页</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="email" placeholder="http:// 或 https://,后缀为主页域名"
-                                                   required="required" aria-required="true"/>
+                                            <input type="text" class="form-control" name="homeUrl" placeholder="http:// 或 https://,后缀为主页域名"
+                                                   required="required" aria-required="true"
+                                                   th:value="${profile!=null and profile.homeUrl !=null}?${profile.homeUrl}: ''"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">签名</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="email" placeholder="输入您的邮箱"
-                                                   required="required" aria-required="true"/>
+                                            <input type="text" class="form-control" name="personalizedSignature" placeholder="个性签名"
+                                                   required="required" aria-required="true"
+                                                   th:value="${profile!=null and profile.personalizedSignature !=null}?${profile.personalizedSignature}: ''"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">个人简介</label>
                                         <div class="col-md-9">
-                                            <textarea class="form-control" rows="6" style="resize:none" name="email" placeholder="介绍一下你自己吧"
-                                                   required="required" aria-required="true"/>
+                                            <textarea class="form-control" rows="6" style="resize:none" id="personalProfile" placeholder="介绍一下你自己吧"
+                                                   required="required" aria-required="true"
+                                                      th:utext="${profile!=null and profile.personalProfile !=null}?${profile.personalProfile}: ''"/>
                                         </div>
                                     </div>
                                     <div class="clearfix pull-right">
-                                        <button type="button" class="btn btn-primary waves-effect waves-light" >
+                                        <button type="button" class="btn btn-primary waves-effect waves-light" onclick="saveProfile();">
                                             保存信息
                                         </button>
                                     </div>
@@ -156,6 +165,7 @@
     /*<![CDATA[*/
     var news = new $.news();
 
+    //修改密码
     $('#pwd-form').validate({
         submitHandler: function (form) {
             var params = $("#pwd-form").serialize();
@@ -186,6 +196,61 @@
             $("#avatar_img").attr("src", this.result);
         }
     });
+
+    //保存个人信息
+    function saveProfile(){
+        /**字段验证*/
+        var id = $('#user-form #id').val();
+        var nickname = $('#user-form input[name=nickname]').val();
+        var genderStr = $('#user-form input[name=genderStr]').val();
+        var email = $('#user-form input[name=email]').val();
+        var homeUrl = $('#user-form input[name=homeUrl]').val();
+        var personalizedSignature = $('#user-form input[name=personalizedSignature]').val();
+        var personalProfile = $('#personalProfile').val();
+        if (nickname == '') {
+            news.alertWarn('昵称不能为空');
+            return;
+        }
+        if(genderStr == ''){
+            news.alertWarn('性别不能为空');
+            return;
+        }else if(genderStr != '男' && genderStr != '女'){
+            news.alertWarn('请正确填写性别');
+            return;
+        }
+        if (email == '') {
+            news.alertWarn('邮箱不能为空');
+            return;
+        }
+        if (homeUrl == '') {
+            news.alertWarn('主页不能为空');
+            return;
+        }
+        if (personalizedSignature == '') {
+            news.alertWarn('个性签名不能为空');
+            return;
+        }
+        if (personalProfile == '') {
+            news.alertWarn('个人简介不能为空');
+            return;
+        }
+
+        /**赋值*/
+        $('#content-personal').val(personalProfile);
+        var params = $('#user-form').serialize();
+
+        news.post({
+        url:'/user/profile/save',
+        data:params,
+        success: function (result) {
+            if (result.code == 200) {
+                news.alertOkAndReload('个人信息保存成功');
+            } else {
+                news.alertError(result.msg);
+            }
+        }
+    });
+    }
 
     //上传头像-->
     <!--function avatarForm() {-->
