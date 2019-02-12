@@ -32,6 +32,8 @@ public class ArticleAndTypeEntity {
      * */
     private String typeName;
 
+    private String tag;
+
     /**
      * 作者名称
      * */
@@ -151,6 +153,14 @@ public class ArticleAndTypeEntity {
         this.views = views;
     }
 
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
     @Override
     public String toString() {
         return "ArticleAndTypeEntity{" +
@@ -161,6 +171,7 @@ public class ArticleAndTypeEntity {
                 ", status=" + status +
                 ", addTime=" + addTime +
                 ", typeName='" + typeName + '\'' +
+                ", tag='" + tag + '\'' +
                 ", authorName='" + authorName + '\'' +
                 ", addUser=" + addUser +
                 ", avatar='" + avatar + '\'' +

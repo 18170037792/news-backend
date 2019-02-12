@@ -3,6 +3,7 @@ server:
 spring:
   profiles:
     active: dev
+  #thymeleaf配置
   thymeleaf:
     prefix: classpath:/templates/
     suffix: .html
@@ -11,6 +12,19 @@ spring:
     #HTML5严格模式
     mode: HTML5
     cache: false
+  #邮件发送配置
+  mail:
+    default-encoding: UTF-8
+    host: smtp.qq.com
+    username: 1071367833@qq.com
+    password: hetxnaolakivbfhb
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
   http:
     multipart:
       maxFileSize: 100Mb

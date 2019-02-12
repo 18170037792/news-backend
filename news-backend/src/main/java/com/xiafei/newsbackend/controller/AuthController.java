@@ -27,6 +27,14 @@ public class AuthController extends BaseController{
     private LogInfoService logInfoService;
 
     /**
+     * 用户注册
+     * */
+    @GetMapping("/register")
+    public String register(){
+        return "user/register";
+    }
+
+    /**
      * 跳转到登录页面
      * */
     @GetMapping("/login")

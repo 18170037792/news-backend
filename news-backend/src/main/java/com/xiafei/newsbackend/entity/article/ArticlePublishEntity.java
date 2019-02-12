@@ -38,6 +38,11 @@ public class ArticlePublishEntity {
     private Long typeId;
 
     /**
+     * 文章标签
+     * */
+    private String tag;
+
+    /**
      * 文章状态
      * */
     private Integer status;
@@ -46,6 +51,14 @@ public class ArticlePublishEntity {
 
     private Date addTime;
     private String addIp;
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
 
     public Long getId() {
         return id;

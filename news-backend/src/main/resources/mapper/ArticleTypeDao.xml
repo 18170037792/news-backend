@@ -4,8 +4,8 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xiafei.newsbackend.dao.ArticleTypeDao">
     <select id="getTypeList" resultType="com.xiafei.newsbackend.pojo.table.ArticleTypeTable">
-        select *
-        from article_type
+        select type.id,type.name,type.sort,(SELECT count(*) from article_info WHERE type.id = type_id) AS count
+        from article_type AS type
         order by sort
     </select>
 </mapper>

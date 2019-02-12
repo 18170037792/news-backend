@@ -38,6 +38,7 @@ public class WebMvcInterceptor extends WebMvcConfigurerAdapter {
          */
         String loginExcludePathPatterns[] = {
                 "/admin/user/login",
+                "/admin/user/register",
                 "/index",
                 "/contact",
                 "/about",

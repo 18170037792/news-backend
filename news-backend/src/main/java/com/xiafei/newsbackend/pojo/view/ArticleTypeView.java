@@ -36,6 +36,8 @@ public class ArticleTypeView {
      * */
     private String typeName;
 
+    private String tag;
+
     /**
      * 作者名称
      * */
@@ -129,6 +131,14 @@ public class ArticleTypeView {
         this.avatar = avatar;
     }
 
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
     @Override
     public String toString() {
         return "ArticleTypeView{" +
@@ -139,6 +149,7 @@ public class ArticleTypeView {
                 ", status=" + status +
                 ", addTime=" + addTime +
                 ", typeName='" + typeName + '\'' +
+                ", tag='" + tag + '\'' +
                 ", authorName='" + authorName + '\'' +
                 ", addUser=" + addUser +
                 ", avatar='" + avatar + '\'' +

@@ -1,6 +1,5 @@
 package com.xiafei.newsbackend.util;
 
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -17,6 +16,8 @@ import java.util.regex.Pattern;
  * */
 @Component
 public final class Common {
+
+    private static final String[] COLORS = {"default", "primary", "success", "info", "warning", "danger", "inverse", "purple", "pink"};
 
     /**
      * 获取图片名随机数
@@ -74,5 +75,18 @@ public final class Common {
         }
         String firstImg = imgSrc.get(0);
         return firstImg;
+    }
+
+    /**
+     * 颜色随机数
+     * */
+    public static String rand_color() {
+        int r = rand(0, COLORS.length - 1);
+        return COLORS[r];
+    }
+
+    public static int rand(int min, int max) {
+        final Random random = new Random();
+        return random.nextInt(max) % (max - min + 1) + min;
     }
 }

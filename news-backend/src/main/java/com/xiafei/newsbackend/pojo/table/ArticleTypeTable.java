@@ -19,6 +19,11 @@ public class ArticleTypeTable extends BaseTable{
      * */
     private Integer sort;
 
+    /**
+     * 文章分类下对应的文章数量
+     * */
+    private Integer count;
+
     public String getName() {
         return name;
     }
@@ -43,12 +48,21 @@ public class ArticleTypeTable extends BaseTable{
         this.sort = sort;
     }
 
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
+    }
+
     @Override
     public String toString() {
         return "ArticleTypeTable{" +
                 "name='" + name + '\'' +
                 ", show=" + show +
                 ", sort=" + sort +
+                ", count=" + count +
                 '}';
     }
 }

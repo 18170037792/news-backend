@@ -13,6 +13,7 @@ function subArticle(status) {
     var title = $('#articleForm input[name=title]').val();
     /**获取文章副标题*/
     var subtitle = $('#articleForm input[name=subtitle]').val();
+    var tag = $('#articleForm input[name=tags]').val();
     /**获取富文本内容*/
     var content = UE.getEditor('myEditor').getContent();
     if (title == '') {

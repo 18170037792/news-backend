@@ -10,6 +10,8 @@ public class ArticleTypeEntity {
      * 类别名称
      * */
     private String name;
+
+    private Integer count;
     /**
      * 是否显示
      * */
@@ -35,6 +37,14 @@ public class ArticleTypeEntity {
         this.name = name;
     }
 
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
+    }
+
     public Integer getShow() {
         return show;
     }
@@ -56,6 +66,7 @@ public class ArticleTypeEntity {
         return "ArticleTypeEntity{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", count=" + count +
                 ", show=" + show +
                 ", sort=" + sort +
                 '}';

@@ -17,27 +17,33 @@
                                 <h1 class="panel-title">分类列表</h1>
                             </div>
                             <div class="panel-body">
-
+                                <th:block th:each="c : ${categorys}">
                                     <div class="btn-group m-b-10">
-
-                                            <button type="button">
-
-                                            </button>
-
-
+                                        <!--<th:block th:if="${c.name == '默认分类'}">-->
+                                            <!--<button type="button"-->
+                                                    <!--th:class="'btn btn-'+${adminCommons.rand_color()}+' waves-effect waves-light'">-->
+                                                <!--<th:block th:text="${c.name}"/>-->
+                                                <!--<th:block th:text="' ('+${c.count}+')'"/>-->
+                                            <!--</button>-->
+                                        <!--</th:block>-->
+                                        <th:block>
                                             <button type="button"
+                                                    th:class="'btn btn-'+${common.rand_color()}+' dropdown-toggle waves-effect waves-light'"
                                                     data-toggle="dropdown" aria-expanded="false">
+                                                <th:block th:text="${c.name}"/>
+                                                <th:block th:text="' ('+${c.count}+')'"/>
                                                 <span
                                                         class="caret"></span></button>
                                             <ul class="dropdown-menu" role="menu">
-                                                <li><a href="javascript:void(0)"
+                                                <li><a href="javascript:void(0)" th:attr="id=${c.id},name=${c.name}"
                                                        class="edit-category">修改</a>
                                                 </li>
-                                                <li><a href="javascript:void(0)"
+                                                <li><a href="javascript:void(0)" th:attr="id=${c.id}"
                                                        class="del-category">删除</a></li>
                                             </ul>
-
+                                        </th:block>
                                     </div>
+                                </th:block>
 
                             </div>
                         </div>
@@ -50,16 +56,30 @@
                             </div>
                             <div class="panel-body">
 
-                                    <div class="btn-group m-b-10">
-                                        <button type="button"
-                                                data-toggle="dropdown" aria-expanded="false">
-                                            <span
-                                                    class="caret"></span></button>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="javascript:void(0)"
-                                                   class="del-category">删除</a></li>
-                                        </ul>
-                                    </div>
+                                <div class="btn-group m-b-10">
+                                    <button type="button"
+                                            class="btn btn-danger dropdown-toggle waves-effect waves-light"
+                                            data-toggle="dropdown" aria-expanded="false">
+                                        岁月不居</button>
+                                </div>
+                                <div class="btn-group m-b-10">
+                                    <button type="button"
+                                            class="btn btn-primary dropdown-toggle waves-effect waves-light"
+                                            data-toggle="dropdown" aria-expanded="false">
+                                        青春文艺</button>
+                                </div>
+                                <div class="btn-group m-b-10">
+                                    <button type="button"
+                                            class="btn btn-inverse dropdown-toggle waves-effect waves-light'"
+                                            data-toggle="dropdown" aria-expanded="false">
+                                        军旅人生</button>
+                                </div>
+                                <div class="btn-group m-b-10">
+                                    <button type="button"
+                                            class="btn btn-purple dropdown-toggle waves-effect waves-light'"
+                                            data-toggle="dropdown" aria-expanded="false">
+                                        诗歌篇赋</button>
+                                </div>
 
                             </div>
                         </div>

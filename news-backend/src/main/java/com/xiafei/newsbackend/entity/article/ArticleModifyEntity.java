@@ -37,11 +37,24 @@ public class ArticleModifyEntity {
     @NotNull(message = "文章分类不能为空")
     private Long typeId;
 
+    /**
+     * 文章标签
+     * */
+    private String tag;
+
     private Integer status;
 
     private Date modifyTime;
     private Long modifyUser;
     private String modifyIp;
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
 
     public Long getId() {
         return id;
