@@ -34,6 +34,12 @@ public class AuthController extends BaseController{
         return "user/register";
     }
 
+    @PostMapping("/register")
+    @ResponseBody
+    public JsonResult doRegister(){
+        return new JsonResult(Constant.SUCCESS_CODE,Constant.SAVE_SUCCESS);
+    }
+
     /**
      * 跳转到登录页面
      * */

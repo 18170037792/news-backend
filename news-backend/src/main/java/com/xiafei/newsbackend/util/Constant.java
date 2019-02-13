@@ -24,6 +24,12 @@ public class Constant {
 
     public final static String UPDATE_SUCCESS = "修改成功";
 
+    public final static String UPDATE_FAILED = "修改失败";
+
+    public final static String ADD_SUCCESS = "新增成功";
+
+    public final static String ADD_FAILED = "新增失败";
+
     public final static String CANCEL_SUCCESS = "取消成功";
 
     public final static String LOGIN_SUCCESS = "登录成功";

@@ -3,6 +3,7 @@ package com.xiafei.newsbackend.controller;
 import com.xiafei.newsbackend.service.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -18,7 +19,7 @@ public class MailController {
     @Autowired
     private MailService mailService;
 
-    @RequestMapping("/getCheckCode")
+    @GetMapping("/getCheckCode")
     @ResponseBody
     public String getCheckCode(String email){
         String checkCode = String.valueOf(new Random().nextInt(899999) + 100000);

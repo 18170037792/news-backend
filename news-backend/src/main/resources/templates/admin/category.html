@@ -19,13 +19,6 @@
                             <div class="panel-body">
                                 <th:block th:each="c : ${categorys}">
                                     <div class="btn-group m-b-10">
-                                        <!--<th:block th:if="${c.name == '默认分类'}">-->
-                                            <!--<button type="button"-->
-                                                    <!--th:class="'btn btn-'+${adminCommons.rand_color()}+' waves-effect waves-light'">-->
-                                                <!--<th:block th:text="${c.name}"/>-->
-                                                <!--<th:block th:text="' ('+${c.count}+')'"/>-->
-                                            <!--</button>-->
-                                        <!--</th:block>-->
                                         <th:block>
                                             <button type="button"
                                                     th:class="'btn btn-'+${common.rand_color()}+' dropdown-toggle waves-effect waves-light'"
@@ -35,11 +28,10 @@
                                                 <span
                                                         class="caret"></span></button>
                                             <ul class="dropdown-menu" role="menu">
-                                                <li><a href="javascript:void(0)" th:attr="id=${c.id},name=${c.name}"
+                                                <li><a href="javascript:void(0)" th:attr="id=${c.id},name=${c.name},sort=${c.sort}"
                                                        class="edit-category">修改</a>
                                                 </li>
-                                                <li><a href="javascript:void(0)" th:attr="id=${c.id}"
-                                                       class="del-category">删除</a></li>
+                                                <li><a href="javascript:void(0)" th:onclick="'delCategory('+${c.id}+');'">删除</a></li>
                                             </ul>
                                         </th:block>
                                     </div>
@@ -89,9 +81,12 @@
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 <form id="cform" class="form-inline" role="form">
-                                    <input type="hidden" id="mid"/>
+                                    <input type="hidden" id="id"/>
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="cname" placeholder="请输入分类名称"/>
+                                        <input type="text" class="form-control" id="name" placeholder="请输入分类名称"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="sort"  placeholder="请输入排序数字"/>
                                     </div>
                                     <button id="save-category-btn" type="button"
                                             class="btn btn-success waves-effect waves-light m-l-10">保存分类
@@ -109,6 +104,71 @@
 <div th:replace="admin/footer :: footer"></div>
 <script type="text/javascript">
     /*<![CDATA[*/
+    var news = new $.news();
+
+    //删除分类项
+    function delCategory(id) {
+        news.alertConfirm({
+            title: '确定删除该项吗?',
+            then: function () {
+                news.post({
+                    url: '/admin/category/delete',
+                    data: {id: id},
+                    success: function (result) {
+                        if(result.code == 200){
+                            news.alertOkAndReload('删除成功');
+                        } else {
+                            news.alertError(result.msg || '删除失败');
+                        }
+                    }
+                });
+            }
+        });
+    }
+
+    //保存分类项
+    $('#save-category-btn').click(function () {
+        var id = $('#cform #id').val();
+        var name = $('#cform #name').val();
+        var sort = parseInt($('#cform #sort').val());
+        if (name == '') {
+            news.alertWarn('请输入分类名称');
+            return;
+        }
+        if (sort == '') {
+            news.alertWarn('请输入排序数字');
+            return;
+        }
+        if (sort%1 !=0) {
+            news.alertWarn('请正确输入排序数字');
+            return;
+        }
+
+        //序列化值，判断路由是修改还是新增
+        var params = {id: id, name: name, sort: sort};
+        var url = $('#cform #id').val() != '' ? '/admin/category/modify' : '/admin/category/add';
+        news.post({
+            url: url,
+            data: params,
+            success: function (result) {
+                if (result.code == 200) {
+                    news.alertOkAndReload('分类保存成功');
+                } else {
+                    news.alertError(result.msg || '分类保存失败');
+                }
+            }
+        });
+    });
+
+    //点击事件，点击修改按钮回显赋值
+    $('.edit-category').click(function () {
+        var id = $(this).attr('id');
+        var name = $(this).attr('name');
+        var sort = $(this).attr('sort');
+        $('#cform #id').val(id);
+        $('#cform #name').val(name);
+        $('#cform #sort').val(sort);
+    });
 
     /*]]>*/
 </script>

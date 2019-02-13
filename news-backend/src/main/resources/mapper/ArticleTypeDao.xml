@@ -8,7 +8,46 @@
         from article_type AS type
         order by sort
     </select>
+
+    <!-- 删除前查询统计 -->
+    <select id="getCategoryCount" resultType="int" parameterType="Long">
+        select count(*)
+        from article_type
+        where id = #{id}
+    </select>
+
+    <!-- 删除文章分类 -->
+    <delete id="deleteCategory" parameterType="Long">
+        delete from article_type
+        where id = #{id}
+    </delete>
+
+    <!-- 新增文章分类 -->
+    <insert id="addCategory" parameterType="com.xiafei.newsbackend.pojo.table.ArticleTypeTable">
+        insert into article_type (name, sort, add_time, add_user, add_ip)
+        values (#{name}, #{sort}, #{addTime}, #{addUser}, #{addIp})
+    </insert>
+
+    <!-- 修改文章分类 -->
+    <update id="updateCategory" parameterType="com.xiafei.newsbackend.pojo.table.ArticleTypeTable">
+        update article_type
+        <set>
+            <if test="name!=null and name!=''">
+                name = #{name},
+            </if>
+            <if test="sort!=null">
+                sort = #{sort},
+            </if>
+            <if test="modifyTime!=null">
+                modify_time = #{modifyTime},
+            </if>
+            <if test="modifyUser!=null">
+                modify_user = #{modifyUser},
+            </if>
+            <if test="modifyIp!=null and modifyIp!=''">
+                modify_ip = #{modifyIp}
+            </if>
+        </set>
+        where id=#{id}
+    </update>
 </mapper>
-<!--set title = #{title}, subtitle = #{subtitle}, content = #{content}, type_id = #{typeId},
-        modify_time = #{modifyTime}, modify_user = #{modifyUser}, modify_ip = #{modifyIp}
-        where id=#{id}-->
