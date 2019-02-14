@@ -45,4 +45,11 @@ public interface UserInfoService {
      * @throws Exception
      * */
     void updateUser(UserInfoEntity entity) throws Exception;
+
+    /**
+     * 用户注册
+     * @param registerEntity
+     * @throws Exception
+     * */
+    void register(UserRegisterEntity registerEntity) throws Exception;
 }

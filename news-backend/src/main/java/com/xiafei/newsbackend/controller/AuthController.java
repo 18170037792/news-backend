@@ -4,11 +4,13 @@ import com.xiafei.newsbackend.entity.enu.LogActions;
 import com.xiafei.newsbackend.entity.log.LogInfoAddEntity;
 import com.xiafei.newsbackend.entity.user.UserInfoEntity;
 import com.xiafei.newsbackend.entity.user.UserLoginEntity;
+import com.xiafei.newsbackend.entity.user.UserRegisterEntity;
 import com.xiafei.newsbackend.service.LogInfoService;
 import com.xiafei.newsbackend.service.UserInfoService;
 import com.xiafei.newsbackend.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -36,8 +38,20 @@ public class AuthController extends BaseController{
 
     @PostMapping("/register")
     @ResponseBody
-    public JsonResult doRegister(){
-        return new JsonResult(Constant.SUCCESS_CODE,Constant.SAVE_SUCCESS);
+    public JsonResult doRegister(@Valid UserRegisterEntity registerEntity,
+                                 BindingResult bindingResult,HttpServletRequest request, HttpServletResponse response) throws Exception {
+        /**
+         * 字段验证
+         * */
+        if(bindingResult.hasErrors()){
+            String defaultMessage = bindingResult.getFieldError().getDefaultMessage();
+            return new JsonResult(Constant.FAILED_CODE,defaultMessage);
+        }
+        registerEntity.setAddIp(GetIpAndMac.getIp(request));
+        registerEntity.setAddTime(new Date());
+        service.register(registerEntity);
+
+        return new JsonResult(Constant.SUCCESS_CODE,Constant.REGISTER_SUCCESS);
     }
 
     /**

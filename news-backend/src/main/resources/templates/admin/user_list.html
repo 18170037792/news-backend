@@ -26,13 +26,14 @@
                             </tr>
                             </thead>
                             <tbody>
+                            <th:block th:unless="${users.data == null}">
                             <th:block th:each="user : ${users.data}">
                                 <tr>
                                     <td th:text="${user.name}"></td>
                                     <td th:text="${user.mobile}"></td>
                                     <td th:text="${user.email}"></td>
                                     <td><a target="_blank" th:href="@{${user.homeUrl}}" th:text="${user.homeUrl}"></a></td>
-                                    <td th:text="${common.formatDate(user.lastLoginTime)}"></td>
+                                    <td th:text="${user.lastLoginTime !=null}?${common.formatDate(user.lastLoginTime)}:''"></td>
                                     <td th:text="${user.ipHomeLocation}"></td>
                                     <td>
                                         <th:block th:if="${user.frozen == 0}">
@@ -55,6 +56,7 @@
                                         </th:block>
                                     </td>
                                 </tr>
+                            </th:block>
                             </th:block>
                             </tbody>
                         </table>

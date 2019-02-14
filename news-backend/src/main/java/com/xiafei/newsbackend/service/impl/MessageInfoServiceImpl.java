@@ -38,7 +38,8 @@ public class MessageInfoServiceImpl implements MessageInfoService {
         int count = messageInfoDao.getCount(searchEntity.getUserId());
         PageShowEntity showEntity = FormatPage.format(searchEntity.getLimitEntity(), count);
         if(count <= 0){
-            return null;
+            showEntity.setData(null);
+            return showEntity;
         }
 
         /**

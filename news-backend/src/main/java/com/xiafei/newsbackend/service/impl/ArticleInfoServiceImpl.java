@@ -110,10 +110,11 @@ public class ArticleInfoServiceImpl implements ArticleInfoService {
         int count = dao.getCount(searchEntity.getUserId());
         PageShowEntity showEntity = FormatPage.format(searchEntity.getLimitEntity(), count);
         if(count <= 0){
-            return null;
+            showEntity.setData(null);
+            return showEntity;
         }
-        List<ArticleAndTypeEntity> andTypeEntityList = this.getArticleAllBySearch(searchEntity);
-        showEntity.setData(andTypeEntityList);
+        List<ArticleAndTypeEntity> entityList = this.getArticleAllBySearch(searchEntity);
+        showEntity.setData(entityList);
         return showEntity;
     }
 

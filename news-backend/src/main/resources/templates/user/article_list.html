@@ -24,6 +24,8 @@
                             </tr>
                             </thead>
                             <tbody>
+
+                            <th:block th:unless="${articles.data == null}">
                             <th:block th:each="article : ${articles.data}">
                                 <tr>
                                     <td th:text="${article.title}">
@@ -52,6 +54,7 @@
                                                 class="fa fa-rocket"></i> <span>预览</span></a>
                                     </td>
                                 </tr>
+                            </th:block>
                             </th:block>
 
                             </tbody>

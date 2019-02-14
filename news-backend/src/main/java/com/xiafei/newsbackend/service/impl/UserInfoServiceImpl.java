@@ -112,7 +112,8 @@ public class UserInfoServiceImpl implements UserInfoService {
         int count = dao.countUserList();
         PageShowEntity showEntity = FormatPage.format(limitEntity, count);
         if(count <= 0){
-            return null;
+            showEntity.setData(null);
+            return showEntity;
         }
         List<UserLogEntity> userList = this.getUserList(limitEntity);
         showEntity.setData(userList);
@@ -189,6 +190,37 @@ public class UserInfoServiceImpl implements UserInfoService {
         int count = dao.updateUser(table);
         if(count <1){
             throw new ServiceException(Constant.SYSTEM_ERROR);
+        }
+    }
+
+    /**
+     * 用户注册
+     * @param registerEntity
+     * @throws Exception
+     * */
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void register(UserRegisterEntity registerEntity) throws Exception {
+        /**
+         * 拷贝赋值
+         * */
+        UserInfoTable table = new UserInfoTable();
+        BeanUtils.copyProperties(registerEntity,table);
+        /***
+         * 判断注册用户信息是否存在
+         * */
+        int count = dao.countRegister(table);
+        if(count>=1){
+            throw new ServiceException(Constant.USER_IS_EXIST);
+        }
+        /**
+         * 用户注册
+         * */
+        table.setPwd(GetMD5.getMD5(table.getPwd()));
+        table.setRoleId(1L);
+        int result = dao.addUser(table);
+        if(result !=1){
+            throw new ServiceException(Constant.WAIT_AGAIN);
         }
     }
 

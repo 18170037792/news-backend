@@ -97,4 +97,17 @@
         </set>
         where id=#{id}
     </update>
+
+    <!-- 判断注册用户是否存在 -->
+    <select id="countRegister" parameterType="com.xiafei.newsbackend.pojo.table.UserInfoTable" resultType="int">
+        select count(*)
+        from user_info
+        where name=#{name} or email=#{email}
+    </select>
+
+    <!-- 注册用户 -->
+    <insert id="addUser" parameterType="com.xiafei.newsbackend.pojo.table.UserInfoTable">
+        insert into user_info (name, email, pwd, add_time, add_ip)
+        values (#{name}, #{email}, #{pwd}, #{addTime}, #{addIp})
+    </insert>
 </mapper>

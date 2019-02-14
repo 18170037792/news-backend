@@ -22,6 +22,8 @@ public class Constant {
 
     public final static String SAVE_SUCCESS = "保存成功";
 
+    public final static String REGISTER_SUCCESS = "保存成功";
+
     public final static String UPDATE_SUCCESS = "修改成功";
 
     public final static String UPDATE_FAILED = "修改失败";
@@ -85,4 +87,6 @@ public class Constant {
     public static final String DELETE_SUCCESS = "删除成功";
 
     public static final String ARTICLE_IS_NULL = "文章不存在";
+
+    public static final String USER_IS_EXIST = "用户已存在";
 }

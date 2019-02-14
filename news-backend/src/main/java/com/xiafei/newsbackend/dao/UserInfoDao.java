@@ -51,7 +51,21 @@ public interface UserInfoDao {
 
     /**
      * 修改用户信息
-     * @param
+     * @param table
+     * @return int
      * */
     int updateUser(UserInfoTable table);
+
+    /**
+     * 判断注册用户是否存在
+     * @param table
+     * @return int
+     * */
+    int countRegister(UserInfoTable table);
+
+    /**
+     * 注册用户
+     * @param table
+     * */
+    int addUser(UserInfoTable table);
 }

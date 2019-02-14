@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>注册</title>
+    <title>用户注册</title>
 
     <link rel="stylesheet" th:href="@{https://heerey525.github.io/layui-v2.4.3/layui-v2.4.4/css/layui.css}"/>
     <script th:src="@{https://heerey525.github.io/layui-v2.4.3/layui-v2.4.4/layui.js}"></script>
@@ -11,32 +11,32 @@
 <div style="margin-top: 15%;">
     <div class="layui-main" style="width: 700px;">
         <h1 style="text-align: center">请输入注册信息</h1>
-        <form class="layui-form layui-form-pane" method="post" id="registerForm" onsubmit="return checkForm();">
+        <form class="layui-form layui-form-pane" id="registerForm" role="form">
             <div class="layui-form-item">
                 <label class="layui-form-label">邮箱：</label>
                 <div class="layui-input-block">
-                    <input id="email" type="email" name="email" class="layui-input" lay-verify="required"/>
+                    <input id="email" type="email" name="email" class="layui-input" lay-verify="required" placeholder="请填写邮箱地址"/>
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">账号名：</label>
                 <div class="layui-input-block">
-                    <input id="name" type="text" name="name" class="layui-input" lay-verify="required"/>
+                    <input id="name" type="text" name="name" class="layui-input" lay-verify="required" placeholder="请填写登录账号名"/>
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">密码：</label>
                 <div class="layui-input-block">
-                    <input id="password" type="password" name="password" class="layui-input" lay-verify="required"/>
+                    <input id="pwd" type="password" name="password" class="layui-input" lay-verify="required" placeholder="请输入登录密码"/>
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">验证码：</label>
                 <div class="layui-input-block">
-                    <input id="checkCode" type="text" name="checkCode" class="layui-input" lay-verify="required"/>
+                    <input id="checkCode" type="text" name="checkCode" class="layui-input" lay-verify="required" placeholder="请输入六位验证码"/>
                     <div style="margin-top: 5%">
                         <button id="sendCheckCode" type="button" class="layui-btn layui-btn-normal">获取验证码</button>
-                        <button class="layui-btn" type="submit">确认注册</button>
+                        <button id="register" type="button" class="layui-btn">确认注册</button>
                         <a th:href="@{/admin/user/login}">有账号？ 返回登录➜</a>
                     </div>
                 </div>
@@ -50,33 +50,60 @@
             var form = layui.form;
             var $ = layui.$;
 
-            function checkForm() {
-               var inputCheckCode = $("#checkCode").val();
-               alert(inputCheckCode);
+            //邮箱正则
+            var reg = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$");
+
+            $("#register").click(function () {
+                var email = $('#registerForm #email').val();
+                var name = $('#registerForm #name').val();
+                var pwd = $('#registerForm #pwd').val();
+                var inputCheckCode = $('#registerForm #checkCode').val();
+
+                if (email == null || email == ""){
+                    layer.msg("请输入邮箱");
+                    return;
+                }else if(!reg.test(email)){
+                    layer.msg("请正确填写邮箱格式");
+                    return;
+                }
+                if (name == null || name == ""){
+                    layer.msg("请输入账号");
+                    return;
+                }
+                if (pwd == null || pwd == ""){
+                    layer.msg("请输入密码");
+                    return;
+                }
+                if (inputCheckCode == null || inputCheckCode == ""){
+                    layer.msg("请输入验证码");
+                    return;
+                }else if(inputCheckCode.length !=6 || parseInt(inputCheckCode)%1 !=0){
+                    layer.msg("请正确输入验证码格式 ");
+                    return;
+                }
+                var params = {name: name,email: email,pwd: pwd};
                 if (inputCheckCode == checkCode){
                     $.ajax({
                         url:"/admin/user/register",
                         type:"POST",
-                        data: $("#registerForm").serialize(),
+                        data: params,
                         async:false,
                         success:function (result) {
                             if (result.code == 200){
                                 layer.alert("注册成功",function () {
-                                    window.location.href = "http://www.baidu.com";
+                                    window.location.href = "/admin/user/login";
                                 });
                             }else{
-                                layer.alert("注册失败");
+                                layer.alert(result.msg);
                             }
                         }
                     });
                 } else{
                     layer.msg("验证码输入错误");
                 }
-                return false;
-            }
+            });
 
-
-            //验证码
+            //验证码发送
             var checkCode = "";
             $("#sendCheckCode").click(function () {
                 var email = $("#email").val();
