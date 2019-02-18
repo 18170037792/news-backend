@@ -108,7 +108,10 @@
             $("#sendCheckCode").click(function () {
                 var email = $("#email").val();
                 if (email == null || email == ""){
-                    layer.msg("请输入邮箱！！！");
+                    layer.msg("请输入邮箱");
+                    return;
+                }else if(!reg.test(email)){
+                    layer.msg("请正确填写邮箱格式");
                     return;
                 }
                 var index = layer.open({
